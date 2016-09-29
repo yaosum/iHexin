@@ -8,10 +8,9 @@ from pages.zixuangu.kanZhulizijin_page import KanZhulizijinPage
 from pages.public.denglu_page import DengluPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
-from pages.hangqing.gengduo_page_3 import GengduoPage3
-from pages.hangqing.gengduo_page_7 import GengduoPage7
 from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
-"""
+from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
+
 def test_step1(driver):
     public_page = PublicPage(driver)
     guzhi_page = GuzhiPage(driver)
@@ -26,7 +25,7 @@ def test_step1(driver):
     assert guzhi_page.qihuo_btn
     assert guzhi_page.fushiA50Qihuo_btn
     assert guzhi_page.qita_btn
-"""
+
 def test_step3(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -34,12 +33,11 @@ def test_step3(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     kanzhulizijin_page = KanZhulizijinPage(driver)
     denglu_page = DengluPage(driver)
-    gengduo_page_3 = GengduoPage3(driver)
-    gengduo_page_7 = GengduoPage7(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
     guzhiqihuo_gengduo_page = GuzhiQihuoGengduoPage(driver)
 
     public_page.hangqing_button.click()
-    """
+
     guzhi_page.kanzijin_btn.click()
 
     #step4-5
@@ -58,11 +56,12 @@ def test_step3(driver):
     kanzhulizijin_page.hx_ergodic_zhibiao()
 
     kanzhulizijin_page.fanhui_btn.click()
-    """
+
     #step21
     hangqing_page.guzhi_btn.click()
 
     #step22-30
+
     guzhi_page.gn_operation()
     fenshikxian_page.hx_left()
     fenshikxian_page.change_gupiao(6)
@@ -70,40 +69,43 @@ def test_step3(driver):
 
     #step31-40
     guzhi_page.guoneiZhishu_gengduo_btn.click()
-    gengduo_page_7.gd_left()
-    gengduo_page_7.gd_left()
-    gengduo_page_7.gd_right()
-    gengduo_page_7.gd_right()
-    gengduo_page_7.cell01.click()
+    hangqing_gengduo_page.gd_left()
+    hangqing_gengduo_page.gd_left()
+    hangqing_gengduo_page.gd_right()
+    hangqing_gengduo_page.gd_right()
+    hangqing_gengduo_page.cell01.click()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
-    gengduo_page_7.fanhui_btn.click()
+    hangqing_gengduo_page.fanhui_btn.click()
 
     #step41-49
+    hangqing_page.guzhi_btn.click()
+
     guzhi_page.qh_operation()
-    fenshikxian_page.hx_left(9)
-    fenshikxian_page.hx_left()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
 
     #step50-57
+
     guzhi_page.qihuo_gengduo_btn.click()
+
     guzhiqihuo_gengduo_page.cell1_1.click()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
+
     guzhiqihuo_gengduo_page.hushen300_btn.click()
 
     #step58-64
-    guzhiqihuo_gengduo_page.cell2_1.click()
+    guzhiqihuo_gengduo_page.cell1_1.click()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
     guzhiqihuo_gengduo_page.shangzheng50.click()
 
     #step65-70
-    guzhiqihuo_gengduo_page.cell3_1.click()
+    guzhiqihuo_gengduo_page.cell1_1.click()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
@@ -121,23 +123,29 @@ def test_step3(driver):
     fenshikxian_page.fanhui_button.click()
 
     #step84-92
+    el1 = driver.get_window_size()
+    width = el1.get('width')
+    height = el1.get('height')
+    start_x = width * (344 / 375.0)
+    start_y = height * (500 / 667.0)
+    end_x = width * (344 / 375.0)
+    end_y = height * (10 / 667.0)
+    driver.swipe(start_x, start_y, end_x, end_y, duration=500)
     guzhi_page.qt_operation()
-    fenshikxian_page.hx_left(9)
-    fenshikxian_page.hx_left()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
 
     #step93-102
     guzhi_page.qita_gengduo_btn.click()
-    gengduo_page_7.gd_left()
-    gengduo_page_7.gd_left()
-    gengduo_page_7.gd_right()
-    gengduo_page_7.gd_right()
-    gengduo_page_7.cell01.click()
+    hangqing_gengduo_page.gd_left()
+    hangqing_gengduo_page.gd_left()
+    hangqing_gengduo_page.gd_right()
+    hangqing_gengduo_page.gd_right()
+    hangqing_gengduo_page.cell01.click()
     fenshikxian_page.change_gupiao(8)
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
-    gengduo_page_7.fanhui_btn.click()
+    hangqing_gengduo_page.fanhui_btn.click()
 
 
 

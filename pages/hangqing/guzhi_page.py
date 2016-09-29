@@ -56,7 +56,7 @@ class GuzhiPage(PageObject):
     qt_cell3_btn3 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[10]/UIAButton[3]')
 
     def gn_operation(self):
-        fenshikxian_page = FenshiKxianPage(self)
+        fenshikxian_page = FenshiKxianPage(self.w)
         self.gn_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.gn_cell1_btn2.click()
@@ -71,7 +71,8 @@ class GuzhiPage(PageObject):
         fenshikxian_page.change_gupiao(6)
 
     def qh_operation(self):
-        fenshikxian_page = FenshiKxianPage(self)
+        fenshikxian_page = FenshiKxianPage(self.w)
+        """
         self.qh_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.qh_cell1_btn2.click()
@@ -88,10 +89,11 @@ class GuzhiPage(PageObject):
         fenshikxian_page.fanhui_button.click()
         self.qh_cell3_btn2.click()
         fenshikxian_page.fanhui_button.click()
-        self.gn_cell3_btn3.click()
+        """
+        self.qh_cell3_btn3.click()
 
     def fs_operation(self):
-        fenshikxian_page = FenshiKxianPage(self)
+        fenshikxian_page = FenshiKxianPage(self.w)
         self.fs_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.fs_cell1_btn2.click()
@@ -102,10 +104,10 @@ class GuzhiPage(PageObject):
         fenshikxian_page.fanhui_button.click()
         self.fs_cell2_btn2.click()
         fenshikxian_page.fanhui_button.click()
-        self.gn_cell2_btn3.click()
+        self.fs_cell2_btn3.click()
 
     def qt_operation(self):
-        fenshikxian_page = FenshiKxianPage(self)
+        fenshikxian_page = FenshiKxianPage(self.w)
         self.qt_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.qt_cell1_btn2.click()
@@ -121,5 +123,3 @@ class GuzhiPage(PageObject):
         self.qt_cell3_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.qt_cell3_btn2.click()
-        fenshikxian_page.fanhui_button.click()
-        self.gt_cell3_btn3.click()

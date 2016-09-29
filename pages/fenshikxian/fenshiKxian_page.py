@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from page_object.appium_page_objects import PageObject, page_element
-
+import types
 
 class FenshiKxianPage(PageObject):
-	fanhui_button = page_element(accessibility_id='返回')
+	fanhui_button = page_element(accessibility_id = '返回')
 	xiayigegupiao_button = page_element(accessibility_id = '下一个股票')
 	shangyigegupiao_button = page_element(accessibility_id = '上一个股票')
 
@@ -32,3 +32,16 @@ class FenshiKxianPage(PageObject):
 		end_x = width * (67 / 375.0)
 		end_y = height * (134 / 667.0)
 		self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
+
+	#切换股票,切换分时和k线
+	def change_gupiao(self, count):
+		if type(count) is types.IntType:
+			for n in range(count):
+				self.xiayigegupiao_button.click()
+
+			self.hx_left()
+			for m in range(count):
+				self.xiayigegupiao_button.click()
+		else:
+			print('参数错误')
+
