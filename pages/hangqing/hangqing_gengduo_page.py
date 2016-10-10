@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 __author__ = "tianmaotao"
 
+"""
+行情页面,所有进入更多页面,需要查找的元素和操作放在此类(除了一些特殊的)。
+"""
 from page_object.appium_page_objects import PageObject, page_element
 
 class HangqingGengduoPage(PageObject):
@@ -22,8 +25,24 @@ class HangqingGengduoPage(PageObject):
     zongshizhi_btn = page_element(accessibility_id = '总市值')
     zongshou_btn = page_element(accessibility_id = '总手')
     xianshou_btn = page_element(accessibility_id = '现手')
+
+    chengjiaoliang_btn = page_element(accessibility_id = '成交量')
+    chengjiaoe_btn = page_element(accessibility_id = '成交额')
     desc_img = page_element(accessibility_id='DescImg')
     asc_img = page_element(accessibility_id='AscImg')
+
+    qita_50ETF_btn = page_element(accessibility_id= '50ETF')
+    kaipan_btn = page_element(accessibility_id= '开盘')
+    zuoshou_btn = page_element(accessibility_id= '昨收')
+    zuigao_btn = page_element(accessibility_id= '最高')
+    zuidi_btn = page_element(accessibility_id= '最低')
+    weibi_btn = page_element(accessibility_id= '委比')
+    zuojiesuan_btn = page_element(accessibility_id= '昨结算')
+    chicangliang_btn = page_element(accessibility_id= '持仓量')
+
+    #新三板的
+    sanbanzuoshi_btn = page_element(accessibility_id= '三板做市')
+    sanbanchengzhi_btn =  page_element(accessibility_id= '三板成指')
 
     cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
 
@@ -53,6 +72,107 @@ class HangqingGengduoPage(PageObject):
         assert self.desc_img
         self.zhangfu_btn.click()
         assert self.asc_img
+
+    #港媒股里边行业板块点击单元格后,再点击查看更多数据页面操作
+    def hybk_clickOperation(self):
+        self.hq_left()
+        self.chengjiaoe_btn.click()
+        self.chengjiaoe_btn.click()
+        self.chengjiaoliang_btn.click()
+        self.chengjiaoliang_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangfu_btn.click()
+        self.zuixin_btn.click()
+        self.zuixin_btn.click()
+        for n in range(5):
+            self.hq_up()
+        for m in range(5):
+            self.hq_down()
+        self.cell01.click()
+
+    #其他
+    #股票期权
+    def qita_gpqq_clickOperation(self):
+        self.zhenfu_btn.click()
+        self.zhenfu_btn.click()
+        self.weibi_btn.click()
+        self.weibi_btn.click()
+        self.zuidi_btn.click()
+        self.zuidi_btn.click()
+        self.zuigao_btn.click()
+        self.zuigao_btn.click()
+        self.zuoshou_btn.click()
+        self.zuoshou_btn.click()
+        #self.kaipan_btn.click()
+        #self.kaipan_btn.clicK()
+        self.xianshou_btn.click()
+        self.xianshou_btn.click()
+        self.shijinglv_btn.click()
+        self.shijinglv_btn.click()
+        self.shiying_btn.click()
+        self.shiying_btn.click()
+        self.liangbi_btn.click()
+        self.liangbi_btn.click()
+        self.huanshou_btn.click()
+        self.huanshou_btn.click()
+        self.zongshou_btn.click()
+        self.zongshou_btn.click()
+        self.zhangsu_btn.click()
+        self.zhangsu_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangfu_btn.click()
+        self.zuixin_btn.click()
+        self.zuixin_btn.click()
+    #上海黄金
+    def shhj_clickOperation(self):
+        self.zuojiesuan_btn.click()
+        self.zuojiesuan_btn.click()
+        self.chicangliang_btn.click()
+        self.chicangliang_btn.click()
+        self.zongshou_btn.click()
+        self.zongshou_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangfu_btn.click()
+        self.zuixin_btn.click()
+        self.zuixin_btn.click()
+    #基金(包括沪深封闭基金),以及个股里的除了新三板的其它股
+    def jijin_clickOperation(self):
+        self.xianshou_btn.click()
+        self.xianshou_btn.click()
+        self.zongshou_btn.click()
+        self.zongshou_btn.click()
+        self.jine_btn.click()
+        self.jine_btn.click()
+        self.zongshizhi_btn.click()
+        self.zongshizhi_btn.click()
+        self.liutong_btn.click()
+        self.liutong_btn.click()
+        self.shijinglv_btn.click()
+        self.shijinglv_btn.click()
+        self.shiying_btn.click()
+        self.shiying_btn.click()
+        self.zhangsu_btn.click()
+        self.zhangsu_btn.click()
+        self.zhenfu_btn.click()
+        self.zhenfu_btn.click()
+        self.liangbi_btn.click()
+        self.liangbi_btn.click()
+        self.huanshou_btn.click()
+        self.huanshou_btn.click()
+        self.xingji_btn.click()
+        self.xingji_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangfu_btn.click()
+        self.zuixin_btn.click()
+        self.zuixin_btn.click()
 
 
     def hq_right(self):

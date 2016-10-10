@@ -8,6 +8,9 @@ class GangmeiguPage(PageObject):
     USA_btn = page_element(accessibility_id = '美股');
     HK_btn = page_element(accessibility_id = '港股')
 
+    #这个属性表示港媒股页面第一个单元格。注意:当组缩紧以后,表示可见组的第一个单元格
+    cell1 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIATableCell[1]/UIAStaticText[2]')
+
     #美股和港股行业版块以及行业版块上面的三个按钮
     cell1_1 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIAButton[1]')
     cell1_2 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIAButton[2]')
@@ -22,7 +25,8 @@ class GangmeiguPage(PageObject):
 
     #美股
     #组标题按钮
-    group_usa1 = page_element(accessibility_id = '行业板块')
+    #group_usa1 = page_element(accessibility_id = '行业板块')
+    group_usa1 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIATableGroup[1]/UIAButton[1]')
     group_usa2 = page_element(accessibility_id='热点中概股')
     group_usa3 = page_element(accessibility_id='热点美股')
     group_usa4 = page_element(accessibility_id='热点ETF')
