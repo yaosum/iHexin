@@ -31,7 +31,7 @@ def test_step1(driver):
     public_page.hangqing_button.click()
     #step3
     hangqing_page.qita_btn.click()
-    """
+    
     #step4-56 全球市场---国内期货和外汇
     name_list = ['gn_qihuo_btn','waihui_btn']
     for name in name_list:
@@ -131,7 +131,7 @@ def test_step1(driver):
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
-    """
+
     #个股和债券
     name_list = ['shangzhengA_btn', 'shangzhengB_btn', 'shenzhenA_btn', 'shenzhenB_btn', 'zhongxiaoban_btn', 'chuangyeban_btn',
                  'sanban_btn', 'fengxianjingshi_btn','hushenzhaiquan_btn','shangzhengzhaiquan_btn','shenzhenzhaiquan_btn']
@@ -143,15 +143,18 @@ def test_step1(driver):
             hangqing_gengduo_page.hq_down()
         for n in range(4):
             hangqing_gengduo_page.hq_left()
-        hangqing_gengduo_page.jijin_clickOperation()
-        hangqing_gengduo_page.cell01.click()
+        #hangqing_gengduo_page.jijin_clickOperation()
+        #hangqing_gengduo_page.cell01.click()
+        driver.tap([(80, 216)], duration=0.5)
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
 
 
     #个股---新三板
+
     qita_page.xinsanban_btn.click()
+
     #三板做市
     qita_xinsanban_page.sanbanzuoshi_btn.click()
     fenshikxian_page.hx_left()
@@ -162,6 +165,7 @@ def test_step1(driver):
     fenshikxian_page.hx_left()
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
+
     #成分股
     qita_xinsanban_page.chengfengu_btn.click()
     for m in range(2):
@@ -172,11 +176,11 @@ def test_step1(driver):
             hangqing_gengduo_page.hq_down()
         for n in range(4):
             hangqing_gengduo_page.hq_left()
-        hangqing_gengduo_page.jijin_clickOperation()
-        hangqing_gengduo_page.cell01.click()
+        #hangqing_gengduo_page.jijin_clickOperation()
+        #hangqing_gengduo_page.cell01.click()
+        driver.tap([(80, 216)], duration=0.5)
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
-        hangqing_gengduo_page.fanhui_btn.click()
         hangqing_gengduo_page.sanbanchengzhi_btn.click()
     hangqing_gengduo_page.fanhui_btn.click()
 
@@ -186,42 +190,48 @@ def test_step1(driver):
         sub_list = [('group1', 'gengduo1'), ('group2', 'gengduo2'), ('group3', 'gengduo3')]
         for group, gengduo in sub_list:
             qita_xinsanban_page.cell1.click()
-            fenshikxian_page.change_gupiao(5)
+            fenshikxian_page.change_gupiao(1)
             fenshikxian_page.fanhui_button.click()
+
             eval('qita_xinsanban_page.{}.click()'.format(gengduo))
+
             for n in range(5):
                 hangqing_gengduo_page.hq_up()
             for n in range(6):
                 hangqing_gengduo_page.hq_down()
             for n in range(4):
                 hangqing_gengduo_page.hq_left()
-            hangqing_gengduo_page.jijin_clickOperation()
+
+            #hangqing_gengduo_page.jijin_clickOperation()
             hangqing_gengduo_page.cell01.click()
-            fenshikxian_page.change_gupiao(5)
+            fenshikxian_page.change_gupiao(1)
             fenshikxian_page.fanhui_button.click()
             hangqing_gengduo_page.fanhui_btn.click()
             eval('qita_xinsanban_page.{}.click()'.format(group))
-        qita_xinsanban_page.group1.click()
-        qita_xinsanban_page.group2.click()
+
         qita_xinsanban_page.group3.click()
+        qita_xinsanban_page.group2.click()
+        qita_xinsanban_page.group1.click()
+
     hangqing_gengduo_page.fanhui_btn.click()
 
+    qita_page.hushenguozhai_btn.click()
     qita_hushenguozhai_page.cell1.click()
-    fenshikxian_page.change_gupiao(8)
+    fenshikxian_page.change_gupiao(1)
     fenshikxian_page.fanhui_button.click()
     qita_hushenguozhai_page.shenshi_btn.click()
     qita_hushenguozhai_page.cell1.click()
-    fenshikxian_page.change_gupiao(8)
+    fenshikxian_page.change_gupiao(1)
     fenshikxian_page.fanhui_button.click()
     qita_hushenguozhai_page.hushi_btn.click()
     qita_hushenguozhai_page.fanhui_btn.click()
 
     qita_page.tuishizhengli_btn.click()
-    for n in range(5):
+    for n in range(1):
         hangqing_gengduo_page.hq_up()
-    for n in range(6):
+    for n in range(2):
         hangqing_gengduo_page.hq_down()
-    for n in range(4):
+    for n in range(1):
         hangqing_gengduo_page.hq_left()
-    hangqing_gengduo_page.jijin_clickOperation()
+    #hangqing_gengduo_page.jijin_clickOperation()
     hangqing_gengduo_page.fanhui_btn.click()

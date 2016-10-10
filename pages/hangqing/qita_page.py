@@ -13,6 +13,8 @@ class Qita(PageObject):
     sh_huangjin_btn = page_element(accessibility_id = '上海黄金')
     tj_guijinshu_btn = page_element(accessibility_id = '天津贵金属')
 
+    tonghuashunaijijin_btn = page_element(accessibility_id = 'ths love jj')
+
     hushen_fbjj_btn = page_element(accessibility_id = '沪深封闭基金')
     shangzheng_fbjj_btn = page_element(accessibility_id = '上证封闭基金')
     shenzheng_fbjj_btn = page_element(accessibility_id = '深证封闭基金')
@@ -27,6 +29,8 @@ class Qita(PageObject):
     sanban_btn = page_element(accessibility_id = '三板')
     fengxianjingshi_btn = page_element(accessibility_id = '风险警示')
     tuishizhengli_btn = page_element(accessibility_id = '退市整理')
+
+    hushenguozhai_btn = page_element(accessibility_id = '沪深国债（放贷宝）')
 
     hushenzhaiquan_btn = page_element(accessibility_id = '沪深债券')
     shangzhengzhaiquan_btn = page_element(accessibility_id = '上证债券')

@@ -41,7 +41,7 @@ class FenshiKxianPage(PageObject):
 
 			self.hx_left()
 			for m in range(count):
-				self.xiayigegupiao_button.click()
+				self.shangyigegupiao_button.click()
 		else:
 			print('参数错误')
 
