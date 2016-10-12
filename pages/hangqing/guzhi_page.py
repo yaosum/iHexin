@@ -72,7 +72,6 @@ class GuzhiPage(PageObject):
 
     def qh_operation(self):
         fenshikxian_page = FenshiKxianPage(self.w)
-        """
         self.qh_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.qh_cell1_btn2.click()
@@ -89,7 +88,6 @@ class GuzhiPage(PageObject):
         fenshikxian_page.fanhui_button.click()
         self.qh_cell3_btn2.click()
         fenshikxian_page.fanhui_button.click()
-        """
         self.qh_cell3_btn3.click()
 
     def fs_operation(self):

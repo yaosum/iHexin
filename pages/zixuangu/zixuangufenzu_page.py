@@ -17,3 +17,11 @@ class ZixuangufenzuPage(PageObject):
 
     chakanxiangqing_btn = page_element(accessibility_id = "查看详情")
     guanbi_btn = page_element(accessibility_id = "关闭")
+
+    def hx_tapblank(self):
+        el1 = self.w.get_window_size()
+        width = el1.get('width')
+        height = el1.get('height')
+        tap_x = width * (365 / 375.0)
+        tap_y = height * (100 / 667.0)
+        self.w.execute_script("mobile: tap",{"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": tap_x, "y": tap_y})

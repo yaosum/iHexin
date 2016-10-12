@@ -13,6 +13,7 @@ from pages.public.kefuzhongxin_page import Kefuzhongxin
 from pages.hangqing.qita_xinsanban_page import QitaXinsanbanPage
 from pages.hangqing.qita_hushenguozhai_page import QitaHushenguozhai
 
+# step4-56 全球市场---国内期货和外汇
 def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -20,56 +21,89 @@ def test_step1(driver):
     qita_qihuo_page = QitaQihuoPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
-    qita_50ETF_page = Qita50ETFPage(driver)
-    qita_tianjinguijinshu_page = QitaTianjinguijinshuPage(driver)
-    denglu_page = DengluPage(driver)
-    kefuzhongxin_page = Kefuzhongxin(driver)
-    qita_xinsanban_page = QitaXinsanbanPage(driver)
-    qita_hushenguozhai_page = QitaHushenguozhai(driver)
 
-    #step2
+    # step2
     public_page.hangqing_button.click()
-    #step3
+    # step3
     hangqing_page.qita_btn.click()
-    
-    #step4-56 全球市场---国内期货和外汇
-    name_list = ['gn_qihuo_btn','waihui_btn']
+
+    # step4-56 全球市场---国内期货和外汇
+    name_list = ['gn_qihuo_btn', 'waihui_btn']
     for name in name_list:
         eval('qita_page.{}.click()'.format(name))
-        for n in range(2):
-            driver.execute_script("mobile: tap",{"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 373, "y": 124})
-        for n in range(5):
-            hangqing_gengduo_page.hq_up()
-        for n in range(5):
-            hangqing_gengduo_page.hq_down()
-        driver.execute_script("mobile: tap",{"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 100, "y": 124})
+
+        assert qita_qihuo_page.zhangfu_statictext
+        qita_qihuo_page.zhangdiefu_btn.click()
+        assert qita_qihuo_page.zhangdie_statictext
+        qita_qihuo_page.zhangdiefu_btn.click()
+        assert qita_qihuo_page.zhangdie_statictext
+
+        hangqing_gengduo_page.hq_up()
+        hangqing_gengduo_page.hq_down()
+
+        el1 = driver.get_window_size()
+        width = el1.get('width')
+        height = el1.get('height')
+        tap_x = width * (42 / 375.0)
+        tap_y = height * (124 / 667.0)
+        driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": tap_x, "y": tap_y})
+
+        length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         qita_qihuo_page.fanhui_button.click()
 
-    #国外期货
+'''
+# 国外期货
+def test_step34(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    qita_page = Qita(driver)
+    qita_qihuo_page = QitaQihuoPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+    qita_50ETF_page = Qita50ETFPage(driver)
+
+    # step2
+    public_page.hangqing_button.click()
+    # step3
+    hangqing_page.qita_btn.click()
+
     qita_page.gw_qihuo_btn.click()
     for n in range(2):
-        driver.execute_script("mobile: tap",{"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 373, "y": 113})
-    for n in range(5):
-        hangqing_gengduo_page.hq_up()
-    for n in range(6):
-        hangqing_gengduo_page.hq_down()
+        driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 373, "y": 113})
+    hangqing_gengduo_page.hq_up()
+    hangqing_gengduo_page.hq_down()
     driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 100, "y": 113})
     fenshikxian_page.change_gupiao(5)
     fenshikxian_page.fanhui_button.click()
     qita_qihuo_page.fanhui_button.click()
 
+#50ETF
+def test_step34(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    qita_page = Qita(driver)
+    qita_qihuo_page = QitaQihuoPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+    qita_50ETF_page = Qita50ETFPage(driver)
+
+    # step2
+    public_page.hangqing_button.click()
+    # step3
+    hangqing_page.qita_btn.click()
+
     qita_page.gp_qiquan_btn.click()
     hangqing_gengduo_page.qita_gpqq_clickOperation()
-    #step34-37
+    # step34-37
     hangqing_gengduo_page.qita_50ETF_btn.click()
     qita_50ETF_page.cell_etf_btn.click()
     fenshikxian_page.hx_right()
     fenshikxian_page.hx_left()
     fenshikxian_page.fanhui_button.click()
 
-    #step38
+    # step38
     qita_50ETF_page.qtgpqq_up()
     qita_50ETF_page.qtgpqq_down()
     for n in range(3):
@@ -94,9 +128,23 @@ def test_step1(driver):
     qita_50ETF_page.fanhui_button.click()
     qita_qihuo_page.fanhui_button.click()
 
+# 现货市场
+def test_step57(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    qita_page = Qita(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+    qita_tianjinguijinshu_page = QitaTianjinguijinshuPage(driver)
+    denglu_page = DengluPage(driver)
+    kefuzhongxin_page = Kefuzhongxin(driver)
 
-    #现货市场
-    #step57-72
+    # step2
+    public_page.hangqing_button.click()
+    # step3
+    hangqing_page.qita_btn.click()
+
+    # step57-72
     qita_page.sh_huangjin_btn.click()
     for n in range(2):
         hangqing_gengduo_page.hq_left()
@@ -104,7 +152,6 @@ def test_step1(driver):
     fenshikxian_page.change_gupiao(5)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
-
 
     qita_page.tj_guijinshu_btn.click()
     qita_tianjinguijinshu_page.kaihu_btn.click()
@@ -120,21 +167,49 @@ def test_step1(driver):
     qita_tianjinguijinshu_page.fanhui_button.click()
 
 
-    #基金
+# 基金
+def test_step73(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+
+    # step2
+    public_page.hangqing_button.click()
+    # step3
+    hangqing_page.qita_btn.click()
+
+    # 基金
     name_list = ['hushen_fbjj_btn', 'shangzheng_fbjj_btn', 'shenzheng_fbjj_btn']
     for name in name_list:
         eval('qita_page.{}.click()'.format(name))
         for n in range(4):
             hangqing_gengduo_page.hq_left()
-        hangqing_gengduo_page.jijin_clickOperation()
+        hangqing_gengduo_page.jijin_clicktion()
         hangqing_gengduo_page.cell01.click()
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
 
-    #个股和债券
-    name_list = ['shangzhengA_btn', 'shangzhengB_btn', 'shenzhenA_btn', 'shenzhenB_btn', 'zhongxiaoban_btn', 'chuangyeban_btn',
-                 'sanban_btn', 'fengxianjingshi_btn','hushenzhaiquan_btn','shangzhengzhaiquan_btn','shenzhenzhaiquan_btn']
+
+# 个股和债券
+def test_step74(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    qita_page = Qita(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+
+    # step2
+    public_page.hangqing_button.click()
+    # step3
+    hangqing_page.qita_btn.click()
+
+    # 个股和债券
+    name_list = ['shangzhengA_btn', 'shangzhengB_btn', 'shenzhenA_btn', 'shenzhenB_btn', 'zhongxiaoban_btn',
+                 'chuangyeban_btn',
+                 'sanban_btn', 'fengxianjingshi_btn', 'hushenzhaiquan_btn', 'shangzhengzhaiquan_btn',
+                 'shenzhenzhaiquan_btn']
     for name in name_list:
         eval('qita_page.{}.click()'.format(name))
         for n in range(5):
@@ -143,16 +218,30 @@ def test_step1(driver):
             hangqing_gengduo_page.hq_down()
         for n in range(4):
             hangqing_gengduo_page.hq_left()
-        #hangqing_gengduo_page.jijin_clickOperation()
-        #hangqing_gengduo_page.cell01.click()
+        # hangqing_gengduo_page.jijin_clickOperation()
+        # hangqing_gengduo_page.cell01.click()
         driver.tap([(80, 216)], duration=0.5)
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
 
+#个股---新三板
+def test_step75(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    qita_page = Qita(driver)
+    qita_qihuo_page = QitaQihuoPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+    qita_xinsanban_page = QitaXinsanbanPage(driver)
+    qita_hushenguozhai_page = QitaHushenguozhai(driver)
+
+    #step2
+    public_page.hangqing_button.click()
+    #step3
+    hangqing_page.qita_btn.click()
 
     #个股---新三板
-
     qita_page.xinsanban_btn.click()
 
     #三板做市
@@ -169,7 +258,6 @@ def test_step1(driver):
     #成分股
     qita_xinsanban_page.chengfengu_btn.click()
     for m in range(2):
-
         for n in range(5):
             hangqing_gengduo_page.hq_up()
         for n in range(6):
@@ -227,11 +315,11 @@ def test_step1(driver):
     qita_hushenguozhai_page.fanhui_btn.click()
 
     qita_page.tuishizhengli_btn.click()
-    for n in range(1):
-        hangqing_gengduo_page.hq_up()
+    hangqing_gengduo_page.hq_up()
     for n in range(2):
         hangqing_gengduo_page.hq_down()
-    for n in range(1):
-        hangqing_gengduo_page.hq_left()
+    hangqing_gengduo_page.hq_left()
     #hangqing_gengduo_page.jijin_clickOperation()
     hangqing_gengduo_page.fanhui_btn.click()
+    '''
+

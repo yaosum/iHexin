@@ -86,10 +86,8 @@ class HangqingGengduoPage(PageObject):
         self.zhangfu_btn.click()
         self.zuixin_btn.click()
         self.zuixin_btn.click()
-        for n in range(5):
-            self.hq_up()
-        for m in range(5):
-            self.hq_down()
+        self.hq_up()
+        self.hq_down()
         self.cell01.click()
 
     #其他
@@ -174,6 +172,76 @@ class HangqingGengduoPage(PageObject):
         self.zuixin_btn.click()
         self.zuixin_btn.click()
 
+    #沪深
+    def hs_clickOperation(self):
+        self.xianshou_btn.click()
+        assert self.desc_img
+        self.xianshou_btn.click()
+        assert self.asc_img
+        self.zongshou_btn.click()
+        assert self.desc_img
+        self.zongshou_btn.click()
+        assert self.asc_img
+        #self.jine_btn.clcik()
+        #assert self.desc_img
+        #self.jine_btn.clcik()
+        #assert self.asc_img
+        self.zongshizhi_btn.click()
+        assert self.desc_img
+        self.zongshizhi_btn.click()
+        assert self.asc_img
+        self.liutong_btn.click()
+        assert self.desc_img
+        self.liutong_btn.click()
+        assert self.asc_img
+        self.shijinglv_btn.click()
+        assert self.desc_img
+        self.shijinglv_btn.click()
+        assert self.asc_img
+        self.shiying_btn.click()
+        assert self.desc_img
+        self.shiying_btn.click()
+        assert self.asc_img
+        self.zhangsu_btn.click()
+        assert self.desc_img
+        self.zhangsu_btn.click()
+        assert self.asc_img
+        self.zhenfu_btn.click()
+        assert self.desc_img
+        self.zhenfu_btn.click()
+        assert self.asc_img
+        self.liangbi_btn.click()
+        assert self.desc_img
+        self.liangbi_btn.click()
+        assert self.asc_img
+        self.huanshou_btn.click()
+        assert self.desc_img
+        self.huanshou_btn.click()
+        assert self.asc_img
+        self.xingji_btn.click()
+        assert self.desc_img
+        self.xingji_btn.click()
+        assert self.asc_img
+        self.zhangdie_btn.click()
+        assert self.desc_img
+        self.zhangdie_btn.click()
+        assert self.asc_img
+        self.zhangfu_btn.click()
+        assert self.desc_img
+        self.zhangfu_btn.click()
+        assert self.asc_img
+        self.zuixin_btn.click()
+        assert self.desc_img
+        self.zuixin_btn.click()
+        assert self.asc_img
+    #港股通
+    def ganggutong_clickOperation(self):
+        self.zuixin_btn.click()
+        self.zuixin_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangdie_btn.click()
+        self.zhangdie_btn.click()
 
     def hq_right(self):
         el1 = self.w.get_window_size()

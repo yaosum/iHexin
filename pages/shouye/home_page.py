@@ -9,6 +9,8 @@ class HomePage(PageObject):
 	qiehuanyejianmoshi_button = page_element(accessibility_id = "切换到夜间模式")
 	sousuo_button = page_element(accessibility_id = "搜索")
 
+	xiaoxizhongxin_button = page_element(accessibility_id = "message center")
+
 
 
 

@@ -19,7 +19,6 @@ from pages.zixuangu.zixuanguxinwen_page import ZixuanguxinwenPage
 from pages.zixuangu.zixun_page import ZixunPage
 from pages.index_page import IndexPage
 
-"""
 # 首页
 def test_step1(driver):
     home_page = HomePage(driver)
@@ -36,6 +35,9 @@ def test_step2(driver):
     assert optional_page.zixuan_staticText
     assert optional_page.tongbuzixuangu_btn
     assert optional_page.duoshoujiPCtongbu_staText
+    assert optional_page.cell001_stock_staText.text == u'上证指数'
+    assert optional_page.cell002_stock_staText.text == u'创业板指'
+    assert optional_page.cell003_stock_staText.text == u'同花顺'
 
 # 资金页面
 def test_step3(driver):
@@ -107,37 +109,26 @@ def test_step21(driver):
 
     public_page.zixuan_button.click()
     # step22-40
-    el1 = driver.get_window_size()
-    width = el1.get('width')
-    height = el1.get('height')
 
     optional_page.zixuanIndexItemName_staText.click()
     zixuanDapan_page.shen_btn.click()
     zixuanDapan_page.chuang_btn.click()
-    driver.swipe(start_x=width * (236 / 375.0), start_y=height * (239 / 667.0), end_x=width * (39 / 375.0), end_y=height * (239 / 667.0), duration=500)
+    zixuanDapan_page.hx_left()
+    sleep(1)
     zixuanDapan_page.shen_btn.click()
     zixuanDapan_page.hu_btn.click()
-
-    driver.swipe(start_x=width * (39 / 375.0), start_y=height * (239 / 667.0), end_x=width * (236 / 375.0),
-                 end_y=height * (239 / 667.0), duration=500)
-    driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 188, "y": 480})
+    zixuanDapan_page.hx_right()
+    sleep(1)
+    zixuanDapan_page.hx_tapblank()
     optional_page.zixuanIndexItemName_staText.click()
     zixuanDapan_page.shen_btn.click()
-    driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 188, "y": 480})
+    zixuanDapan_page.hx_tapblank()
     optional_page.zixuanIndexItemName_staText.click()
     zixuanDapan_page.chuang_btn.click()
-    driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 188, "y": 480})
+    zixuanDapan_page.hx_tapblank()
     optional_page.zixuanIndexItemName_staText.click()
     zixuanDapan_page.fenshitu_scr.click()
-    fenshikxian_page.xiayigegupiao_button.click()
-    fenshikxian_page.xiayigegupiao_button.click()
-    fenshikxian_page.xiayigegupiao_button.click()
-    driver.swipe(start_x=width * (331 / 375.0), start_y=height * (296 / 667.0), end_x=width * (59 / 375.0), end_y=height * (296 / 667.0), duration=500)
-    fenshikxian_page.xiayigegupiao_button.click()
-    fenshikxian_page.xiayigegupiao_button.click()
-    fenshikxian_page.xiayigegupiao_button.click()
-    driver.swipe(start_x=width * (59 / 375.0), start_y=height * (296 / 667.0), end_x=width * (331 / 375.0),
-                 end_y=height * (296 / 667.0), duration=500)
+    fenshikxian_page.change_gupiao(3)
     fenshikxian_page.fanhui_button.click()
 
 
@@ -186,16 +177,17 @@ def test_step41(driver):
 
     # step 48 点击首页
     public_page.shouye_button.click()
-    assert home_page.gerenzhongxin_button
-    assert home_page.feivip_button
-    assert home_page.qiehuanyejianmoshi_button
-    assert home_page.sousuo_button
+
+#编辑自选
+def test_step49(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    bianjizixuan_page = BianjizixuanPage(driver)
+    searchStock_page = SearchStockPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
 
     # step 49 点击自选
     public_page.zixuan_button.click()
-    assert optional_page.zixuan_staticText
-    assert optional_page.tongbuzixuangu_btn
-    assert optional_page.duoshoujiPCtongbu_staText
 
     # step50-52
     optional_page.bianji_button.click()
@@ -273,7 +265,6 @@ def test_step067_71(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     kanzhulizijin_page = KanZhulizijinPage(driver)
-    denglu_page = DengluPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
 
     public_page.zixuan_button.click()
@@ -284,22 +275,7 @@ def test_step067_71(driver):
     kanzhulizijin_page.cell001.click()
     sleep(1)
     # step73-76
-    for n in range(17):
-        fenshikxian_page.xiayigegupiao_button.click
-
-    for n in range(17):
-        fenshikxian_page.shangyigegupiao_button.click()
-
-    fenshikxian_page.hx_left()
-    sleep(1)
-    assert fenshikxian_page.klineTabButton
-    assert fenshikxian_page.shezhi_btn
-
-    for n in range(17):
-        fenshikxian_page.xiayigegupiao_button.click
-
-    for n in range(17):
-        fenshikxian_page.shangyigegupiao_button.click()
+    fenshikxian_page.change_gupiao(17)
     # step 77
     fenshikxian_page.fanhui_button.click()
     kanzhulizijin_page.fanhui_btn.click()
@@ -310,22 +286,20 @@ def test_step78_88(driver):
     optional_page = OptionalPage(driver)
     zixuanguxinwen_page = ZixuanguxinwenPage(driver)
     zixun_page = ZixunPage(driver)
-    el1 = driver.get_window_size()
-    width = el1.get('width')
-    height = el1.get('height')
+
     public_page.zixuan_button.click()
     optional_page.xinwen_btn.click()
     assert zixuanguxinwen_page.zixuanguxinwen_staText
 
-    driver.swipe(start_x=width * (85 / 375.0), start_y=height * (584 / 667.0), end_x=width * (85 / 375.0), end_y=height * (112 / 667.0), duration=500)
-    driver.swipe(start_x=width * (85 / 375.0), start_y=height * (112 / 667.0), end_x=width * (85 / 375.0), end_y=height * (584 / 667.0), duration=500)
-    driver.swipe(start_x=width * (85 / 375.0), start_y=height * (112 / 667.0), end_x=width * (85 / 375.0), end_y=height * (584 / 667.0), duration=500)
+    zixuanguxinwen_page.hx_upglide()
+    zixuanguxinwen_page.hx_downglide()
+    zixuanguxinwen_page.hx_downglide()
     zixuanguxinwen_page.cell01.click()
     zixun_page.fanhui_btn.click()
     zixuanguxinwen_page.yanbao_btn.click()
-    driver.swipe(start_x=width * (85 / 375.0), start_y=height * (584 / 667.0), end_x=width * (85 / 375.0), end_y=height * (112 / 667.0), duration=500)
-    driver.swipe(start_x=width * (85 / 375.0), start_y=height * (112 / 667.0), end_x=width * (85 / 375.0), end_y=height * (584 / 667.0), duration=500)
-    driver.swipe(start_x=width * (85 / 375.0), start_y=height * (112 / 667.0), end_x=width * (85 / 375.0), end_y=height * (584 / 667.0), duration=500)
+    zixuanguxinwen_page.hx_upglide()
+    zixuanguxinwen_page.hx_downglide()
+    zixuanguxinwen_page.hx_downglide()
     zixuanguxinwen_page.cell01.click()
     zixun_page.fanhui_btn.click()
     zixuanguxinwen_page.fanhui_btn.click()
@@ -336,18 +310,15 @@ def test_step89(driver):
     optional_page = OptionalPage(driver)
     zixuangugonggao_page=ZixuangugonggaoPage(driver)
     zixun_page = ZixunPage(driver)
-    el1 = driver.get_window_size()
-    width = el1.get('width')
-    height = el1.get('height')
 
     public_page.zixuan_button.click()
 
     optional_page.gonggao_btn.click()
     assert zixuangugonggao_page.zixuangugonggao_staText.text == u'自选股公告'
     #step 90-96
-    driver.swipe(start_x=width * (86 / 375.0), start_y=height * (584 / 667.0), end_x=width * (86 / 375.0), end_y=height * (112 / 667.0), duration=500)
-    driver.swipe(start_x=width * (86 / 375.0), start_y=height * (112 / 667.0), end_x=width * (86 / 375.0), end_y=height * (584 / 667.0), duration=500)
-    driver.swipe(start_x=width * (86 / 375.0), start_y=height * (112 / 667.0), end_x=width * (86 / 375.0), end_y=height * (584 / 667.0), duration=500)
+    zixuangugonggao_page.hx_upglide()
+    zixuangugonggao_page.hx_downglide()
+    zixuangugonggao_page.hx_downglide()
     zixuangugonggao_page.cell01.click()
     zixun_page.fanhui_btn.click()
     zixuangugonggao_page.fanhui_btn.click()
@@ -355,15 +326,15 @@ def test_step89(driver):
     #step 97-98
     #  上下滑
     for n in range(2):
-    	optional_page.hx_upglide()
+        optional_page.hx_upglide()
     for n in range(2):
-    	optional_page.hx_glide()
+        optional_page.hx_glide()
     # step99-100
     # 左右滑
     for n in range(12):
-    	optional_page.hx_right()
+        optional_page.hx_right()
     for n in range(13):
-    	optional_page.hx_left()
+        optional_page.hx_left()
     # step101-103
     optional_page.zuixin_staText.click()
     optional_page.zuixin_staText.click()
@@ -371,7 +342,7 @@ def test_step89(driver):
 
     #step 104
     for n in range(12):
-    	optional_page.hx_right()
+        optional_page.hx_right()
 
     optional_page.zhenfu_staText.click()
     optional_page.zhenfu_staText.click()
@@ -445,22 +416,18 @@ def test_step89(driver):
     optional_page.cell001.click()
     sleep(1)
     # step107-109
-    for n in range(17):
-    	fenshikxian_page.xiayigegupiao_button.click
-    for n in range(17):
-    	fenshikxian_page.shangyigegupiao_button.click()
-
-    fenshikxian_page.hx_left()
-    sleep(1)
-    assert fenshikxian_page.klineTabButton
-    assert fenshikxian_page.shezhi_btn
-
-    for n in range(17):
-    	fenshikxian_page.xiayigegupiao_button.click
-    for n in range(17):
-    	fenshikxian_page.shangyigegupiao_button.click()
+    length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
+    fenshikxian_page.change_gupiao(length)
     # step110-128
     fenshikxian_page.fanhui_button.click()
+
+'''
+#长按操作
+def test_step114(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+
+    public_page.zixuan_button.click()
 
     optional_page.zuixin_staText.click()
     optional_page.hx_longPress(optional_page.cell001)
@@ -469,7 +436,7 @@ def test_step89(driver):
     optional_page.quxiaopaixu_btn.click()
     optional_page.zuixin_staText.click()
     optional_page.hx_upglide()
-    optional_page.hx_longPress(optional_page.cell05)
+    optional_page.hx_longPress(optional_page.cell017)
     optional_page.zhiding_btn.click()
     optional_page.quxiaopaixu_btn.click()
     optional_page.hx_glide()
@@ -477,16 +444,23 @@ def test_step89(driver):
     optional_page.shanchu_btn.click()
     optional_page.hx_longPress(optional_page.cell001)
     optional_page.shanchu_btn.click()
-"""
+'''
 #自选股分组
 def test_step130_144(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     zixuangufenzu_page = ZixuangufenzuPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
+
     public_page.zixuan_button.click()
     optional_page.fenzu_btn.click()
+
+    # zixuangufenzu_page.xinjianfenzu_btn.click()
+    # zixuangufenzu_page.guanbi_btn.click()
+    # zixuangufenzu_page.guanlifenzu_btn.clcik()
+    # zixuangufenzu_page.guanbi_btn.click()
     zixuangufenzu_page.chakanxiangqing_btn.click()
+    sleep(1)
     zixuangufenzu_page.guanbi_btn.click()
 
     bankuainame = ['bankuai1', 'bankuai2','bankuai3','bankuai4','bankuai5','bankuai6','bankuai7','bankuai8']
@@ -503,10 +477,7 @@ def test_step130_144(driver):
     optional_page.zx_left()
     optional_page.fenzu_btn.click()
 
-    el1 = driver.get_window_size()
-    width = el1.get('width')
-    height = el1.get('height')
-    driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": width * (365 / 375.0), "y": height * (100 / 667.0)})
+    zixuangufenzu_page.hx_tapblank()
 
 
 

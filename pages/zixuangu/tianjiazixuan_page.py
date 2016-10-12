@@ -24,7 +24,8 @@ class TianjiazixuanPage(PageObject):
 	addDQS_btn = page_element(accessibility_id='添加道琼斯工业平均指数')
 	addBD_btn = page_element(accessibility_id='添加百度')
 	add50ETF_btn = page_element(accessibility_id='添加50ETF')
-	addXHBY_btn = page_element(accessibility_id='添加现货白银')
+	addY15_btn = page_element(accessibility_id='添加银15Kg')
+	addHJ9999_btn = page_element(accessibility_id='添加黄金9999')
 
 	addCH_btn = page_element(accessibility_id='添加长和')
 	addHSZS_btn = page_element(accessibility_id='添加恒生指数')

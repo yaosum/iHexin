@@ -13,6 +13,8 @@ class FenshiKxianPage(PageObject):
 	shezhi_btn = page_element(accessibility_id='设置')
 	klineTabButton = page_element(accessibility_id='KlineTabButtonBackground')
 
+	sousuo_btn = page_element(accessibility_id = "搜索")
+
 	def hx_right(self):
 		el1 = self.w.get_window_size()
 		width = el1.get('width')
@@ -38,10 +40,10 @@ class FenshiKxianPage(PageObject):
 		if type(count) is types.IntType:
 			for n in range(count):
 				self.xiayigegupiao_button.click()
-
 			self.hx_left()
 			for m in range(count):
 				self.shangyigegupiao_button.click()
+			self.hx_right()
 		else:
-			print('参数错误')
+			print('分时k线切换股票输入参数错误')
 
