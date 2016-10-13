@@ -18,10 +18,18 @@ from pages.zixuangu.zixuangugonggao_page import ZixuangugonggaoPage
 from pages.zixuangu.zixuanguxinwen_page import ZixuanguxinwenPage
 from pages.zixuangu.zixun_page import ZixunPage
 from pages.index_page import IndexPage
+from pages.public.denglu_page import DengluPage
+from pages.gerenzhongxin.gerenzhongxin_page import GerenzhongxinPage
 
 # 首页
 def test_step1(driver):
     home_page = HomePage(driver)
+    denglu_page = DengluPage(driver)
+    gerenzhongxin_page = GerenzhongxinPage(driver)
+    if home_page.gerenzhongxin_btn.text == u'个人中心':
+        home_page.gerenzhongxin_btn.click()
+        gerenzhongxin_page.denglu_zhuce_btn.click()
+        denglu_page.sign_in('337705299', '123456')
     assert home_page.gerenzhongxin_button
     assert home_page.feivip_button
     assert home_page.qiehuanyejianmoshi_button

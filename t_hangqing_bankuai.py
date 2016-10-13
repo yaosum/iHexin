@@ -5,7 +5,7 @@ from pages.public.public_page import PublicPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
-
+"""
 def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -15,7 +15,7 @@ def test_step1(driver):
     public_page.hangqing_button.click()
     hangqing_page.bankuai_btn.click()
     assert bankuai_page.group1_btn
-
+"""
 def test_step2(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -30,6 +30,7 @@ def test_step2(driver):
     groups = ['group1_btn', 'group2_btn']
     gengduos = ['hy_gengduo_btn', 'gn_gengduo_btn']
     for n in range(2):
+        """
         if n == 0:
             bankuai_page.cell1_1.click()
         else:
@@ -37,7 +38,7 @@ def test_step2(driver):
         assert fenshikxian_page.shangyigegupiao_button
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
-
+        """
         # step8
         if n == 0:
             bankuai_page.hy_gengduo_btn.click()
