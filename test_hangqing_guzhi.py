@@ -2,6 +2,7 @@
 """
 前置条件:未登陆
 """
+from time import sleep
 from pages.public.public_page import PublicPage
 from pages.hangqing.guzhi_page import GuzhiPage
 from pages.zixuangu.kanZhulizijin_page import KanZhulizijinPage
@@ -10,7 +11,7 @@ from pages.hangqing.hangqing_page import HangqingPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
-
+"""
 def test_step1(driver):
     public_page = PublicPage(driver)
     guzhi_page = GuzhiPage(driver)
@@ -29,12 +30,13 @@ def test_step3(driver):
     guzhi_page = GuzhiPage(driver)
     kanzhulizijin_page = KanZhulizijinPage(driver)
     denglu_page = DengluPage(driver)
+    hangqing_page = HangqingPage(driver)
 
     public_page.hangqing_button.click()
+    hangqing_page.guzhi_btn.click()
     guzhi_page.kanzijin_btn.click()
     assert kanzhulizijin_page.kanzhulizijin_staticText
-    kanzhulizijin_page.fanhui_btn.click()
-'''
+
     #step4-5
     #kanzhulizijin_page.gengduo_button.click()
 
@@ -49,9 +51,9 @@ def test_step3(driver):
     kanzhulizijin_page.hx_ergodic_zhibiao()
     kanzhulizijin_page.gainian_btn.click()
     kanzhulizijin_page.hx_ergodic_zhibiao()
-'''
 
 
+"""
 def test_step21(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -62,7 +64,7 @@ def test_step21(driver):
 
     public_page.hangqing_button.click()
     hangqing_page.guzhi_btn.click()
-
+    """
     #step22-30
     guzhi_page.gn_operation()
     fenshikxian_page.hx_left()
@@ -82,41 +84,52 @@ def test_step21(driver):
 
     #step41-49
     hangqing_page.guzhi_btn.click()
+
     guzhi_page.qh_operation()
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
 
     #step50-57
-
+    """
     guzhi_page.qihuo_gengduo_btn.click()
 
     guzhiqihuo_gengduo_page.cell1_1.click()
-    fenshikxian_page.change_gupiao(9)
+    #fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
 
     guzhiqihuo_gengduo_page.hushen300_btn.click()
+    guzhiqihuo_gengduo_page.hushen300_btn.click()
+    guzhiqihuo_gengduo_page.hushen300_btn.click()
+    guzhiqihuo_gengduo_page.hushen300_btn.click()
+    guzhiqihuo_gengduo_page.hushen300_btn.click()
+    sleep(1)
 
     #step58-64
     guzhiqihuo_gengduo_page.cell1_1.click()
-    fenshikxian_page.change_gupiao(9)
+    #fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     guzhiqihuo_gengduo_page.shangzheng50.click()
+    sleep(1)
 
     #step65-70
     guzhiqihuo_gengduo_page.cell1_1.click()
-    fenshikxian_page.change_gupiao(9)
+    #fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
 
     #step71-75
     guzhiqihuo_gengduo_page.zhongzheng500.click()
+    sleep(1)
     guzhiqihuo_gengduo_page.zhongzheng500.click()
+    sleep(1)
     guzhiqihuo_gengduo_page.shangzheng50.click()
+    sleep(1)
     guzhiqihuo_gengduo_page.hushen300_btn.click()
+    sleep(1)
     guzhiqihuo_gengduo_page.fanhui_btn.click()
 
     #step76-83
     guzhi_page.fs_operation()
-    fenshikxian_page.change_gupiao(6)
+    #fenshikxian_page.change_gupiao(6)
     fenshikxian_page.fanhui_button.click()
 
     #step84-92，上滑动至其他指数可见
@@ -142,9 +155,6 @@ def test_step21(driver):
     fenshikxian_page.change_gupiao(8)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
-
-
-
 
 
 
