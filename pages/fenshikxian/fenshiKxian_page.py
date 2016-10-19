@@ -6,6 +6,7 @@ import types
 class FenshiKxianPage(PageObject):
 	fanhui_button = page_element(accessibility_id = '返回')
 	xiayigegupiao_button = page_element(accessibility_id = '下一个股票')
+	title_staText = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAScrollView[1]/UIAStaticText[1]')
 	shangyigegupiao_button = page_element(accessibility_id = '上一个股票')
 
 	jiazixuan_staText = page_element(accessibility_id='加自选')

@@ -45,6 +45,7 @@ class HangqingGengduoPage(PageObject):
     sanbanchengzhi_btn =  page_element(accessibility_id= '三板成指')
 
     cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
+    cell01_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 
     #行情里边每个分组进入页面后的操作不一样
     def bk_clickOperation(self):
@@ -88,7 +89,6 @@ class HangqingGengduoPage(PageObject):
         self.zuixin_btn.click()
         self.hq_up()
         self.hq_down()
-        self.cell01.click()
 
     #其他
     #股票期权

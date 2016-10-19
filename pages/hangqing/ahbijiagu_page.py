@@ -18,6 +18,7 @@ class AHBijiaguPage(PageObject):
     wenben_text = page_element(accessibility_id="AH股溢价率是指同时有A股和H股的上市公司，两地股价经汇率换算后的价格差值比率。")
 
     cell01_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]")
+    cell01_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
 
     def hq_up(self):
         el1 = self.w.get_window_size()

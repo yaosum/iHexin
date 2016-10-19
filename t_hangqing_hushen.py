@@ -10,7 +10,7 @@ from pages.public.public_page import PublicPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.shouye.home_page import HomePage
 from time import sleep
-
+"""
 def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -22,6 +22,7 @@ def test_step1(driver):
     hangqing_page.hushen_btn.click()
     assert hushen_page.hushen_title
 
+#第一行单元格
 def test_step4(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -70,11 +71,14 @@ def test_step12(driver):
     ahbijiagu_page.yijialv_btn.click()
 
     length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
+    title = ahbijiagu_page.cell01_title.text
     ahbijiagu_page.cell01_btn.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(length - 1)
     fenshikxian_page.fanhui_button.click()
     ahbijiagu_page.fanhui_btn.click()
     assert hushen_page.hushen_title
+
 #涨停分析
 def test_step26(driver):
     public_page = PublicPage(driver)
@@ -90,7 +94,7 @@ def test_step26(driver):
     assert zhangtinfenxi_page.sousuo_btn
     driver.get_screenshot_as_base64()
     zhangtinfenxi_page.fanhui_btn.click()
-
+"""
 def test_step29(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -103,7 +107,9 @@ def test_step29(driver):
 
     hushenname = ["zfb", "dfb", "kszf", "hslb", "lbb", "cjeb"]
     for name in hushenname:
+        title = hushen_page.hs_cell_title.text
         eval('hushen_page.{0}_cell1_btn.click()'.format(name))
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(10)
         fenshikxian_page.fanhui_button.click()
 
@@ -112,14 +118,17 @@ def test_step29(driver):
             hangqing_gengduo_page.hq_left()
         hangqing_gengduo_page.hq_up()
         hangqing_gengduo_page.hq_down()
+        hangqing_gengduo_page.hq_down()
         #hangqing_gengduo_page.hs_clickOperation()
 
+        title = hangqing_gengduo_page.cell01_title.text
         el1 = driver.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
         tap_x = width * (42 / 375.0)
         tap_y = height * (124 / 667.0)
         driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": tap_x, "y": tap_y})
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(10)
         fenshikxian_page.fanhui_button.click()
 

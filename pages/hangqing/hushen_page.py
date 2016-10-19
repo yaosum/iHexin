@@ -7,6 +7,9 @@ from page_object.appium_page_objects import PageObject, page_element
 class HushenPage(PageObject):
     hushen_title = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAStaticText[1]")
 
+    #第一个单元格的标题,与组缩进有关,第一个组缩进后,表示第二个组的第一个单元格
+    hs_cell_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[3]')
+
     szzs_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[1]")
     szcz_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[2]")
     ahbijia_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[3]")

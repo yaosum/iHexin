@@ -40,20 +40,22 @@ def test_step1(driver):
 
         hangqing_gengduo_page.hq_up()
         hangqing_gengduo_page.hq_down()
+        hangqing_gengduo_page.hq_down()
 
+        title = qita_qihuo_page.cell01_title.text
         el1 = driver.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
         tap_x = width * (42 / 375.0)
         tap_y = height * (124 / 667.0)
         driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": tap_x, "y": tap_y})
-
+        assert fenshikxian_page.title_staText.text == title
         length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         qita_qihuo_page.fanhui_button.click()
 
-'''
+
 # 国外期货
 def test_step34(driver):
     public_page = PublicPage(driver)
@@ -74,7 +76,9 @@ def test_step34(driver):
         driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 373, "y": 113})
     hangqing_gengduo_page.hq_up()
     hangqing_gengduo_page.hq_down()
+    title = qita_qihuo_page.cell01_title.text
     driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": 100, "y": 113})
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(5)
     fenshikxian_page.fanhui_button.click()
     qita_qihuo_page.fanhui_button.click()
@@ -148,7 +152,9 @@ def test_step57(driver):
     qita_page.sh_huangjin_btn.click()
     for n in range(2):
         hangqing_gengduo_page.hq_left()
+    title = hangqing_gengduo_page.cell01_title.text
     hangqing_gengduo_page.cell01.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(5)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
@@ -161,7 +167,9 @@ def test_step57(driver):
     for n in range(2):
         qita_tianjinguijinshu_page.tjgjs_left()
     qita_tianjinguijinshu_page.tjgjs_clickOperation()
+    title = qita_tianjinguijinshu_page.cell01_title.text
     qita_tianjinguijinshu_page.cell01.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(5)
     fenshikxian_page.fanhui_button.click()
     qita_tianjinguijinshu_page.fanhui_button.click()
@@ -186,7 +194,9 @@ def test_step73(driver):
         for n in range(4):
             hangqing_gengduo_page.hq_left()
         hangqing_gengduo_page.jijin_clicktion()
+        title = hangqing_gengduo_page.cell01_title.text
         hangqing_gengduo_page.cell01.click()
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
@@ -220,7 +230,9 @@ def test_step74(driver):
             hangqing_gengduo_page.hq_left()
         # hangqing_gengduo_page.jijin_clickOperation()
         # hangqing_gengduo_page.cell01.click()
+        title = hangqing_gengduo_page.cell01_title.text
         driver.tap([(80, 216)], duration=0.5)
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
@@ -246,11 +258,13 @@ def test_step75(driver):
 
     #三板做市
     qita_xinsanban_page.sanbanzuoshi_btn.click()
+    assert fenshikxian_page.title_staText.text == u'三板做市'
     fenshikxian_page.hx_left()
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
     #三板成指
     qita_xinsanban_page.sanbanchengzhi_btn.click()
+    assert fenshikxian_page.title_staText.text == u'三板成指'
     fenshikxian_page.hx_left()
     fenshikxian_page.hx_right()
     fenshikxian_page.fanhui_button.click()
@@ -266,7 +280,9 @@ def test_step75(driver):
             hangqing_gengduo_page.hq_left()
         #hangqing_gengduo_page.jijin_clickOperation()
         #hangqing_gengduo_page.cell01.click()
+        title = hangqing_gengduo_page.cell01_title.text
         driver.tap([(80, 216)], duration=0.5)
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.sanbanchengzhi_btn.click()
@@ -277,7 +293,9 @@ def test_step75(driver):
         eval('qita_xinsanban_page.{}.click()'.format(name_head))
         sub_list = [('group1', 'gengduo1'), ('group2', 'gengduo2'), ('group3', 'gengduo3')]
         for group, gengduo in sub_list:
+            title = qita_xinsanban_page.cell1_title.text
             qita_xinsanban_page.cell1.click()
+            assert fenshikxian_page.title_staText.text == title
             fenshikxian_page.change_gupiao(1)
             fenshikxian_page.fanhui_button.click()
 
@@ -291,7 +309,9 @@ def test_step75(driver):
                 hangqing_gengduo_page.hq_left()
 
             #hangqing_gengduo_page.jijin_clickOperation()
+            title = hangqing_gengduo_page.cell01_title.text
             hangqing_gengduo_page.cell01.click()
+            assert fenshikxian_page.title_staText.text == title
             fenshikxian_page.change_gupiao(1)
             fenshikxian_page.fanhui_button.click()
             hangqing_gengduo_page.fanhui_btn.click()
@@ -304,11 +324,15 @@ def test_step75(driver):
     hangqing_gengduo_page.fanhui_btn.click()
 
     qita_page.hushenguozhai_btn.click()
+    title = qita_hushenguozhai_page.cell1_title.text
     qita_hushenguozhai_page.cell1.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(1)
     fenshikxian_page.fanhui_button.click()
     qita_hushenguozhai_page.shenshi_btn.click()
+    title = qita_hushenguozhai_page.cell1_title.text
     qita_hushenguozhai_page.cell1.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(1)
     fenshikxian_page.fanhui_button.click()
     qita_hushenguozhai_page.hushi_btn.click()
@@ -321,5 +345,5 @@ def test_step75(driver):
     hangqing_gengduo_page.hq_left()
     #hangqing_gengduo_page.jijin_clickOperation()
     hangqing_gengduo_page.fanhui_btn.click()
-    '''
+
 

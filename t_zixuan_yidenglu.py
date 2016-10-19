@@ -20,7 +20,7 @@ from pages.zixuangu.zixun_page import ZixunPage
 from pages.index_page import IndexPage
 from pages.public.denglu_page import DengluPage
 from pages.gerenzhongxin.gerenzhongxin_page import GerenzhongxinPage
-
+"""
 # 首页
 def test_step1(driver):
     home_page = HomePage(driver)
@@ -134,11 +134,11 @@ def test_step21(driver):
     optional_page.zixuanIndexItemName_staText.click()
     zixuanDapan_page.chuang_btn.click()
     zixuanDapan_page.hx_tapblank()
+
     optional_page.zixuanIndexItemName_staText.click()
     zixuanDapan_page.fenshitu_scr.click()
     fenshikxian_page.change_gupiao(3)
     fenshikxian_page.fanhui_button.click()
-
 
 # 编辑页面
 def test_step41(driver):
@@ -267,7 +267,6 @@ def test_step49(driver):
         print '该股票已添加过'
     fenshikxian_page.fanhui_button.click()
 
-
 #资金
 def test_step067_71(driver):
     public_page = PublicPage(driver)
@@ -277,16 +276,12 @@ def test_step067_71(driver):
 
     public_page.zixuan_button.click()
     optional_page.zijin_btn.click()
-    kanzhulizijin_page.hx_ergodic_hushen_zhibiao()
+    #kanzhulizijin_page.hx_ergodic_hushen_zhibiao()
 
     # step 72
-    kanzhulizijin_page.cell001.click()
-    sleep(1)
-    # step73-76
-    fenshikxian_page.change_gupiao(17)
-    # step 77
-    fenshikxian_page.fanhui_button.click()
+    kanzhulizijin_page.pageGotoFenshikxian()
     kanzhulizijin_page.fanhui_btn.click()
+
 
 #新闻
 def test_step78_88(driver):
@@ -311,7 +306,7 @@ def test_step78_88(driver):
     zixuanguxinwen_page.cell01.click()
     zixun_page.fanhui_btn.click()
     zixuanguxinwen_page.fanhui_btn.click()
-
+"""
 def test_step89(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     public_page = PublicPage(driver)
@@ -320,7 +315,7 @@ def test_step89(driver):
     zixun_page = ZixunPage(driver)
 
     public_page.zixuan_button.click()
-
+    """
     optional_page.gonggao_btn.click()
     assert zixuangugonggao_page.zixuangugonggao_staText.text == u'自选股公告'
     #step 90-96
@@ -419,9 +414,9 @@ def test_step89(driver):
     # step105
     optional_page.hx_glide()
     sleep(1)
-
+    """
     #step 106
-    optional_page.cell001.click()
+    optional_page.pageGotoFenshikxian()
     sleep(1)
     # step107-109
     length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
@@ -429,7 +424,7 @@ def test_step89(driver):
     # step110-128
     fenshikxian_page.fanhui_button.click()
 
-'''
+"""
 #长按操作
 def test_step114(driver):
     public_page = PublicPage(driver)
@@ -452,7 +447,7 @@ def test_step114(driver):
     optional_page.shanchu_btn.click()
     optional_page.hx_longPress(optional_page.cell001)
     optional_page.shanchu_btn.click()
-'''
+
 #自选股分组
 def test_step130_144(driver):
     public_page = PublicPage(driver)
@@ -486,6 +481,6 @@ def test_step130_144(driver):
     optional_page.fenzu_btn.click()
 
     zixuangufenzu_page.hx_tapblank()
-
+"""
 
 

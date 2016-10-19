@@ -9,3 +9,4 @@ class QitaHushenguozhai(PageObject):
     hushi_btn = page_element(accessibility_id = '沪市（10万起）')
     shenshi_btn = page_element(accessibility_id = '深市（1千起）')
     cell1 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
+    cell1_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')

@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from page_object.appium_page_objects import PageObject, page_element
+from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
+from time import sleep
 
 __author__ = "Hemin Won"
 
@@ -66,7 +68,9 @@ class OptionalPage(PageObject):
 
 	fenzu_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]")
 	cell001 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
+	cell001_title = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 	cell002 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]')
+	cell002_title = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
 	cell003 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]')
 	cell017 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[17]')
 	cell05 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[5]')
@@ -146,3 +150,21 @@ class OptionalPage(PageObject):
 		end_x = width * (200 / 375.0)
 		end_y = height * (466 / 667.0)
 		self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
+
+	def pageGotoFenshikxian(self):
+		fenshikxian_page = FenshiKxianPage(self.w)
+		title1 = self.cell001_title.text
+		self.cell001.click()
+		assert fenshikxian_page.title_staText.text == title1
+		# step73-76
+		fenshikxian_page.change_gupiao(1)
+		# step 77
+		fenshikxian_page.fanhui_button.click()
+		sleep(1)
+		length = int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
+		if length >= 2:
+			title2 = self.cell002_title.text
+			self.cell002.click()
+			assert fenshikxian_page.title_staText.text == title2
+			fenshikxian_page.change_gupiao(1)
+			fenshikxian_page.fanhui_button.click()

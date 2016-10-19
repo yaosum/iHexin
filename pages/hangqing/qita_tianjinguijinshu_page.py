@@ -8,6 +8,7 @@ class QitaTianjinguijinshuPage(PageObject):
     kehufuwuzhongxin_btn = page_element(accessibility_id= '客户服务中心')
 
     cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[2]/UIATableView[1]/UIATableCell[1]/UIAElement[1]')
+    cell01_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 
     sell_btn = page_element(accessibility_id= '卖价')
     buy_btn = page_element(accessibility_id= '买价')

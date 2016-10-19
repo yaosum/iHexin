@@ -63,8 +63,9 @@ def test_step21(driver):
     guzhiqihuo_gengduo_page = GuzhiQihuoGengduoPage(driver)
 
     public_page.hangqing_button.click()
+
     hangqing_page.guzhi_btn.click()
-    """
+
     #step22-30
     guzhi_page.gn_operation()
     fenshikxian_page.hx_left()
@@ -73,11 +74,15 @@ def test_step21(driver):
 
     #step31-40
     guzhi_page.guoneiZhishu_gengduo_btn.click()
+
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_right()
     hangqing_gengduo_page.hq_right()
+
+    title = hangqing_gengduo_page.cell01_title.text
     hangqing_gengduo_page.cell01.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
@@ -90,33 +95,36 @@ def test_step21(driver):
     fenshikxian_page.fanhui_button.click()
 
     #step50-57
-    """
+
     guzhi_page.qihuo_gengduo_btn.click()
 
+    #加上会出错
+    title = guzhiqihuo_gengduo_page.cell1_1_title.text
     guzhiqihuo_gengduo_page.cell1_1.click()
+    assert fenshikxian_page.title_staText.text == title
     #fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
-
     guzhiqihuo_gengduo_page.hushen300_btn.click()
-    guzhiqihuo_gengduo_page.hushen300_btn.click()
-    guzhiqihuo_gengduo_page.hushen300_btn.click()
-    guzhiqihuo_gengduo_page.hushen300_btn.click()
-    guzhiqihuo_gengduo_page.hushen300_btn.click()
-    sleep(1)
+    #sleep(1)
 
     #step58-64
+    title = guzhiqihuo_gengduo_page.cell1_1_title.text
     guzhiqihuo_gengduo_page.cell1_1.click()
+    assert fenshikxian_page.title_staText.text == title
     #fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     guzhiqihuo_gengduo_page.shangzheng50.click()
     sleep(1)
 
     #step65-70
+    title = guzhiqihuo_gengduo_page.cell1_1_title.text
     guzhiqihuo_gengduo_page.cell1_1.click()
+    assert fenshikxian_page.title_staText.text == title
     #fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
 
     #step71-75
+    print(guzhiqihuo_gengduo_page.zhongzheng500)
     guzhiqihuo_gengduo_page.zhongzheng500.click()
     sleep(1)
     guzhiqihuo_gengduo_page.zhongzheng500.click()
@@ -147,14 +155,16 @@ def test_step21(driver):
 
     #step93-102
     guzhi_page.qita_gengduo_btn.click()
+
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_right()
     hangqing_gengduo_page.hq_right()
+
+    title = hangqing_gengduo_page.cell01_title.text
     hangqing_gengduo_page.cell01.click()
+    assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(8)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
-
-
-
+    

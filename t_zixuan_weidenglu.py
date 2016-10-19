@@ -19,7 +19,7 @@ from pages.zixuangu.zixuanguxinwen_page import ZixuanguxinwenPage
 from pages.zixuangu.zixun_page import ZixunPage
 from time import sleep
 
-
+"""
 def test_step001(driver):
     home_page = HomePage(driver)
     optional_page = OptionalPage(driver)
@@ -153,13 +153,14 @@ def test_step14(driver):
     sleep(1)
     fenshikxian_page.jiazixuan_staText.click()
     fenshikxian_page.fanhui_button.click()
-
+"""
 def test_step90(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
 
     public_page.zixuan_button.click()
+    """
     # step90
     # 上下滑
     for n in range(2):
@@ -243,20 +244,21 @@ def test_step90(driver):
     optional_page.zuixin_staText.click()
     optional_page.zuixin_staText.click()
     optional_page.quxiaopaixu_btn.click()
-
+    """
     # step99
     optional_page.hx_glide()
     sleep(1)
     #assert optional_page.cell001_stock_staText.text == u'同花顺'
     #optional_page.cell001.click()
     optional_page.THS_stock_staText.click()
+    assert fenshikxian_page.title_staText.text == u'同花顺'
     sleep(1)
     # step100
     length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
     fenshikxian_page.change_gupiao(length)
     # step103
     fenshikxian_page.fanhui_button.click()
-'''
+"""
 #长按操作
 def test_step104(driver):
     public_page = PublicPage(driver)
@@ -279,7 +281,7 @@ def test_step104(driver):
     optional_page.shanchu_btn.click()
     optional_page.hx_longPress(optional_page.cell001)
     optional_page.shanchu_btn.click()
-'''
+
 
 def test_step031(driver):
     public_page = PublicPage(driver)
@@ -411,3 +413,4 @@ def test_step130_144(driver):
     optional_page.fenzu_btn.click()
 
     zixuangufenzu_page.hx_tapblank()
+"""

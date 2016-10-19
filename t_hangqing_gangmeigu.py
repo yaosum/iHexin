@@ -56,6 +56,9 @@ def test_step16(driver):
 
         hangyebankuai_page.gengduoshuju_btn.click()
         hangqinggengduo_page.hybk_clickOperation()
+        title = hangqinggengduo_page.cell01_title.text
+        hangqinggengduo_page.cell01.click()
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(2)
         fenshikxian_page.fanhui_button.click()
         hangqinggengduo_page.fanhui_btn.click()
@@ -65,6 +68,9 @@ def test_step16(driver):
         hangyebankuai_page.hybk_up()
         hangyebankuai_page.gengduoshuju_btn.click()
         hangqinggengduo_page.hybk_clickOperation()
+        title = hangqinggengduo_page.cell01_title.text
+        hangqinggengduo_page.cell01.click()
+        assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(2)
         fenshikxian_page.fanhui_button.click()
         hangqinggengduo_page.fanhui_btn.click()
@@ -77,7 +83,7 @@ def test_step16(driver):
 
         for n in range(6):
             eval('gangmeigu_page.{0}_cell2_{1}.click()'.format(market, n+1))
-            hangyebankuai_page.fanhui .click()
+            hangyebankuai_page.fanhui_btn.click()
 
         #进入行业板块更多
         eval('gangmeigu_page.{0}_gengduo_1.click()'.format(market))
@@ -113,7 +119,9 @@ def test_step16(driver):
             hangqinggengduo_page.hq_up()
             hangqinggengduo_page. hq_down()
             hangqinggengduo_page.hq_down()
+            title = hangqinggengduo_page.cell01_title.text
             hangqinggengduo_page.cell01.click()
+            assert fenshikxian_page.title_staText.text == title
             fenshikxian_page.change_gupiao(5)
             fenshikxian_page.fanhui_button.click()
             hangqinggengduo_page.fanhui_btn.click()
@@ -128,8 +136,3 @@ def test_step16(driver):
         else:
             market = 'us'
         eval("gangmeigu_page.{0}_btn.click()".format(market))
-
-
-
-
-
