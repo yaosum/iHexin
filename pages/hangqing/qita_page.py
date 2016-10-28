@@ -5,6 +5,10 @@ __author__ = "tianmaotao"
 from page_object.appium_page_objects import PageObject, page_element
 
 class Qita(PageObject):
+    """
+    行情－> 其他
+    其他页面内的相关元素和操作
+    """
     gn_qihuo_btn = page_element(accessibility_id = '国内期货')
     gw_qihuo_btn = page_element(accessibility_id = '国外期货')
     waihui_btn = page_element(accessibility_id = '外汇')
@@ -17,7 +21,7 @@ class Qita(PageObject):
 
     hushen_fbjj_btn = page_element(accessibility_id = '沪深封闭基金')
     shangzheng_fbjj_btn = page_element(accessibility_id = '上证封闭基金')
-    shenzheng_fbjj_btn = page_element(accessibility_id = '深证封闭基金')
+    shenzheng_fbjj_btn = page_element(accessibility_id = '深圳封闭基金')
 
     shangzhengA_btn = page_element(accessibility_id = '上证A股')
     shangzhengB_btn = page_element(accessibility_id = '上证B股')

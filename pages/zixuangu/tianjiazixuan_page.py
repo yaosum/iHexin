@@ -4,6 +4,11 @@ from page_object.appium_page_objects import PageObject, page_element
 
 
 class TianjiazixuanPage(PageObject):
+	"""
+	自选－> 编辑自选－> 添加股票
+	添加股票页面的相关元素及操作
+	如果需要增加添加股票，需要增加将对应股票的的添加按钮
+	"""
 	fanhui_button = page_element(accessibility_id = '返回')
 	tianjiazixuan_staticText = page_element(xpath= "//UIAStaticText[@name='添加自选']")
 

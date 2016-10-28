@@ -1,10 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-__author__ = "tianmaotao"
+__author__ = "tianmaotao@myhexin.com"
 
 from page_object.appium_page_objects import PageObject, page_element
 
 class GangmeiguPage(PageObject):
+    """
+    行情－> 港美股
+    港美股页面内的相关元素及操作
+    """
     us_btn = page_element(accessibility_id = '美股');
     hk_btn = page_element(accessibility_id = '港股')
 
@@ -14,7 +18,7 @@ class GangmeiguPage(PageObject):
     hk_cell1 = page_element(
         xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[2]')
 
-    #美股和港股行业版块以及行业版块上面的三个按钮
+    #美股和港股行业版块上面的三个按钮
     us_cell1_1 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIAButton[1]')
     us_cell1_2 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIAButton[2]')
     us_cell1_3 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIAButton[3]')
@@ -23,6 +27,7 @@ class GangmeiguPage(PageObject):
     hk_cell1_2 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[2]')
     hk_cell1_3 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[3]')
 
+    #美股和港股行业版块单元格
     us_cell2_1 = page_element(
         xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[2]/UIATableCell[1]/UIAStaticText[1]')
     us_cell2_2 = page_element(
@@ -95,6 +100,10 @@ class GangmeiguPage(PageObject):
         xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableGroup[3]/UIAButton[2]')
 
     def glide_up(self):
+        """
+        向上滑动
+        :return:
+        """
         el1 = self.w.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
@@ -105,6 +114,10 @@ class GangmeiguPage(PageObject):
         self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
 
     def glide_down(self):
+        """
+        向下滑动
+        :return:
+        """
         el1 = self.w.get_window_size()
         width = el1.get('width')
         height = el1.get('height')

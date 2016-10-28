@@ -19,7 +19,7 @@ from pages.zixuangu.zixuanguxinwen_page import ZixuanguxinwenPage
 from pages.zixuangu.zixun_page import ZixunPage
 from time import sleep
 
-"""
+#首页－>自选
 def test_step001(driver):
     home_page = HomePage(driver)
     optional_page = OptionalPage(driver)
@@ -27,7 +27,7 @@ def test_step001(driver):
     tianjiazixuan_page = TianjiazixuanPage(driver)
     public_page = PublicPage(driver)
     # step1
-    assert home_page.gerenzhongxin_button
+    assert home_page.gerenzhongxin_btn
     assert home_page.feivip_button
     assert home_page.qiehuanyejianmoshi_button
     # step2
@@ -45,7 +45,87 @@ def test_step001(driver):
     bianjizixuan_page.tianjiagupiao_button.click()
     assert tianjiazixuan_page.tianjiazixuan_staticText
 
-#添加股票
+# 自选－>看主力资金
+def test_step051(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    kanzhulizijin_page = KanZhulizijinPage(driver)
+    denglu_page = DengluPage(driver)
+
+    public_page.zixuan_button.click()
+    optional_page.zijin_btn.click()
+    kanzhulizijin_page.denglu_btn.click()
+    denglu_page.guanbi_btn.click()
+    kanzhulizijin_page.hushen_btn.click()
+    # 上下滑
+    kanzhulizijin_page.hx_upglide()
+    kanzhulizijin_page.hx_glide()
+
+    # 左右滑
+    for n in range(4):
+        kanzhulizijin_page.hx_left()
+    for n in range(3):
+        kanzhulizijin_page.hx_right()
+
+    kanzhulizijin_page.hx_ergodic_hushen_zhibiao()
+    optional_page.pageGotoFenshikxian()
+
+    kanzhulizijin_page.hangye_btn.click()
+    kanzhulizijin_page.hx_ergodic_zhibiao()
+    optional_page.pageGotoFenshikxian()
+
+    kanzhulizijin_page.gainian_btn.click()
+    kanzhulizijin_page.hx_ergodic_zhibiao()
+    optional_page.pageGotoFenshikxian()
+
+    kanzhulizijin_page.fanhui_btn.click()
+
+# 自选－> 资产页面
+def test_step019(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    wodezichan_page = WodezichanPage(driver)
+    public_page.zixuan_button.click()
+    optional_page.zichan_btn.click()
+    # step20 返回
+    assert wodezichan_page.wodezichan_staText
+    wodezichan_page.fanhui_btn.click()
+
+
+# 自选－> 沪,深,创大盘页面
+def test_step52(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    searchStock_page = SearchStockPage(driver)
+    zixuanDapan_page = ZixuanDapanPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+
+    public_page.zixuan_button.click()
+    # step22-40
+
+    optional_page.zixuanIndexItemName_staText.click()
+    zixuanDapan_page.shen_btn.click()
+    zixuanDapan_page.chuang_btn.click()
+    zixuanDapan_page.hx_left()
+    sleep(1)
+    zixuanDapan_page.shen_btn.click()
+    zixuanDapan_page.hu_btn.click()
+    zixuanDapan_page.hx_right()
+    sleep(1)
+    zixuanDapan_page.hx_tapblank()
+    optional_page.zixuanIndexItemName_staText.click()
+    zixuanDapan_page.shen_btn.click()
+    zixuanDapan_page.hx_tapblank()
+    optional_page.zixuanIndexItemName_staText.click()
+    zixuanDapan_page.chuang_btn.click()
+    zixuanDapan_page.hx_tapblank()
+
+    optional_page.zixuanIndexItemName_staText.click()
+    zixuanDapan_page.fenshitu_scr.click()
+    fenshikxian_page.change_gupiao(3)
+    fenshikxian_page.fanhui_button.click()
+
+#自选－>编辑自选－>添加股票
 def test_step005(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -59,12 +139,15 @@ def test_step005(driver):
     bianjizixuan_page.tianjiagupiao_button.click()
     sleep(1)
     # 添加股票
-    stocks = [('600000','addPFYH_btn'), ('000001','addPAYH_btn'), ('900901','addYSBG_btn'), ('200011','addSWYB_btn'), ('010107','add21GZ_btn'),
-                  ('100213','addGZ0213_btn'), ('500058','addJJYF_btn'), ('150008','addRHXK_btn'), ('400002','addCB5_btn'), ('399001','addSZCZ_btn'),
-                  ('dji','addDQS_btn'), ('BIDU','addBD_btn'), ('510050','add50ETF_btn'), ('TJAG00','addY15_btn'), ('00001','addCH_btn'),
-                  ('hsi','addHSZS_btn'), ('AU9999', 'addHJ9999_btn')]
-    for stockCode,stockName in stocks:
-        print stockCode,stockName
+    stocks = [('AU9999', 'addHJ9999_btn'), ('600000', 'addPFYH_btn'), ('000001', 'addPAYH_btn'),
+              ('900901', 'addYSBG_btn'),
+              ('200011', 'addSWYB_btn'),
+              ('010107', 'add21GZ_btn'), ('100213', 'addGZ0213_btn'), ('500058', 'addJJYF_btn'),
+              ('150008', 'addRHXK_btn'),
+              ('400002', 'addCB5_btn'), ('399001', 'addSZCZ_btn'), ('dji', 'addDQS_btn'), ('BIDU', 'addBD_btn'),
+              ('510050', 'add50ETF_btn'), ('TJAG00', 'addXHBY_btn'), ('00001', 'addCH_btn'), ('hsi', 'addHSZS_btn')]
+    for stockCode, stockName in stocks:
+        print stockCode, stockName
         searchStock_page.hx_send_keys(stockCode)
         try:
             eval('tianjiazixuan_page.{}.click()'.format(stockName))
@@ -74,61 +157,97 @@ def test_step005(driver):
     # step11
     tianjiazixuan_page.fanhui_button.click()
     bianjizixuan_page.fanhui_button.click()
-    optional_page.bianji_button.click()
-    assert bianjizixuan_page.cell001_stock_staText.text == u'黄金9999'
-    bianjizixuan_page.hx_upglide()
-    bianjizixuan_page.hx_upglide()
-    assert bianjizixuan_page.cell017_stock_staText.text == u'同花顺'
-    assert bianjizixuan_page.PFYH_staText
-    # step12
-    bianjizixuan_page.fanhui_button.click()
     sleep(1)
-    assert optional_page.cell001_stock_staText.text == u'黄金9999'
-    optional_page.hx_upglide()
-    sleep(1)
-    assert optional_page.THS_stock_staText
+    assert optional_page.XHBY_stock_staText
+    assert optional_page.ETF50_stock_staText
+    assert optional_page.BD_stock_staText
+    assert optional_page.DQS_stock_staText
+    assert optional_page.SZCZ_stock_staText
+    assert optional_page.CB5_stock_staText
+    assert optional_page.RHXK_stock_staText
+    assert optional_page.JJYF_stock_staText
+    assert optional_page.GZ0213_stock_staText
+    assert optional_page.GZ217_stock_staText
+    assert optional_page.SWYB_stock_staText
+    assert optional_page.YSBG_stock_staText
+    assert optional_page.PAYH_stock_staText
+    assert optional_page.PFYH_stock_staText
+    assert optional_page.HJ9999_stock_staText
     # step13
     public_page.shouye_button.click()
 
-#编辑自选股票
+#自选－>编辑自选->置顶
 def test_step14(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     bianjizixuan_page = BianjizixuanPage(driver)
-    searchStock_page = SearchStockPage(driver)
-    fenshikxian_page = FenshiKxianPage(driver)
 
     # step14
     public_page.zixuan_button.click()
     # step15
     optional_page.bianji_button.click()
     bianjizixuan_page.hx_upglide()
+    bianjizixuan_page.hx_upglide()
+    bianjizixuan_page.hx_upglide()
     sleep(1)
     #置顶三次操作
     for n in range(3):
-        print n
-        bianjizixuan_page.cell017_zhiding_btn.click()
+        bianjizixuan_page.cell019_zhiding_btn.click()
         sleep(1)
     # 第一条为上证指数
     bianjizixuan_page.hx_glide()
+    bianjizixuan_page.hx_glide()
     sleep(1)
-    #assert bianjizixuan_page.cell001_stock_staText.text == u'上证指数'
+    assert bianjizixuan_page.cell001_stock_staText.text == u'上证指数'
+    assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
+    assert bianjizixuan_page.cell003_stock_staText.text == u'同花顺'
     bianjizixuan_page.fanhui_button.click()
     optional_page.hx_glide()
     sleep(1)
-    #assert optional_page.cell001_stock_staText.text == u'上证指数'
-    # step18
+    assert optional_page.cell001_stock_staText.text == u'上证指数'
+    assert optional_page.cell002_stock_staText.text == u'创业板指'
+    assert optional_page.cell003_stock_staText.text == u'同花顺'
+
+
+#自选－>编辑自选->拖动
+def test_step18(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    bianjizixuan_page = BianjizixuanPage(driver)
+
+    # step14
+    public_page.zixuan_button.click()
+    # step15
     optional_page.bianji_button.click()
+
     action1 = TouchAction(driver)
-    action1.press(bianjizixuan_page.cell002_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(100).release()
+    action1.press(bianjizixuan_page.cell002_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(
+        100).release()
     action1.perform()
     action2 = TouchAction(driver)
-    action2.press(bianjizixuan_page.cell003_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(100).release()
+    action2.press(bianjizixuan_page.cell003_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(
+        100).release()
     action2.perform()
-    print optional_page.cell001_stock_staText.text
-    assert optional_page.cell001_stock_staText.text == u'同花顺'
+
+    assert bianjizixuan_page.cell001_stock_staText.text == u'同花顺'
+    assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
+    assert bianjizixuan_page.cell003_stock_staText.text == u'上证指数'
     # step18
     bianjizixuan_page.fanhui_button.click()
+    sleep(1)
+    assert optional_page.cell001_stock_staText.text == u'同花顺'
+    assert optional_page.cell002_stock_staText.text == u'创业板指'
+    assert optional_page.cell003_stock_staText.text == u'上证指数'
+
+#自选－>编辑自选->删除
+def test_step20(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    bianjizixuan_page = BianjizixuanPage(driver)
+
+    # step14
+    public_page.zixuan_button.click()
+    # step15
     optional_page.bianji_button.click()
     # 删除前三支股票
     bianjizixuan_page.cell001_btn.click()
@@ -137,30 +256,53 @@ def test_step14(driver):
     bianjizixuan_page.shanchu_button.click()
     # step19
     bianjizixuan_page.fanhui_button.click()
+
+#首页－>搜索，进入股票分时页面->添加股票
+def test_step21(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    searchStock_page = SearchStockPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+
     # step20
     optional_page.sousuo_button.click()
     sleep(1)
     searchStock_page.hx_send_keys('1A0001')
-    searchStock_page.zixuanadd_button.click()
+    try:
+        searchStock_page.zixuanadd_button.click()
+    except:
+        print "1A0001已添加"
     searchStock_page.qingchuwenben_button.click()
     searchStock_page.hx_send_keys('399006')
     sleep(1)
-    fenshikxian_page.jiazixuan_staText.click()
+    try:
+        fenshikxian_page.jiazixuan_staText.click()
+    except:
+        print "399006已添加"
     fenshikxian_page.fanhui_button.click()
     optional_page.sousuo_button.click()
     sleep(1)
     searchStock_page.hx_send_keys('300033')
     sleep(1)
-    fenshikxian_page.jiazixuan_staText.click()
+    try:
+        fenshikxian_page.jiazixuan_staText.click()
+    except:
+        print "300033已添加"
     fenshikxian_page.fanhui_button.click()
-"""
+    public_page.zixuan_button.click()
+    sleep(1)
+    assert optional_page.cell001_stock_staText.text == u'同花顺'
+    assert optional_page.cell002_stock_staText.text == u'创业板指'
+    assert optional_page.cell003_stock_staText.text == u'上证指数'
+
+#自选－>上下滑动->排序,取消排序
 def test_step90(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
 
     public_page.zixuan_button.click()
-    """
+
     # step90
     # 上下滑
     for n in range(2):
@@ -244,104 +386,16 @@ def test_step90(driver):
     optional_page.zuixin_staText.click()
     optional_page.zuixin_staText.click()
     optional_page.quxiaopaixu_btn.click()
-    """
-    # step99
+
+    # step105
     optional_page.hx_glide()
     sleep(1)
-    #assert optional_page.cell001_stock_staText.text == u'同花顺'
-    #optional_page.cell001.click()
-    optional_page.THS_stock_staText.click()
-    assert fenshikxian_page.title_staText.text == u'同花顺'
+
+    # step 106
+    optional_page.pageGotoFenshikxian()
     sleep(1)
-    # step100
-    length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
-    fenshikxian_page.change_gupiao(length)
-    # step103
-    fenshikxian_page.fanhui_button.click()
-"""
-#长按操作
-def test_step104(driver):
-    public_page = PublicPage(driver)
-    optional_page = OptionalPage(driver)
 
-    public_page.zixuan_button.click()
-
-    optional_page.zuixin_staText.click()
-    optional_page.hx_longPress(optional_page.cell001)
-    optional_page.zhidi_btn.click()
-    # 待扩展
-    optional_page.quxiaopaixu_btn.click()
-    optional_page.zuixin_staText.click()
-    optional_page.hx_upglide()
-    optional_page.hx_longPress(optional_page.cell017)
-    optional_page.zhiding_btn.click()
-    optional_page.quxiaopaixu_btn.click()
-    optional_page.hx_glide()
-    optional_page.hx_longPress(optional_page.cell001)
-    optional_page.shanchu_btn.click()
-    optional_page.hx_longPress(optional_page.cell001)
-    optional_page.shanchu_btn.click()
-
-
-def test_step031(driver):
-    public_page = PublicPage(driver)
-    optional_page = OptionalPage(driver)
-    zixuanDapan_page = ZixuanDapanPage(driver)
-    fenshikxian_page = FenshiKxianPage(driver)
-
-    public_page.zixuan_button.click()
-    optional_page.zixuanIndexItemName_staText.click()
-    zixuanDapan_page.shen_btn.click()
-    zixuanDapan_page.chuang_btn.click()
-    zixuanDapan_page.hx_left()
-
-    zixuanDapan_page.shen_btn.click()
-    zixuanDapan_page.hu_btn.click()
-    zixuanDapan_page.hx_right()
-    sleep(1)
-    zixuanDapan_page.hx_tapblank()
-    optional_page.zixuanIndexItemName_staText.click()
-    zixuanDapan_page.shen_btn.click()
-    zixuanDapan_page.hx_tapblank()
-    optional_page.zixuanIndexItemName_staText.click()
-    zixuanDapan_page.chuang_btn.click()
-    zixuanDapan_page.hx_tapblank()
-    optional_page.zixuanIndexItemName_staText.click()
-    zixuanDapan_page.fenshitu_scr.click()
-    fenshikxian_page.change_gupiao(3)
-    fenshikxian_page.fanhui_button.click()
-
-def test_step051(driver):
-    public_page = PublicPage(driver)
-    optional_page = OptionalPage(driver)
-    kanzhulizijin_page = KanZhulizijinPage(driver)
-    denglu_page = DengluPage(driver)
-
-    public_page.zixuan_button.click()
-    optional_page.zijin_btn.click()
-    kanzhulizijin_page.denglu_btn.click()
-    denglu_page.guanbi_btn.click()
-    kanzhulizijin_page.hushen_btn.click()
-    # 上下滑
-    kanzhulizijin_page.hx_upglide()
-    kanzhulizijin_page.hx_glide()
-
-    # 左右滑
-    for n in range(4):
-        kanzhulizijin_page.hx_left()
-    for n in range(3):
-        kanzhulizijin_page.hx_right()
-
-    kanzhulizijin_page.hx_ergodic_hushen_zhibiao()
-
-    kanzhulizijin_page.hangye_btn.click()
-    kanzhulizijin_page.hx_ergodic_zhibiao()
-
-    kanzhulizijin_page.gainian_btn.click()
-    kanzhulizijin_page.hx_ergodic_zhibiao()
-
-    kanzhulizijin_page.fanhui_btn.click()
-
+#自选->新闻／研报
 def test_step69(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -364,6 +418,7 @@ def test_step69(driver):
     zixun_page.fanhui_btn.click()
     zixuanguxinwen_page.fanhui_btn.click()
 
+#自选－>自选股公告
 def test_step80(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -381,21 +436,36 @@ def test_step80(driver):
     zixun_page.fanhui_btn.click()
     zixuangugonggao_page.fanhui_btn.click()
 
-def test_step88(driver):
+"""
+#自选－>长按操作
+def test_step104(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
-    wodezichan_page = WodezichanPage(driver)
 
     public_page.zixuan_button.click()
-    optional_page.zichan_btn.click()
-    wodezichan_page.fanhui_btn.click()
 
-#自选股分组
+    optional_page.zuixin_staText.click()
+    optional_page.hx_longPress(optional_page.cell001)
+    optional_page.zhidi_btn.click()
+    # 待扩展
+    optional_page.quxiaopaixu_btn.click()
+    optional_page.zuixin_staText.click()
+    optional_page.hx_upglide()
+    optional_page.hx_longPress(optional_page.cell018)
+    optional_page.zhiding_btn.click()
+    optional_page.quxiaopaixu_btn.click()
+    optional_page.hx_glide()
+    optional_page.hx_longPress(optional_page.cell001)
+    optional_page.shanchu_btn.click()
+    optional_page.hx_longPress(optional_page.cell001)
+    optional_page.shanchu_btn.click()
+"""
+
+#自选－>自选股分组
 def test_step130_144(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     zixuangufenzu_page = ZixuangufenzuPage(driver)
-    fenshikxian_page = FenshiKxianPage(driver)
 
     public_page.zixuan_button.click()
     optional_page.fenzu_btn.click()
@@ -413,4 +483,3 @@ def test_step130_144(driver):
     optional_page.fenzu_btn.click()
 
     zixuangufenzu_page.hx_tapblank()
-"""

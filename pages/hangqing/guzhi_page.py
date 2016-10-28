@@ -1,11 +1,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-__author__ = "tianmaotao"
+__author__ = "tianmaotao@myhexin.com"
 
 from page_object.appium_page_objects import PageObject, page_element
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 
 class GuzhiPage(PageObject):
+    """
+    行情－> 股指
+    股指页面的相关元素与操作
+    """
     kanzijin_btn = page_element(accessibility_id = '看资金')
     guzhi_btn = page_element(accessibility_id = '股指')
     guoneiZhishu_btn = page_element(accessibility_id = '国内指数')
@@ -56,6 +60,10 @@ class GuzhiPage(PageObject):
     qt_cell3_btn3 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[10]/UIAButton[3]')
 
     def gn_operation(self):
+        """
+        国内指数进入每个单元格的操作
+        :return:
+        """
         fenshikxian_page = FenshiKxianPage(self.w)
         self.gn_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
@@ -71,6 +79,10 @@ class GuzhiPage(PageObject):
         fenshikxian_page.change_gupiao(6)
 
     def qh_operation(self):
+        """
+        股指期货进入每个单元格的操作
+        :return:
+        """
         fenshikxian_page = FenshiKxianPage(self.w)
         self.qh_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
@@ -91,6 +103,10 @@ class GuzhiPage(PageObject):
         self.qh_cell3_btn3.click()
 
     def fs_operation(self):
+        """
+        富时A50指数进入每个单元格的操作
+        :return:
+        """
         fenshikxian_page = FenshiKxianPage(self.w)
         self.fs_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()
@@ -105,6 +121,10 @@ class GuzhiPage(PageObject):
         self.fs_cell2_btn3.click()
 
     def qt_operation(self):
+        """
+        其他指数，进入每个单元格的操作
+        :return:
+        """
         fenshikxian_page = FenshiKxianPage(self.w)
         self.qt_cell1_btn1.click()
         fenshikxian_page.fanhui_button.click()

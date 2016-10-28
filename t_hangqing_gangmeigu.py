@@ -35,12 +35,12 @@ def test_step16(driver):
     #港股和美股的页面布局结构差不多,测试步骤一致,所以用循环实现,"k = 0"代表美股,"k = 1"代表港股
     for market in market_list:
         # step 4-15：三个指数和港股通
-        for n in range(3):
-            eval('gangmeigu_page.{0}_cell1_{1}.click()'.format(market, n+1))
-            if market == 'hk' and n == 2:
+        for n in range(1, 4):
+            eval('gangmeigu_page.{0}_cell1_{1}.click()'.format(market, n))
+            if market == 'hk' and n == 3:
                 assert ganggutong_page.ganggutong_title
                 hangqinggengduo_page.ganggutong_clickOperation()
-                ganggutong_page.cell01Click_btn()
+                ganggutong_page.cell01_click()
                 fenshikxian_page.change_gupiao(10)
                 fenshikxian_page.fanhui_button.click()
                 ganggutong_page.fanhui_btn.click()
@@ -53,10 +53,12 @@ def test_step16(driver):
         eval('gangmeigu_page.{0}_cell2_1.click()'.format(market))
         hangyebankuai_page.hybk_up()
         hangyebankuai_page.hybk_up()
-
+        hangyebankuai_page.hybk_up()
+        sleep(1)
         hangyebankuai_page.gengduoshuju_btn.click()
         hangqinggengduo_page.hybk_clickOperation()
         title = hangqinggengduo_page.cell01_title.text
+        length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
         hangqinggengduo_page.cell01.click()
         assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(2)
@@ -66,11 +68,15 @@ def test_step16(driver):
         hangyebankuai_page.lingdiegu_btn.click()
         hangyebankuai_page.hybk_up()
         hangyebankuai_page.hybk_up()
+        hangyebankuai_page.hybk_up()
+        sleep(1)
         hangyebankuai_page.gengduoshuju_btn.click()
         hangqinggengduo_page.hybk_clickOperation()
+        length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
         title = hangqinggengduo_page.cell01_title.text
         hangqinggengduo_page.cell01.click()
         assert fenshikxian_page.title_staText.text == title
+
         fenshikxian_page.change_gupiao(2)
         fenshikxian_page.fanhui_button.click()
         hangqinggengduo_page.fanhui_btn.click()
@@ -81,8 +87,8 @@ def test_step16(driver):
             hangyebankuai_page.shangyigegupiao_button.click()
         hangyebankuai_page.fanhui_btn.click()
 
-        for n in range(6):
-            eval('gangmeigu_page.{0}_cell2_{1}.click()'.format(market, n+1))
+        for n in range(1, 7):
+            eval('gangmeigu_page.{0}_cell2_{1}.click()'.format(market, n))
             hangyebankuai_page.fanhui_btn.click()
 
         #进入行业板块更多

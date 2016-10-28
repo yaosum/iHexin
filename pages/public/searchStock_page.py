@@ -116,7 +116,6 @@ class SearchStockPage(PageObject):
 				try:
 					# 字母键盘
 					element = self.Keyboard_Letter_Indicator
-
 					is_number_keyboard = not element.is_displayed()
 				except NoSuchElementException:
 					pass

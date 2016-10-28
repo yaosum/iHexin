@@ -10,11 +10,10 @@ from pages.public.public_page import PublicPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.shouye.home_page import HomePage
 from time import sleep
-"""
+
 def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
-    shouye_page = HomePage(driver)
     hushen_page = HushenPage(driver)
 
     public_page.hangqing_button.click()
@@ -94,7 +93,7 @@ def test_step26(driver):
     assert zhangtinfenxi_page.sousuo_btn
     driver.get_screenshot_as_base64()
     zhangtinfenxi_page.fanhui_btn.click()
-"""
+
 def test_step29(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -121,14 +120,14 @@ def test_step29(driver):
         hangqing_gengduo_page.hq_down()
         #hangqing_gengduo_page.hs_clickOperation()
 
-        title = hangqing_gengduo_page.cell01_title.text
         el1 = driver.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
         tap_x = width * (42 / 375.0)
         tap_y = height * (124 / 667.0)
+        #title = hangqing_gengduo_page.cell01_title.text
         driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": tap_x, "y": tap_y})
-        assert fenshikxian_page.title_staText.text == title
+        #assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(10)
         fenshikxian_page.fanhui_button.click()
 
