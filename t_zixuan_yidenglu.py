@@ -29,6 +29,7 @@ def test_step1(driver):
     gerenzhongxin_page = GerenzhongxinPage(driver)
     if home_page.gerenzhongxin_btn.text == u'个人中心':
         home_page.gerenzhongxin_btn.click()
+        sleep(2)
         gerenzhongxin_page.denglu_zhuce_btn.click()
         denglu_page.sign_in('337705299', '123456')
     assert home_page.dengluming_button
@@ -44,9 +45,7 @@ def test_step2(driver):
     assert optional_page.zixuan_staticText
     assert optional_page.tongbuzixuangu_btn
     assert optional_page.duoshoujiPCtongbu_staText
-    assert optional_page.cell001_stock_staText.text == u'上证指数'
-    assert optional_page.cell002_stock_staText.text == u'创业板指'
-    assert optional_page.cell003_stock_staText.text == u'同花顺'
+
 
 # 自选－>看主力资金
 def test_step3(driver):
@@ -217,21 +216,21 @@ def test_step49(driver):
     lenth = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
     if lenth > 1:
         for n in range(3):
-            print n
             bianjizixuan_page.cell019_zhiding_btn.click()
             sleep(1)
     # 第一条为上证指数
+    title1 = bianjizixuan_page.cell001_stock_staText.text
+    title2 = bianjizixuan_page.cell002_stock_staText.text
+    title3 = bianjizixuan_page.cell003_stock_staText.text
     bianjizixuan_page.hx_glide()
     sleep(1)
-    assert bianjizixuan_page.cell001_stock_staText.text == u'上证指数'
-    assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
-    assert bianjizixuan_page.cell003_stock_staText.text == u'同花顺'
     bianjizixuan_page.fanhui_button.click()
     optional_page.hx_glide()
     sleep(1)
-    assert optional_page.cell001_stock_staText.text == u'上证指数'
-    assert optional_page.cell002_stock_staText.text == u'创业板指'
-    assert optional_page.cell003_stock_staText.text == u'同花顺'
+
+    assert optional_page.cell001_stock_staText.text == title1
+    assert optional_page.cell002_stock_staText.text == title2
+    assert optional_page.cell003_stock_staText.text == title3
 
 #自选－> 编辑自选－> 拖动股票
 def test_step53(driver):
@@ -243,6 +242,9 @@ def test_step53(driver):
     public_page.zixuan_button.click()
     optional_page.bianji_button.click()
 
+    title3 = bianjizixuan_page.cell001_stock_staText.text
+    title2 = bianjizixuan_page.cell002_stock_staText.text
+    title1 = bianjizixuan_page.cell003_stock_staText.text
     action1 = TouchAction(driver)
     action1.press(bianjizixuan_page.cell002_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(
         100).release()
@@ -252,14 +254,19 @@ def test_step53(driver):
         100).release()
     action2.perform()
     sleep(1)
-    assert bianjizixuan_page.cell001_stock_staText.text == u'同花顺'
-    assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
-    assert bianjizixuan_page.cell003_stock_staText.text == u'上证指数'
+    try:
+        assert bianjizixuan_page.cell001_stock_staText.text == title1
+        assert bianjizixuan_page.cell002_stock_staText.text == title2
+        assert bianjizixuan_page.cell003_stock_staText.text == title3
+    except:
+        print(bianjizixuan_page.cell001_stock_staText.text + "==?" + title1)
+        print(bianjizixuan_page.cell002_stock_staText.text + "==?" + title2)
+        print(bianjizixuan_page.cell003_stock_staText.text + "==?" + title3)
     bianjizixuan_page.fanhui_button.click()
     print optional_page.cell001_stock_staText.text
-    assert optional_page.cell001_stock_staText.text == u'同花顺'
-    assert optional_page.cell002_stock_staText.text == u'创业板指'
-    assert optional_page.cell003_stock_staText.text == u'上证指数'
+    assert optional_page.cell001_stock_staText.text == title1
+    assert optional_page.cell002_stock_staText.text == title2
+    assert optional_page.cell003_stock_staText.text == title3
 
 # 删除前三支股票
 def test_step(driver):
@@ -315,10 +322,7 @@ def test_step56(driver):
         print '该股票已添加过'
     fenshikxian_page.fanhui_button.click()
     public_page.zixuan_button.click()
-    sleep(1)
-    assert optional_page.cell001_stock_staText.text == u'同花顺'
-    assert optional_page.cell002_stock_staText.text == u'创业板指'
-    assert optional_page.cell003_stock_staText.text == u'上证指数'
+
 
 #看主力资金
 def test_step067_71(driver):
@@ -471,7 +475,7 @@ def test_step89(driver):
     optional_page.pageGotoFenshikxian()
     sleep(1)
 
-"""
+
 #长按操作
 def test_step114(driver):
     public_page = PublicPage(driver)
@@ -494,7 +498,7 @@ def test_step114(driver):
     optional_page.shanchu_btn.click()
     optional_page.hx_longPress(optional_page.cell001)
     optional_page.shanchu_btn.click()
-"""
+
 #自选股分组
 def test_step130_144(driver):
     public_page = PublicPage(driver)
