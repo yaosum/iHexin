@@ -20,11 +20,11 @@ class PublicMethod(PageObject):
         return self.w.tap([(el_size['width'] / 2 + location['x'], el_size['height'] / 2 + location['y'],)])
 
     #长按某个元素
-    def public_longPress(self, element):
+    def public_longPress(self, element, time):
         location = element.location
         el_size = element.size
 
         x = el_size['width'] / 2.0 + location['x']
         y = el_size['height'] / 2.0 + location['y']
 
-        return self.w.tap([(x, y)], duration=2)
+        return self.w.tap([(x, y)], duration=time)
