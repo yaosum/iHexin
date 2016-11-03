@@ -138,7 +138,7 @@ class KanZhulizijinPage(PageObject):
         start_x = width * (304 / 375.0)
         start_y = height * (598 / 667.0)
         end_x = width * (304 / 375.0)
-        end_y = height * (154 / 667.0)
+        end_y = height * (260 / 667.0)
         self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
 
     def hx_glide(self):
@@ -150,7 +150,7 @@ class KanZhulizijinPage(PageObject):
         width = el1.get('width')
         height = el1.get('height')
         start_x = width * (304 / 375.0)
-        start_y = height * (154 / 667.0)
+        start_y = height * (260 / 667.0)
         end_x = width * (304 / 375.0)
         end_y = height * (598/667.0)
         self.w.swipe(start_x, start_y, end_x, end_y, duration=500)

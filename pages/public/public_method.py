@@ -8,7 +8,8 @@ class PublicMethod(PageObject):
     该类放一些公共通用的方法,命名规则:public_***
     """
 
-    #处理某些元素点击不了,按其坐标点击
+    # 处理某些元素点击不了,按其坐标点击
+    # element:需要点击的按钮元素
     def public_tap_element(self, element):
         """
         Custom method. Tap element by tapping it's coordiante
@@ -19,7 +20,9 @@ class PublicMethod(PageObject):
         el_size = element.size
         return self.w.tap([(el_size['width'] / 2 + location['x'], el_size['height'] / 2 + location['y'],)])
 
-    #长按某个元素
+    # 长按某个元素
+    # element:为需要长按的元素
+    # time:长按的时间
     def public_longPress(self, element, time):
         location = element.location
         el_size = element.size
