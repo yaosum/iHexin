@@ -2,9 +2,14 @@
 # -*- coding: utf-8 -*-
 
 from selenium.common.exceptions import NoSuchElementException
-from ..appium_page_objects import PageObject, page_element
+
+from page_object.appium_page_objects import PageObject, page_element
+
 
 class SearchStockPage(PageObject):
+	zixuanadd_button = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[1]')
+	qingchuwenben_button = page_element(accessibility_id = "清除文本")
+
 	Keyboard_Digits_Indicator = page_element(accessibility_id = "字母键盘_numAltButton")
 	Keyboard_Letter_Indicator = page_element(accessibility_id = "数字键盘_altButton")
 	Search_Stock_Keyboard_Tuple = (Keyboard_Digits_Indicator, Keyboard_Letter_Indicator,)
@@ -90,7 +95,11 @@ class SearchStockPage(PageObject):
 		:param args: A sequence of elements for a keyboard.
 		:return:
 		"""
-		remain_args = args
+		remain_args = None
+		if len(args) == 1:
+			remain_args = args[0]
+		else:
+			remain_args = args
 		while remain_args:
 			is_number, taken_args, remain_args = SearchStockPage.hx_util_taken_same_type_args(remain_args)
 
@@ -107,7 +116,6 @@ class SearchStockPage(PageObject):
 				try:
 					# 字母键盘
 					element = self.Keyboard_Letter_Indicator
-
 					is_number_keyboard = not element.is_displayed()
 				except NoSuchElementException:
 					pass
@@ -122,6 +130,19 @@ class SearchStockPage(PageObject):
 			if not is_number and is_number_keyboard:
 				self.hx_tap_element(element)
 				self.hx_tap_element_name_sequence(taken_args)
+
+	def hx_send_keys_with_addStock(self, *args):
+		self.hx_send_keys(*args)
+		try:
+			self.zixuanadd_button.click()
+		except:
+			print '该股票已添加过'
+			pass
+		self.qingchuwenben_button.click()
+
+	def hx_addStock(self, stockName):
+		self.stockName.click()
+
 
 
 

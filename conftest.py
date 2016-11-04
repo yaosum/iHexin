@@ -1,12 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-import logging
-import os
+
 
 from appium import webdriver
 import pytest
 
+import sys
+import logging
+import os
+
+ROOT_PATH = os.path.split(os.path.realpath(__file__))[0]
+sys.path.append(ROOT_PATH)
 
 PY3 = sys.version_info[0] == 3
 framework_dir = os.path.join(os.path.abspath(__file__), "..")
@@ -65,7 +69,7 @@ def app_path(request):
     return request.config.getoption('app_path')
 
 
-@pytest.fixture(scope = 'session')
+@pytest.fixture(scope = 'function')
 def driver(request, platform_name, platform_version, device_name, device_udid, bundle_id, app_path):
     # equals to setUp
     desired_caps = {}
@@ -78,6 +82,7 @@ def driver(request, platform_name, platform_version, device_name, device_udid, b
     desired_caps['bundleId'] = bundle_id
     # instruments for app
     desired_caps['app'] = app_path
+
 
     driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
 
@@ -93,7 +98,7 @@ def pytest_runtest_makereport(item, call):
     report = outcome.get_result()
     summary = []
     extra = getattr(report, 'extra', [])
-    driver = getattr(item.session, '_driver', None)
+    driver = getattr(item, '_driver', None)
     failure = report.failed
 
 

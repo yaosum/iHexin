@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from ..appium_page_objects import PageObject, page_element
+from page_object.appium_page_objects import PageObject, page_element
 
 
 class IndexPage(PageObject):
@@ -10,6 +10,7 @@ class IndexPage(PageObject):
     second_arg_textfield = page_element(accessibility_id = "IntegerB")
     sum_button = page_element(xpath = "//UIAApplication[1]/UIAWindow[2]/UIAButton[1]")
     sum_result_label = page_element(accessibility_id = "Answer")
+
 
     def caculate_sum(self, a, b):
         self.first_arg_textfield = a

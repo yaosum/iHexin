@@ -1,0 +1,109 @@
+# -*- coding: utf-8 -*-
+
+from pages.hangqing.bankuai_page import BankuaiPage
+from pages.public.public_page import PublicPage
+from pages.hangqing.hangqing_page import HangqingPage
+from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
+from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
+
+#进入板块
+from pages.zixuangu.kanZhulizijin_page import KanZhulizijinPage
+
+def test_step1(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    bankuai_page = BankuaiPage(driver)
+
+    # step1-2
+    public_page.hangqing_button.click()
+    hangqing_page.bankuai_btn.click()
+    assert bankuai_page.hy_histogram_title
+
+#板块柱状图
+def test_step2(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    bankuai_page = BankuaiPage(driver)
+    kanzhulizijin_page = KanZhulizijinPage(driver)
+    gengduo_page = HangqingGengduoPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+
+    public_page.hangqing_button.click()
+    hangqing_page.bankuai_btn.click()
+
+    bankuai_page.hy_histogram_gengduo.click()
+    assert kanzhulizijin_page.hangye_btn
+    gengduo_page.fanhui_btn.click()
+    assert bankuai_page.hy_histogram_title
+    bankuai_page.glide_left()
+    assert bankuai_page.gn_histogram_title
+    bankuai_page.gn_histogram_gengduo.click()
+    assert kanzhulizijin_page.gainian_btn
+    gengduo_page.fanhui_btn.click()
+    bankuai_page.glide_left()
+    assert bankuai_page.hy_histogram_title
+    for n in range(1, 7):
+        eval('bankuai_page.histogram_btn{0}.click()'.format(n))
+        fenshikxian_page.change_gupiao(6)
+        fenshikxian_page.fanhui_button.click()
+    bankuai_page.glide_right()
+    assert bankuai_page.gn_histogram_title
+    for n in range(1, 7):
+        eval('bankuai_page.histogram_btn{0}.click()'.format(n))
+        fenshikxian_page.change_gupiao(6)
+        fenshikxian_page.fanhui_button.click()
+    bankuai_page.glide_right()
+    assert bankuai_page.hy_histogram_title
+
+#板块
+def test_step15(driver):
+    public_page = PublicPage(driver)
+    hangqing_page = HangqingPage(driver)
+    bankuai_page = BankuaiPage(driver)
+    fenshikxian_page = FenshiKxianPage(driver)
+    hangqing_gengduo_page = HangqingGengduoPage(driver)
+
+    # step2-7
+    public_page.hangqing_button.click()
+    hangqing_page.bankuai_btn.click()
+
+    bankuai_name = ['hy', 'gn', 'zs']
+    # 上滑至可见
+    el1 = driver.get_window_size()
+    width = el1.get('width')
+    height = el1.get('height')
+    start_x = width * (344 / 375.0)
+    start_y = height * (500 / 667.0)
+    end_x = width * (344 / 375.0)
+    end_y = height * (10 / 667.0)
+    driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+
+    for name in bankuai_name:
+        for n in range(1, 7):
+            eval('bankuai_page.{0}_btn{1}.click()'.format(name, n))
+            fenshikxian_page.change_gupiao(6)
+            fenshikxian_page.fanhui_button.click()
+        eval('bankuai_page.{0}_gengduo_btn.click()'.format(name))
+        hangqing_gengduo_page.hq_up()
+        hangqing_gengduo_page.hq_down()
+        hangqing_gengduo_page.hq_down()
+        for i in range(5):
+            hangqing_gengduo_page.hq_left()
+        hangqing_gengduo_page.bankuai_clickOperation()
+
+        lenth = len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]"))
+        if lenth > 10:
+            lenth = 10
+        #列表中属性name不显示为板块名称，这里先不做判断
+        #title = bankuai_page.cell01_title
+        bankuai_page.cell01_btn.click()
+        #assert fenshikxian_page.title_staText == title
+        fenshikxian_page.change_gupiao(5)
+        fenshikxian_page.fanhui_button.click()
+        hangqing_gengduo_page.fanhui_btn.click()
+
+    public_page.shouye_button.click()
+
+
+
+
