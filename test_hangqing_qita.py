@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from pages.hangqing.aijijin_page import LovejijinPage
-from pages.public.public_method import Public_method
+from pages.public.public_method import PublicMethod
 from pages.public.public_page import PublicPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.hangqing.qita_page import Qita
@@ -23,7 +23,7 @@ def test_step1(driver):
     qita_qihuo_page = QitaQihuoPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
-    public_method = Public_method(driver)
+    public_method = PublicMethod(driver)
 
     # step2
     public_page.hangqing_button.click()
@@ -39,9 +39,9 @@ def test_step1(driver):
     for name in name_list:
         eval('qita_page.{}.click()'.format(name))
         assert qita_qihuo_page.zhangfu_statictext
-        public_method.hx_tap_element(qita_qihuo_page.zhangdiefu_btn)
+        public_method.public_tap_element(qita_qihuo_page.zhangdiefu_btn)
         assert qita_qihuo_page.zhangdie_statictext
-        public_method.hx_tap_element(qita_qihuo_page.zhangdiefu_btn)
+        public_method.public_tap_element(qita_qihuo_page.zhangdiefu_btn)
         assert qita_qihuo_page.zhangfu_statictext
 
         hangqing_gengduo_page.hq_up()
@@ -102,7 +102,7 @@ def test_step34(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
     qita_50ETF_page = Qita50ETFPage(driver)
-    public_method = Public_method(driver)
+    public_method = PublicMethod(driver)
 
     # step2
     public_page.hangqing_button.click()
@@ -131,11 +131,11 @@ def test_step34(driver):
         qita_50ETF_page.qtgpqq_R_right()
 
 
-    public_method.hx_tap_element(qita_50ETF_page.group1)
-    public_method.hx_tap_element(qita_50ETF_page.group4)
-    public_method.hx_tap_element(qita_50ETF_page.group3)
-    public_method.hx_tap_element(qita_50ETF_page.group2)
-    public_method.hx_tap_element(qita_50ETF_page.group1)
+    public_method.public_tap_element(qita_50ETF_page.group1)
+    public_method.public_tap_element(qita_50ETF_page.group4)
+    public_method.public_tap_element(qita_50ETF_page.group3)
+    public_method.public_tap_element(qita_50ETF_page.group2)
+    public_method.public_tap_element(qita_50ETF_page.group1)
 
     #长按方法，易出错，这里先不运行这段脚本
     #driver.tap([(80, 216)], duration=0.5)
