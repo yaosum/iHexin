@@ -8,7 +8,7 @@ class HangqingPage(PageObject):
     """
     行情页面的相关元素及操作
     """
-    guzhi_btn = page_element(accessibility_id = '股指')
+    zhishu_btn = page_element(accessibility_id = '指数')
     hushen_btn = page_element(accessibility_id = '沪深')
     bankuai_btn = page_element(accessibility_id = '板块')
     gangmeigu_btn = page_element(accessibility_id = '港美股')

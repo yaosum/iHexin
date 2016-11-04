@@ -6,6 +6,7 @@ from pages.hangqing.ahbijiagu_page import AHBijiaguPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 from pages.hangqing.hushen_page import HushenPage
 from pages.hangqing.zhangtinfenxi_page import ZhangtinfenxiPage
+from pages.public.public_method import PublicMethod
 from pages.public.public_page import PublicPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.shouye.home_page import HomePage
@@ -100,14 +101,18 @@ def test_step29(driver):
     hushen_page = HushenPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
-
+    hushen_page.zfb_shousuo_btn.click()
     hushenname = ["zfb", "dfb", "kszf", "hslb", "lbb", "cjeb"]
+
     for name in hushenname:
-        title = hushen_page.hs_cell_title.text
-        eval('hushen_page.{0}_cell1_btn.click()'.format(name))
+        eval('hushen_page.{0}_shousuo_btn.click()'.format(name))
+        sleep(1)
+        title = hushen_page.hs_cell1_title.text
+        hushen_page.cell1_btn.click()
         assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(10)
         fenshikxian_page.fanhui_button.click()
@@ -135,4 +140,7 @@ def test_step29(driver):
         eval('hushen_page.{0}_shousuo_btn.click()'.format(name))
 
     for name in hushenname[:: -1]:
-        eval('hushen_page.{0}_shousuo_btn.click()'.format(name))
+        eval('public_method.hx_tap_element(hushen_page.{0}_shousuo_btn)'.format(name))
+
+
+

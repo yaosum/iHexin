@@ -18,6 +18,7 @@ class QitaQihuoPage(PageObject):
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 
    #国内期货和外汇，涨跌涨幅按钮点击
-    zhangdiefu_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[1]")
+    zhangdiefu_btn = page_element(
+        xpath = "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAButton[1]")
 
 

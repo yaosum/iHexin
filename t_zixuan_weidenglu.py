@@ -209,17 +209,19 @@ def test_step14(driver):
     assert optional_page.cell003_stock_staText.text == u'同花顺'
 
 
-#自选－>编辑自选->拖动
+#自选－> 编辑自选－> 拖动股票
 def test_step18(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     bianjizixuan_page = BianjizixuanPage(driver)
 
-    # step14
+    # step 49 点击自选
     public_page.zixuan_button.click()
-    # step15
     optional_page.bianji_button.click()
 
+    title3 = bianjizixuan_page.cell001_stock_staText.text
+    title2 = bianjizixuan_page.cell002_stock_staText.text
+    title1 = bianjizixuan_page.cell003_stock_staText.text
     action1 = TouchAction(driver)
     action1.press(bianjizixuan_page.cell002_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(
         100).release()
@@ -228,16 +230,20 @@ def test_step18(driver):
     action2.press(bianjizixuan_page.cell003_tuodong_btn).wait(100).move_to(bianjizixuan_page.cell001_tuodong_btn).wait(
         100).release()
     action2.perform()
-
-    assert bianjizixuan_page.cell001_stock_staText.text == u'同花顺'
-    assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
-    assert bianjizixuan_page.cell003_stock_staText.text == u'上证指数'
-    # step18
-    bianjizixuan_page.fanhui_button.click()
     sleep(1)
-    assert optional_page.cell001_stock_staText.text == u'同花顺'
-    assert optional_page.cell002_stock_staText.text == u'创业板指'
-    assert optional_page.cell003_stock_staText.text == u'上证指数'
+    try:
+        assert bianjizixuan_page.cell001_stock_staText.text == title1
+        assert bianjizixuan_page.cell002_stock_staText.text == title2
+        assert bianjizixuan_page.cell003_stock_staText.text == title3
+    except:
+        print bianjizixuan_page.cell001_stock_staText.text + "==?" + title1
+        print bianjizixuan_page.cell002_stock_staText.text + "==?" + title2
+        print bianjizixuan_page.cell003_stock_staText.text + "==?" + title3
+    bianjizixuan_page.fanhui_button.click()
+    print optional_page.cell001_stock_staText.text
+    assert optional_page.cell001_stock_staText.text == title1
+    assert optional_page.cell002_stock_staText.text == title2
+    assert optional_page.cell003_stock_staText.text == title3
 
 #自选－>编辑自选->删除
 def test_step20(driver):

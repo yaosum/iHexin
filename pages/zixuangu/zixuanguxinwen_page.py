@@ -9,6 +9,26 @@ class ZixuanguxinwenPage(PageObject):
 	"""
 	fanhui_btn = page_element(accessibility_id= "返回")
 	zixuanguxinwen_staText = page_element(xpath = "//UIAStaticText[@name='自选股新闻']")
+	zixuanguyanbao_staText = page_element(xpath="//UIAStaticText[@name='自选股研报']")
+
+	xinwen_bankuai1_staText = page_element(xpath="//UIAStaticText[@name= '板块1新闻']")
+	xinwen_bankuai2_staText = page_element(xpath="//UIAStaticText[@name= '板块2新闻']")
+	xinwen_bankuai3_staText = page_element(xpath="//UIAStaticText[@name= '板块3新闻']")
+	xinwen_bankuai4_staText = page_element(xpath="//UIAStaticText[@name= '板块4新闻']")
+	xinwen_bankuai5_staText = page_element(xpath="//UIAStaticText[@name= '板块5新闻']")
+	xinwen_bankuai6_staText = page_element(xpath="//UIAStaticText[@name= '板块6新闻']")
+	xinwen_bankuai7_staText = page_element(xpath="//UIAStaticText[@name= '板块7新闻']")
+	xinwen_bankuai8_staText = page_element(xpath="//UIAStaticText[@name= '板块8新闻']")
+
+	yanbao_bankuai1_staText = page_element(xpath="//UIAStaticText[@name= '板块1研报']")
+	yanbao_bankuai2_staText = page_element(xpath="//UIAStaticText[@name= '板块2研报']")
+	yanbao_bankuai3_staText = page_element(xpath="//UIAStaticText[@name= '板块3研报']")
+	yanbao_bankuai4_staText = page_element(xpath="//UIAStaticText[@name= '板块4研报']")
+	yanbao_bankuai5_staText = page_element(xpath="//UIAStaticText[@name= '板块5研报']")
+	yanbao_bankuai6_staText = page_element(xpath="//UIAStaticText[@name= '板块6研报']")
+	yanbao_bankuai7_staText = page_element(xpath="//UIAStaticText[@name= '板块7研报']")
+	yanbao_bankuai8_staText = page_element(xpath="//UIAStaticText[@name= '板块8研报']")
+
 
 	#第一行研报／新闻
 	cell01 = page_element(xpath= '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]')

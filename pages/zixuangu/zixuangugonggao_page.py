@@ -10,6 +10,15 @@ class ZixuangugonggaoPage(PageObject):
     fanhui_btn = page_element(accessibility_id = '返回')
     zixuangugonggao_staText = page_element(xpath = "//UIAStaticText[@name= '自选股公告']")
 
+    gonggao_bankuai1_staText = page_element(xpath = "//UIAStaticText[@name= '板块1公告']")
+    gonggao_bankuai2_staText = page_element(xpath = "//UIAStaticText[@name= '板块2公告']")
+    gonggao_bankuai3_staText = page_element(xpath = "//UIAStaticText[@name= '板块3公告']")
+    gonggao_bankuai4_staText = page_element(xpath = "//UIAStaticText[@name= '板块4公告']")
+    gonggao_bankuai5_staText = page_element(xpath = "//UIAStaticText[@name= '板块5公告']")
+    gonggao_bankuai6_staText = page_element(xpath = "//UIAStaticText[@name= '板块6公告']")
+    gonggao_bankuai7_staText = page_element(xpath = "//UIAStaticText[@name= '板块7公告']")
+    gonggao_bankuai8_staText = page_element(xpath = "//UIAStaticText[@name= '板块8公告']")
+
     cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
 
     def hx_upglide(self):

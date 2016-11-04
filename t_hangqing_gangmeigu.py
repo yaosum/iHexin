@@ -142,3 +142,4 @@ def test_step16(driver):
         else:
             market = 'us'
         eval("gangmeigu_page.{0}_btn.click()".format(market))
+    public_page.shouye_button.click()

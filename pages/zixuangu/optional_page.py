@@ -60,22 +60,24 @@ class OptionalPage(PageObject):
     GZ0213_stock_staText = page_element(xpath="//UIAStaticText[@name='国债0213']")
     JJYF_stock_staText = page_element(xpath="//UIAStaticText[@name='基金银丰']")
     RHXK_stock_staText = page_element(xpath="//UIAStaticText[@name='瑞和小康']")
-    CB5_stock_staText = page_element(xpath="//UIAStaticText[@name='长白5']")
+    CB5_stock_staText = page_element(xpath="//UIAStaticText[@name='长  白 5']")
     SZCZ_stock_staText = page_element(xpath="//UIAStaticText[@name='深证成指']")
     DQS_stock_staText = page_element(xpath="//UIAStaticText[@name='道琼斯']")
     BD_stock_staText = page_element(xpath="//UIAStaticText[@name='百度']")
     ETF50_stock_staText = page_element(xpath="//UIAStaticText[@name='50ETF']")
-    XHBY_stock_staText = page_element(xpath="//UIAStaticText[@name='银15Kg']")
+    Y15_stock_staText = page_element(xpath="//UIAStaticText[@name='银15Kg']")
     HSZS_stock_staText = page_element(xpath="//UIAStaticText[@name='恒生指数']")
     CH_stock_staText = page_element(xpath="//UIAStaticText[@name='长和']")
     HJ9999_stock_staText = page_element(xpath="//UIAStaticText[@name='黄金9999']")
 
     fenzu_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]")
-    #
+    #cell001:第一行股票，cell002:第二行股票
     cell001 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
-    cell001_title = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
+    cell001_title = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
     cell002 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]')
-    cell002_title = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
+    cell002_title = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
 
     cell003 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]')
     cell017 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[17]')
@@ -194,17 +196,20 @@ class OptionalPage(PageObject):
         """
         fenshikxian_page = FenshiKxianPage(self.w)
         title1 = self.cell001_title.text
+        length = int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
+        if length > 10:
+            length = 5
         self.cell001.click()
         assert fenshikxian_page.title_staText.text == title1
         # step73-76
-        fenshikxian_page.change_gupiao(1)
+        fenshikxian_page.change_gupiao(length)
         # step 77
         fenshikxian_page.fanhui_button.click()
         sleep(1)
-        length = int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
+
         if length >= 2:
             title2 = self.cell002_title.text
             self.cell002.click()
             assert fenshikxian_page.title_staText.text == title2
-            fenshikxian_page.change_gupiao(1)
+            fenshikxian_page.change_gupiao(length)
             fenshikxian_page.fanhui_button.click()

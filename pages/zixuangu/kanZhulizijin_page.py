@@ -192,19 +192,21 @@ class KanZhulizijinPage(PageObject):
         self.hx_glide()
         sleep(1)
         title1 = self.cell001_title.text
+        length = int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
+        if length > 10:
+            length = 5
         self.cell001.click()
         assert fenshikxian_page.title_staText.text == title1
         # step73-76
-        fenshikxian_page.change_gupiao(1)
+        fenshikxian_page.change_gupiao(length)
         # step 77
         fenshikxian_page.fanhui_button.click()
         sleep(1)
-        length = int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
         self.hx_glide()
         if length >= 2:
             self.hx_glide()
             title2 = self.cell002_title.text
             self.cell002.click()
             assert fenshikxian_page.title_staText.text == title2
-            fenshikxian_page.change_gupiao(1)
+            fenshikxian_page.change_gupiao(length)
             fenshikxian_page.fanhui_button.click()

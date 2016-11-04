@@ -34,6 +34,9 @@ def test_step1(driver):
     width = el1.get('width')
     height = el1.get('height')
 
+    tap_x = width * (321 / 375.0)
+    tap_y = height * (123 / 667.0)
+
     # step4-56 全球市场---国内期货和外汇
     name_list = ['gn_qihuo_btn', 'waihui_btn']
     for name in name_list:
@@ -48,12 +51,12 @@ def test_step1(driver):
         hangqing_gengduo_page.hq_down()
         hangqing_gengduo_page.hq_down()
 
-        title = qita_qihuo_page.cell01_title.text
+        #title = qita_qihuo_page.cell01_title.text
 
         click_x = width * (44 / 375.0)
         click_y = height * (123 / 667.0)
         driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": click_x, "y": click_y})
-        assert fenshikxian_page.title_staText.text == title
+        #assert fenshikxian_page.title_staText.text == title
         length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()
@@ -112,7 +115,8 @@ def test_step34(driver):
     qita_page.gp_qiquan_btn.click()
     hangqing_gengduo_page.qita_gpqq_clickOperation()
     # step34-37
-    hangqing_gengduo_page.cell01.click()
+    sleep(1)
+    hangqing_gengduo_page.cell01_click()
     qita_50ETF_page.cell_etf_btn.click()
     fenshikxian_page.hx_right()
     fenshikxian_page.hx_left()
@@ -194,14 +198,14 @@ def test_step58(driver):
     for n in range(2):
         qita_tianjinguijinshu_page.tjgjs_left()
     qita_tianjinguijinshu_page.tjgjs_clickOperation()
-    #天津贵金属的股票分时页面显示的名称和列表显示的股票名称不一致
-    #title = qita_tianjinguijinshu_page.cell01_title.text
+    title = qita_tianjinguijinshu_page.cell01_title.text
     length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
     qita_tianjinguijinshu_page.cell01.click()
-    #assert fenshikxian_page.title_staText.text == title
-    fenshikxian_page.change_gupiao(5)
+    assert fenshikxian_page.title_staText.text == title
+    fenshikxian_page.change_gupiao(length)
     fenshikxian_page.fanhui_button.click()
     qita_tianjinguijinshu_page.fanhui_button.click()
+    public_page.shouye_button.click()
 
 # 基金
 def test_step73(driver):
@@ -227,9 +231,10 @@ def test_step73(driver):
         hangqing_gengduo_page.hq_down()
         hangqing_gengduo_page.hq_down()
         #title = hangqing_gengduo_page.cell01_title.text
-        length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
-        if length > 100:
-            length = 100
+        #列表过长，在iPhone5上获取列表长度会出错，默认length>100，设置length＝100，下同
+        #length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
+        #if length > 100:
+            #length = 100
         hangqing_gengduo_page.cell01_click()
         #assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(5)
@@ -312,7 +317,7 @@ def test_step75(driver):
             hangqing_gengduo_page.hq_down()
         for n in range(4):
             hangqing_gengduo_page.hq_left()
-        #hangqing_gengduo_page.jijin_clickOperation()
+        hangqing_gengduo_page.jijin_clickOperation()
         qita_xinsanban_page.cell01_chengfengu_click()
         #title = qita_xinsanban_page.cell01_title_chengfengu.text
         #length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
@@ -345,7 +350,7 @@ def test_step75(driver):
             for n in range(4):
                 hangqing_gengduo_page.hq_left()
 
-            #hangqing_gengduo_page.jijin_clickOperation()
+            hangqing_gengduo_page.jijin_clickOperation()
             #title = hangqing_gengduo_page.cell01_title.text
             hangqing_gengduo_page.cell01_click()
             #assert fenshikxian_page.title_staText.text == title
@@ -391,7 +396,7 @@ def test_step135(driver):
     qita_hushenguozhai_page.hushi_btn.click()
     qita_hushenguozhai_page.fanhui_btn.click()
 
-#／退市整理
+#退市整理
 def test_step146(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -411,6 +416,7 @@ def test_step146(driver):
     length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
     hangqing_gengduo_page.jijin_clickOperation()
     hangqing_gengduo_page.fanhui_btn.click()
+    public_page.shouye_button.click()
 
 """
 #爱基金

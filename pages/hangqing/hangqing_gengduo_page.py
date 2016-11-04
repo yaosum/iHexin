@@ -42,6 +42,13 @@ class HangqingGengduoPage(PageObject):
     zuojiesuan_btn = page_element(accessibility_id= '昨结算')
     chicangliang_btn = page_element(accessibility_id= '持仓量')
 
+    #板块更多新增排序
+    zhangfu20_btn = page_element(accessibility_id = '20日涨幅')
+    zhangfu10_btn = page_element(accessibility_id = '10日涨幅')
+    diejiashu_btn = page_element(accessibility_id = '跌家数')
+    zhangjiashu_btn = page_element(accessibility_id = '涨家数')
+
+
     #更多列表中的第一行元素
     cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
     #更多列表中的第一行元素的股票名称
@@ -193,7 +200,6 @@ class HangqingGengduoPage(PageObject):
     def hs_clickOperation(self):
         """
         沪深排序操作
-
         :return:
         """
         self.xianshou_btn.click()
@@ -257,6 +263,30 @@ class HangqingGengduoPage(PageObject):
         self.zuixin_btn.click()
         assert self.asc_img
 
+    def bankuai_clickOperation(self):
+        self.zongshou_btn.click()
+        self.zongshou_btn.click()
+        self.jine_btn.click()
+        self.jine_btn.click()
+        self.huanshou_btn.click()
+        self.huanshou_btn.click()
+        self.zuixin_btn.click()
+        self.zuixin_btn.click()
+        self.zhangfu20_btn.click()
+        self.zhangfu20_btn.click()
+        self.zhangfu10_btn.click()
+        self.zhangfu10_btn.click()
+        self.zhangfu5_btn.click()
+        self.zhangfu5_btn.click()
+        self.diejiashu_btn.click()
+        self.diejiashu_btn.click()
+        self.zhangjiashu_btn.click()
+        self.zhangjiashu_btn.click()
+        self.zhangsu_btn.click()
+        self.zhangsu_btn.click()
+        self.zhangfu_btn.click()
+        self.zhangfu_btn.click()
+
     def ganggutong_clickOperation(self):
         """
         港股通排序操作
@@ -305,10 +335,10 @@ class HangqingGengduoPage(PageObject):
         el1 = self.w.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
-        start_x = width * (200 / 375.0)
+        start_x = width * (220 / 375.0)
         start_y = height * (500 / 667.0)
-        end_x = width * (200 / 375.0)
-        end_y = height * (200 / 667.0)
+        end_x = width * (220 / 375.0)
+        end_y = height * (220 / 667.0)
         self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
 
     def hq_down(self):
@@ -319,9 +349,9 @@ class HangqingGengduoPage(PageObject):
         el1 = self.w.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
-        start_x = width * (200 / 375.0)
-        start_y = height * (200 / 667.0)
-        end_x = width * (200 / 375.0)
+        start_x = width * (220 / 375.0)
+        start_y = height * (220 / 667.0)
+        end_x = width * (220 / 375.0)
         end_y = height * (500 / 667.0)
         self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
 
