@@ -3,6 +3,7 @@
 from page_object.appium_page_objects import PageObject, page_element
 import types
 from time import sleep
+from pages.public.public_method import PublicMethod
 
 class FenshiKxianPage(PageObject):
 	"""
@@ -13,12 +14,50 @@ class FenshiKxianPage(PageObject):
 	title_staText = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAScrollView[1]/UIAStaticText[1]')
 	shangyigegupiao_button = page_element(accessibility_id = '上一个股票')
 
+	# k线
+	zhankai_btn = page_element(accessibility_id='展开菜单')
+	shouqi_btn = page_element(accessibility_id='收起菜单')
+	fangda_btn = page_element(accessibility_id='k线放大')
+	suoxiao_btn = page_element(accessibility_id='k线缩小')
+	zuoyi_btn = page_element(accessibility_id='k线左移')
+	youyi_btn = page_element(accessibility_id='k线右移')
+	kLine_qiehengping_btn = page_element(accessibility_id='切换横屏')
+
+	ri_btn = page_element(accessibility_id='日')
+	zhou_btn = page_element(accessibility_id='周')
+	yue_btn = page_element(accessibility_id='月')
+
+	fenzhong_btn = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIAButton[14]')
+	oneMinute_btn = page_element(accessibility_id='1分')
+	five_btn = page_element(accessibility_id='5分')
+	fifteen_btn = page_element(accessibility_id='15分')
+	thirty_btn = page_element(accessibility_id='30分')
+	sixty_btn = page_element(accessibility_id='60分')
+
+	VR_btn = page_element(accessibility_id='VR')
+	shezhi_btn = page_element(accessibility_id='设置')
+
+	# 分时
+	wudang_btn = page_element(accessibility_id='五档')
+	mingxi_btn = page_element(accessibility_id='明细')
+	chengjiao_btn = page_element(accessibility_id='成交')
+
+	fenshi_qiehengping_btn = page_element(accessibility_id='toLandscape')
+
+	yujing_btn = page_element(accessibility_id='预警')
+	xiadan_btn = page_element(accessibility_id='下单')
+	lungu_btn = page_element(accessibility_id='论股')
+
 	jiazixuan_staText = page_element(accessibility_id='加自选')
 
 	shezhi_btn = page_element(accessibility_id='设置')
 	klineTabButton = page_element(accessibility_id='KlineTabButtonBackground')
 
 	sousuo_btn = page_element(accessibility_id = "搜索")
+
+	#行情数据
+	hangqingshuju_btn = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAButton[2]')
+	guanbi_btn = page_element(accessibility_id = '关闭')
 
 	def hx_right(self):
 		"""
@@ -66,3 +105,16 @@ class FenshiKxianPage(PageObject):
 		else:
 			print('分时k线切换股票次数输入参数错误')
 
+	#k线放大 缩小 左移 右移操作
+	def kxian_action_operation(self):
+		public_method = PublicMethod(self.w)
+		el1 = self.w.get_window_size()
+		width = el1.get('width')
+		height = el1.get('height')
+		if self.zhankai_btn != None:
+			self.zhankai_btn.click()
+		public_method.public_longPress(self.fangda_btn, 2)
+		public_method.public_longPress(self.suoxiao_btn, 2)
+		public_method.public_longPress(self.zuoyi_btn, 5)
+		public_method.public_longPress(self.youyi_btn, 5)
+		self.w.tap([(width * 190 / 375.0, height * 572 / 667.0,)])
