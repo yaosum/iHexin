@@ -37,15 +37,20 @@ class PublicMethod(PageObject):
         return self.w.tap([(x, y)], duration=time)
 
     """
-    功能:截屏,并自动放入相应的日期文件夹内
+    功   能: 截屏,并自动放入相应的日期文件夹内
+    参数说明:
+        caseName:具体的case名字
+    截图目录层级结构:
+    根目录-->result-->case运行的日期-->具体case的名字-->截图
 
     """
-    def public_screenshot_as_file(self):
-        date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-        path = GetProjectPath.getProjectPath() + '/result/' + date
+    def public_screenshot_as_file(self, caseName, picName):
+        screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+        screen_time = time.strftime('%H:%M:%S')
+        path = GetProjectPath.getProjectPath() + '/result/' + screen_date +'/' + caseName
         if os.path.isdir(path):
             pass
         else:
             os.makedirs(path)
-        now = datetime.now()
-        self.w.get_screenshot_as_file(path + '/{}.png'.format(now))
+        picName_ = screen_time + '_' + picName
+        self.w.get_screenshot_as_file(path + '/{}.png'.format(picName_))
