@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 
 from page_object.appium_page_objects import PageObject
+from get_project_path import GetProjectPath
+from datetime import datetime
+import time
+import os
 
 class PublicMethod(PageObject):
     """
@@ -31,3 +35,17 @@ class PublicMethod(PageObject):
         y = el_size['height'] / 2.0 + location['y']
 
         return self.w.tap([(x, y)], duration=time)
+
+    """
+    功能:截屏,并自动放入相应的日期文件夹内
+
+    """
+    def public_screenshot_as_file(self):
+        date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+        path = GetProjectPath.getProjectPath() + '/result/' + date
+        if os.path.isdir(path):
+            pass
+        else:
+            os.makedirs(path)
+        now = datetime.now()
+        self.w.get_screenshot_as_file(path + '/{}.png'.format(now))
