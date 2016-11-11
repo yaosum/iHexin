@@ -13,6 +13,18 @@ from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 
+#进入看主力资金页面，在自选已经运行过这部分脚本，这里只需要看能否正常进入
+def test_step3(driver):
+    public_page = PublicPage(driver)
+    zhishu_page = ZhishuPage(driver)
+    kanzhulizijin_page = KanZhulizijinPage(driver)
+    hangqing_page = HangqingPage(driver)
+
+    public_page.hangqing_button.click()
+    hangqing_page.zhishu_btn.click()
+    zhishu_page.kanzijin_btn.click()
+    assert kanzhulizijin_page.kanzhulizijin_staticText
+
 #进入指数并验证
 def test_step1(driver):
     public_page = PublicPage(driver)
@@ -27,18 +39,6 @@ def test_step1(driver):
     assert zhishu_page.guoneiZhishu_btn
     assert zhishu_page.qihuo_btn
 
-#进入看主力资金页面，在自选已经运行过这部分脚本，这里只需要看能否正常进入
-def test_step3(driver):
-    public_page = PublicPage(driver)
-    zhishu_page = ZhishuPage(driver)
-    kanzhulizijin_page = KanZhulizijinPage(driver)
-    hangqing_page = HangqingPage(driver)
-
-    public_page.hangqing_button.click()
-    hangqing_page.zhishu_btn.click()
-    zhishu_page.kanzijin_btn.click()
-    assert kanzhulizijin_page.kanzhulizijin_staticText
-
 #国内指数
 def test_step21(driver):
     public_page = PublicPage(driver)
@@ -48,13 +48,10 @@ def test_step21(driver):
     hangqing_gengduo_page = HangqingGengduoPage(driver)
 
     public_page.hangqing_button.click()
-
     hangqing_page.zhishu_btn.click()
 
     # step22-30
     zhishu_page.gn_operation()
-    fenshikxian_page.hx_left()
-    fenshikxian_page.change_gupiao(6)
     fenshikxian_page.fanhui_button.click()
 
     # step31-40
@@ -82,7 +79,6 @@ def test_step41(driver):
     public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
-
     hangqing_page.zhishu_btn.click()
 
     # step41-49
@@ -101,8 +97,7 @@ def test_step41(driver):
     #assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
-    public_method.hx_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
-    # sleep(1)
+    public_method.public_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
 
     # step5
     title = guzhiqihuo_gengduo_page.cell1_1_title.text
@@ -151,7 +146,6 @@ def test_step76(driver):
 
     # step76-83
     zhishu_page.fs_operation()
-    fenshikxian_page.change_gupiao(3)
     fenshikxian_page.fanhui_button.click()
 
 #其他指数
@@ -163,7 +157,6 @@ def test_step93(driver):
     hangqing_gengduo_page = HangqingGengduoPage(driver)
 
     public_page.hangqing_button.click()
-
     hangqing_page.zhishu_btn.click()
 
     # 上滑动至其他指数可见

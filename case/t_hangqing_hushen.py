@@ -92,7 +92,6 @@ def test_step26(driver):
     hushen_page.zhangtinfenxi_btn.click()
     assert zhangtinfenxi_page.zhangtinfenxi_title
     assert zhangtinfenxi_page.sousuo_btn
-    driver.get_screenshot_as_base64()
     zhangtinfenxi_page.fanhui_btn.click()
 
 def test_step29(driver):

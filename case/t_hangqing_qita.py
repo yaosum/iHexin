@@ -167,6 +167,7 @@ def test_step57(driver):
     qita_page.sh_huangjin_btn.click()
     for n in range(2):
         hangqing_gengduo_page.hq_left()
+    hangqing_gengduo_page.shhj_clickOperation()
     title = hangqing_gengduo_page.cell01_title.text
     length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
     hangqing_gengduo_page.cell01.click()

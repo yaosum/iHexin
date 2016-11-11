@@ -11,6 +11,9 @@ class ZixuanguxinwenPage(PageObject):
 	zixuanguxinwen_staText = page_element(xpath = "//UIAStaticText[@name='自选股新闻']")
 	zixuanguyanbao_staText = page_element(xpath="//UIAStaticText[@name='自选股研报']")
 
+	xinwen_btn = page_element(accessibility_id= '新闻')
+	yanbao_btn = page_element(accessibility_id='研报')
+
 	xinwen_bankuai1_staText = page_element(xpath="//UIAStaticText[@name= '板块1新闻']")
 	xinwen_bankuai2_staText = page_element(xpath="//UIAStaticText[@name= '板块2新闻']")
 	xinwen_bankuai3_staText = page_element(xpath="//UIAStaticText[@name= '板块3新闻']")

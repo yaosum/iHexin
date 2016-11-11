@@ -3,6 +3,7 @@
 from page_object.appium_page_objects import PageObject, page_element
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from time import sleep
+import random
 
 __author__ = "Hemin Won"
 
@@ -72,23 +73,29 @@ class OptionalPage(PageObject):
 
     fenzu_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]")
     #cell001:第一行股票，cell002:第二行股票
-    cell001 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
-    cell001_title = page_element(
-        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
-    cell002 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]')
-    cell002_title = page_element(
-        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
-
-    cell003 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]')
-    cell017 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[17]')
-    cell05 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[5]')
+    cell001 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
+    cell002 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]')
+    cell003 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]')
+    cell017 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[17]')
+    cell05 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[5]')
 
     cell001_stock_staText = page_element(
-        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
     cell002_stock_staText = page_element(
-        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
     cell003_stock_staText = page_element(
-        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAStaticText[1]')
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAStaticText[1]')
+
+    def hx_zixuan_ergodic(self):
+        listheader = ('zhenfu', 'weibi', 'zuidi', 'zuigao', 'zuoshou', 'kaipan', 'xianshou', 'shijinglv', 'shiyingdong',
+                      'liangbi', 'huanshou', 'zongshou', 'zhangsu', 'zhangdie', 'zhangfu', 'zuixin')
+
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_staText.click()'.format(listheader[num]))
+            eval('self.{0}_staText.click()'.format(listheader[num]))
+            self.quxiaopaixu_btn.click()
 
     def hx_upglide(self):
         """
@@ -163,7 +170,7 @@ class OptionalPage(PageObject):
 
     def zx_left(self):
         """
-        滑动展示分组抽屉
+        滑动关闭分组抽屉
         :return:
         """
         el1 = self.w.get_window_size()
@@ -177,7 +184,7 @@ class OptionalPage(PageObject):
 
     def zx_right(self):
         """
-        滑动关闭分组抽屉
+        滑动展示分组抽屉
         :return:
         """
         el1 = self.w.get_window_size()
@@ -189,17 +196,44 @@ class OptionalPage(PageObject):
         end_y = height * (466 / 667.0)
         self.w.swipe(start_x, start_y, end_x, end_y, duration=500)
 
+    def cell001_click(self):
+        """
+        点击第一行元素
+        :return:
+        """
+        el1 = self.w.get_window_size()
+        width = el1.get('width')
+        height = el1.get('height')
+        tap_x = width * (187 / 375.0)
+        tap_y = height * (193 / 667.0)
+        self.w.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.3, "x": tap_x, "y": tap_y})
+
+    def cell002_click(self):
+        """
+        点击第二行元素
+        :return:
+        """
+        el1 = self.w.get_window_size()
+        width = el1.get('width')
+        height = el1.get('height')
+        tap_x = width * (187 / 375.0)
+        tap_y = height * (242 / 667.0)
+        self.w.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.3, "x": tap_x, "y": tap_y})
+
     def pageGotoFenshikxian(self):
         """
         从第一行及第二行进去分时k线页面并进行股票切换操作
         :return:
         """
         fenshikxian_page = FenshiKxianPage(self.w)
-        title1 = self.cell001_title.text
+        title1 = self.cell001_stock_staText.text
+        print "第一行股票名称：", title1
         length = int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
         if length > 10:
             length = 5
-        self.cell001.click()
+        self.cell001_click()
+        sleep(1)
+
         assert fenshikxian_page.title_staText.text == title1
         # step73-76
         fenshikxian_page.change_gupiao(length)
@@ -207,9 +241,12 @@ class OptionalPage(PageObject):
         fenshikxian_page.fanhui_button.click()
         sleep(1)
 
-        if length >= 2:
-            title2 = self.cell002_title.text
-            self.cell002.click()
+        if length > 1:
+            title2 = self.cell002_stock_staText.text
+            print "第二行股票名称：",title2
+            sleep(1)
+            self.cell002_click()
+            sleep(1)
             assert fenshikxian_page.title_staText.text == title2
             fenshikxian_page.change_gupiao(length)
             fenshikxian_page.fanhui_button.click()

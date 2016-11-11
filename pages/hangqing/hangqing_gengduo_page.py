@@ -3,6 +3,7 @@
 __author__ = "tianmaotao"
 
 from page_object.appium_page_objects import PageObject, page_element
+import random
 
 class HangqingGengduoPage(PageObject):
     """
@@ -61,30 +62,13 @@ class HangqingGengduoPage(PageObject):
         板块更多排序
         :return:
         """
-        self.zongshou_btn.click()
-        #assert self.desc_img
-        self.zongshou_btn.click()
-        #assert self.asc_img
-        self.jine_btn.click()
-        #assert self.desc_img
-        self.jine_btn.click()
-        #assert self.asc_img
-        self.zuixin_btn.click()
-        #assert self.desc_img
-        self.zuixin_btn.click()
-        #assert self.asc_img
-        self.huanshou_btn.click()
-        #assert self.desc_img
-        self.huanshou_btn.click()
-        #assert self.asc_img
-        self.zhangfu5_btn.click()
-        #assert self.desc_img
-        self.zhangfu5_btn.click()
-        #assert self.asc_img
-        self.zhangfu_btn.click()
-        #assert self.desc_img
-        self.zhangfu_btn.click()
-        #assert self.asc_img
+        listheader = ('zongshou', 'jine', 'zuixin', 'huanshou', 'zhangfu5', 'zhangfu')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+
 
     def hybk_clickOperation(self):
         """
@@ -92,16 +76,12 @@ class HangqingGengduoPage(PageObject):
         :return:
         """
         self.hq_left()
-        self.chengjiaoe_btn.click()
-        self.chengjiaoe_btn.click()
-        self.chengjiaoliang_btn.click()
-        self.chengjiaoliang_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
-        self.zuixin_btn.click()
-        self.zuixin_btn.click()
+        listheader = ('chengjiaoe', 'chengjiaoliang', 'zhangdie', 'zhangfu', 'zuixin', 'zhangfu')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
         self.hq_up()
         self.hq_down()
 
@@ -110,194 +90,77 @@ class HangqingGengduoPage(PageObject):
         行情-> 其他-> 股票期权排序
         :return:
         """
-        self.zhenfu_btn.click()
-        self.zhenfu_btn.click()
-        self.weibi_btn.click()
-        self.weibi_btn.click()
-        self.zuidi_btn.click()
-        self.zuidi_btn.click()
-        self.zuigao_btn.click()
-        self.zuigao_btn.click()
-        self.zuoshou_btn.click()
-        self.zuoshou_btn.click()
-        #self.kaipan_btn.click()
-        #self.kaipan_btn.clicK()
-        self.xianshou_btn.click()
-        self.xianshou_btn.click()
-        self.shijinglv_btn.click()
-        self.shijinglv_btn.click()
-        self.shiying_btn.click()
-        self.shiying_btn.click()
-        self.liangbi_btn.click()
-        self.liangbi_btn.click()
-        self.huanshou_btn.click()
-        self.huanshou_btn.click()
-        self.zongshou_btn.click()
-        self.zongshou_btn.click()
-        self.zhangsu_btn.click()
-        self.zhangsu_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
-        self.zuixin_btn.click()
-        self.zuixin_btn.click()
+        listheader = ('zhenfu', 'weibi', 'zuidi', 'zuigao', 'zuoshou', 'xianshou', 'shijinglv', 'shiying', 'liangbi',
+                      'huanshou', 'zongshou', 'zhangsu', 'zhangdie', 'zhangfu', 'zuixin')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def shhj_clickOperation(self):
         """
         上海黄金列表排序
         :return:
         """
-        self.zuojiesuan_btn.click()
-        self.zuojiesuan_btn.click()
-        self.chicangliang_btn.click()
-        self.chicangliang_btn.click()
-        self.zongshou_btn.click()
-        self.zongshou_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
-        self.zuixin_btn.click()
-        self.zuixin_btn.click()
+        listheader = ('zuojiesuan', 'chicangliang', 'zongshou', 'zhangdie', 'zhangfu', 'zuixin')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def jijin_clickOperation(self):
         """
         基金(包括沪深封闭基金),以及个股里的除了新三板的其它股，排序操作
         :return:
         """
-        self.xianshou_btn.click()
-        self.xianshou_btn.click()
-        self.zongshou_btn.click()
-        self.zongshou_btn.click()
-        self.jine_btn.click()
-        self.jine_btn.click()
-        self.zongshizhi_btn.click()
-        self.zongshizhi_btn.click()
-        self.liutong_btn.click()
-        self.liutong_btn.click()
-        self.shijinglv_btn.click()
-        self.shijinglv_btn.click()
-        self.shiying_btn.click()
-        self.shiying_btn.click()
-        self.zhangsu_btn.click()
-        self.zhangsu_btn.click()
-        self.zhenfu_btn.click()
-        self.zhenfu_btn.click()
-        self.liangbi_btn.click()
-        self.liangbi_btn.click()
-        self.huanshou_btn.click()
-        self.huanshou_btn.click()
-        self.xingji_btn.click()
-        self.xingji_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
-        self.zuixin_btn.click()
-        self.zuixin_btn.click()
+        listheader = ('xianshou', 'zongshou', 'jine', 'zongshizhi', 'liutong', 'shijinglv', 'shiying', 'zhangsu',
+                      'zhenfu', 'liangbi', 'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def hs_clickOperation(self):
         """
         沪深排序操作
         :return:
         """
-        self.xianshou_btn.click()
-        assert self.desc_img
-        self.xianshou_btn.click()
-        assert self.asc_img
-        self.zongshou_btn.click()
-        assert self.desc_img
-        self.zongshou_btn.click()
-        assert self.asc_img
-        #self.jine_btn.clcik()
-        #assert self.desc_img
-        #self.jine_btn.clcik()
-        #assert self.asc_img
-        self.zongshizhi_btn.click()
-        assert self.desc_img
-        self.zongshizhi_btn.click()
-        assert self.asc_img
-        self.liutong_btn.click()
-        assert self.desc_img
-        self.liutong_btn.click()
-        assert self.asc_img
-        self.shijinglv_btn.click()
-        assert self.desc_img
-        self.shijinglv_btn.click()
-        assert self.asc_img
-        self.shiying_btn.click()
-        assert self.desc_img
-        self.shiying_btn.click()
-        assert self.asc_img
-        self.zhangsu_btn.click()
-        assert self.desc_img
-        self.zhangsu_btn.click()
-        assert self.asc_img
-        self.zhenfu_btn.click()
-        assert self.desc_img
-        self.zhenfu_btn.click()
-        assert self.asc_img
-        self.liangbi_btn.click()
-        assert self.desc_img
-        self.liangbi_btn.click()
-        assert self.asc_img
-        self.huanshou_btn.click()
-        assert self.desc_img
-        self.huanshou_btn.click()
-        assert self.asc_img
-        self.xingji_btn.click()
-        assert self.desc_img
-        self.xingji_btn.click()
-        assert self.asc_img
-        self.zhangdie_btn.click()
-        assert self.desc_img
-        self.zhangdie_btn.click()
-        assert self.asc_img
-        self.zhangfu_btn.click()
-        assert self.desc_img
-        self.zhangfu_btn.click()
-        assert self.asc_img
-        self.zuixin_btn.click()
-        assert self.desc_img
-        self.zuixin_btn.click()
-        assert self.asc_img
+        listheader = ('xianshou', 'zongshou', 'zongshizhi', 'liutong', 'shijinglv', 'shiying', 'zhangsu', 'zhangfu', 'liangbi',
+                      'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def bankuai_clickOperation(self):
-        self.zongshou_btn.click()
-        self.zongshou_btn.click()
-        self.jine_btn.click()
-        self.jine_btn.click()
-        self.huanshou_btn.click()
-        self.huanshou_btn.click()
-        self.zuixin_btn.click()
-        self.zuixin_btn.click()
-        self.zhangfu20_btn.click()
-        self.zhangfu20_btn.click()
-        self.zhangfu10_btn.click()
-        self.zhangfu10_btn.click()
-        self.zhangfu5_btn.click()
-        self.zhangfu5_btn.click()
-        self.diejiashu_btn.click()
-        self.diejiashu_btn.click()
-        self.zhangjiashu_btn.click()
-        self.zhangjiashu_btn.click()
-        self.zhangsu_btn.click()
-        self.zhangsu_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
+        """
+            板块排序操作
+            :return:
+        """
+
+        listheader = ('zongshou', 'jine', 'huanshou', 'zuixin', 'zhangfu20', 'zhangfu10', 'diejiashu', 'zhangjiashu',
+                      'zhangsu', 'zhangfu')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def ganggutong_clickOperation(self):
         """
         港股通排序操作
         :return:
         """
-        self.zuixin_btn.click()
-        self.zuixin_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangdie_btn.click()
+        listheader = ('zuixin', 'zhangfu', 'zhangdie')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def hq_right(self):
         """

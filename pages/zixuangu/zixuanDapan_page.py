@@ -21,7 +21,7 @@ class ZixuanDapanPage(PageObject):
         el1 = self.w.get_window_size()
         width = el1.get('width')
         height = el1.get('height')
-        start_x = width * (210 / 375.0)
+        start_x = width * (290 / 375.0)
         start_y = height * (239 / 667.0)
         end_x = width * (45 / 375.0)
         end_y = height * (239 / 667.0)

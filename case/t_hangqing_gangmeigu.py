@@ -32,7 +32,7 @@ def test_step16(driver):
                      ('us_group_4', 'us_gengduo_4'), ('us_group_5', 'us_gengduo_5'), ('us_group_6', 'us_gengduo_6')]
     hk_group_list = [('hk_group_2', 'hk_gengduo_2'), ('hk_group_3', 'hk_gengduo_3')]
 
-    #港股和美股的页面布局结构差不多,测试步骤一致,所以用循环实现,"k = 0"代表美股,"k = 1"代表港股
+    #港股和美股的页面布局结构差不多,测试步骤一致,所以用循环实现
     for market in market_list:
         # step 4-15：三个指数和港股通
         for n in range(1, 4):

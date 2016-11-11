@@ -3,6 +3,7 @@
 from page_object.appium_page_objects import PageObject, page_element
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from time import sleep
+import random
 
 class KanZhulizijinPage(PageObject):
     """
@@ -11,7 +12,7 @@ class KanZhulizijinPage(PageObject):
     看主力资金页面的相关元素及操作
     """
     fanhui_btn = page_element(xpath= '//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]')
-    cell001 = page_element(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]")
+    cell001 = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]")
     cell002 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]')
     cell002_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]')
     cell001_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
@@ -55,76 +56,30 @@ class KanZhulizijinPage(PageObject):
 
     def hx_ergodic_hushen_zhibiao(self):
         """
-        沪深下的排序操作
+        看主力资金－> 自选/沪深下的排序操作
         :return:
         """
-        self.zuixin_staText.click()
-        #assert self.desc_img
-        self.zuixin_staText.click()
-        #assert self.asc_img
-        self.dadanjingliang_staText.click()
-        self.dadanjingliang_staText.click()
-        self.zhangfu_staText.click()
-        self.zhangfu_staText.click()
-        self.zhuliliuru_staText.click()
-        self.zhuliliuru_staText.click()
-        self.zhuliliuchu_staText.click()
-        self.zhuliliuchu_staText.click()
-        self.zhulijingliuru_staText.click()
-        self.zhulijingliuru_staText.click()
-        self.jingliuru_staText.click()
-        self.jingliuru_staText.click()
-        self.zhulijingezhanbi_staText.click()
-        self.zhulijingezhanbi_staText.click()
-        self.rijingliang5_staText.click()
-        self.rijingliang5_staText.click()
-        self.rijingliang10_staText.click()
-        self.rijingliang10_staText.click()
-        self.rizhangfu5_staText.click()
-        #assert self.desc_img
-        self.rizhangfu5_staText.click()
-        #assert self.asc_img
-        self.rizhangfu10_staText.click()
-        self.rizhangfu10_staText.click()
-        self.liangbi_staText.click()
-        self.liangbi_staText.click()
-        self.huanshou_staText.click()
-        self.huanshou_staText.click()
-        self.shiyingdong_staText.click()
-        self.shiyingdong_staText.click()
-        self.shijinglv_staText.click()
-        self.shijinglv_staText.click()
-        self.liutongshizhi_staText.click()
-        self.liutongshizhi_staText.click()
-        self.zongshizhi_staText.click()
-        #assert self.desc_img
-        self.zongshizhi_staText.click()
-        #assert self.asc_img
+        listheader = ('zuixin', 'dadanjinliang', 'zhangfu', 'zhuliliuru', 'zhuliliuchu', 'jingliuru',
+                      'zhulijingezhangbi', 'rijingliang5', 'rijingliang10', 'rizhangfu5', 'rizhangfu10', 'liangbi',
+                      'huanshou', 'shiyingdong', 'shijinglv', 'liutongshizhi', 'zongshizhi')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def hx_ergodic_zhibiao(self):
         """
-        zhibiao下的排序操作
+        看主力资金－> 概念／行业下的排序操作
         :return:
         """
-        self.dadanjingliang_staText.click()
-        #assert self.asc_img
-        self.dadanjingliang_staText.click()
-        #assert self.desc_img
-        self.zhangfu_staText.click()
-        self.zhangfu_staText.click()
-        self.huanshou_staText.click()
-        self.huanshou_staText.click()
-        self.rizhangfu5_staText.click()
-        self.rizhangfu5_staText.click()
-        self.rizhangfu10_staText.click()
-        self.rizhangfu10_staText.click()
-        self.rizhangfu20_staText.click()
-        self.zongshou_staText.click()
-        self.zongshou_staText.click()
-        self.jine_staText.click()
-        #assert self.desc_img
-        self.jine_staText.click()
-        #assert self.asc_img
+        listheader = ('dadanjinliang', 'zhangfu', 'huanshou', 'rizhangfu5', 'rizhangfu10', 'rizhangfu20', 'zongshou',
+                      'jine')
+        length = int(len(listheader))
+        for n in range(3):
+            num = random.randint(0, length)
+            eval('self.{0}_btn.click()'.format(listheader[num]))
+            eval('self.{0}_btn.click()'.format(listheader[num]))
 
     def hx_upglide(self):
         """
@@ -204,7 +159,7 @@ class KanZhulizijinPage(PageObject):
         sleep(1)
         self.hx_glide()
         if length >= 2:
-            self.hx_glide()
+            sleep(1)
             title2 = self.cell002_title.text
             self.cell002.click()
             assert fenshikxian_page.title_staText.text == title2
