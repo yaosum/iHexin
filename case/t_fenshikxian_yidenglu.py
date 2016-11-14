@@ -8,24 +8,32 @@ from pages.fenshikxian.fenshikxian_lungutang_page import FenshikxianLungutangPag
 from pages.fenshikxian.fenshikxian_zhibiao_page import FenshikxianZhibiaoPage
 from pages.public.public_method import PublicMethod
 from pages.fenshikxian.fenshikxian_hengping_page import FenshikxianHengpingPage
+from pages.public.public_method import PublicMethod
 
-
+case_name = 'test_fenshikxian_yidenglu'
 #分时页面
-def tst_step1_7(driver):
+def test_step1_7(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     searchstock_page = SearchStockPage(driver)
     home_page = HomePage(driver)
+    public_method = PublicMethod(driver)
 
     home_page.sousuo_button.click()
     args = ['300033']
     searchstock_page.hx_send_keys(args)
+    pic_name = '搜索-分时_2'
+    public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
 
     #进入行情数据
     el1 = driver.get_window_size()
     width = el1.get('width')
     height = el1.get('height')
     driver.tap([(width * 50 / 375.0, height * 100 / 667.0)])
+    pic_name = '分时-行情数据_3'
+    public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
     fenshikxian_page.guanbi_btn.click()
+    pic_name = '分时-行情数据_4'
+    public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
 
     fenshikxian_page.mingxi_btn.click()
     fenshikxian_page.chengjiao_btn.click()
@@ -53,6 +61,7 @@ def tst_step25_33(driver):
     fenshikxian_yujing_page.tianjiayujing_btn.click()
     fenshikxian_yujing_page.fanhui_button.click()
 
+
     #下单
     fenshikxian_page.xiadan_btn.click()
     el1 = driver.get_window_size()
@@ -69,7 +78,7 @@ def tst_step25_33(driver):
     fenshikxian_lungutang_page.fanhui_button.click()
 
 #k线指标切换
-def test_step34_47(driver):
+def tst_step34_47(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     searchstock_page = SearchStockPage(driver)
     home_page = HomePage(driver)

@@ -10,20 +10,25 @@ from pages.public.public_method import PublicMethod
 from pages.public.public_page import PublicPage
 from pages.hangqing.hangqing_page import HangqingPage
 from pages.shouye.home_page import HomePage
+from pages.public.public_method import PublicMethod
 from time import sleep
 
-def test_step1(driver):
+caseName = 'test_hangqing_hushen'
+def tst_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     hushen_page = HushenPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
     assert hangqing_page.hushen_btn
     hangqing_page.hushen_btn.click()
+    picName = '行情-沪深_3'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert hushen_page.hushen_title
 
 #第一行单元格
-def test_step4(driver):
+def tst_step4(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     hushen_page = HushenPage(driver)
@@ -42,17 +47,20 @@ def test_step4(driver):
         fenshikxian_page.fanhui_button.click()
 
 #ah比价股
-def test_step12(driver):
+def tst_step12(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     hushen_page = HushenPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
     ahbijiagu_page = AHBijiaguPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
 
     hushen_page.ahbijia_btn.click()
+    picName = '沪深-AH股比价_12'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert ahbijiagu_page.ahbijia_title
     assert ahbijiagu_page.shuaxin_btn
     assert ahbijiagu_page.sousuo_btn
@@ -80,16 +88,19 @@ def test_step12(driver):
     assert hushen_page.hushen_title
 
 #涨停分析
-def test_step26(driver):
+def tst_step26(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     hushen_page = HushenPage(driver)
     zhangtinfenxi_page = ZhangtinfenxiPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
 
     hushen_page.zhangtinfenxi_btn.click()
+    picName = '沪深-涨停分析_26'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert zhangtinfenxi_page.zhangtinfenxi_title
     assert zhangtinfenxi_page.sousuo_btn
     driver.get_screenshot_as_base64()
@@ -106,10 +117,10 @@ def test_step29(driver):
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
     hushen_page.zfb_shousuo_btn.click()
-    hushenname = ["zfb", "dfb", "kszf", "hslb", "lbb", "cjeb"]
+    hushenname = [("zfb", '涨幅榜更多'), ("dfb", '跌幅榜更多'), ("kszf", '5分钟涨幅更多'), ("hslb" ,'换手率榜更多'), ("lbb" ,'量比榜更多'), ("cjeb", '成交额榜更多')]
 
-    for name in hushenname:
-        eval('hushen_page.{0}_shousuo_btn.click()'.format(name))
+    for name, gengduo in hushenname:
+        eval('public_method.public_tap_element(hushen_page.{0}_shousuo_btn)'.format(name))
         sleep(1)
         title = hushen_page.hs_cell1_title.text
         hushen_page.cell1_btn.click()
@@ -118,6 +129,8 @@ def test_step29(driver):
         fenshikxian_page.fanhui_button.click()
 
         eval('hushen_page.{0}_gengduo_btn.click()'.format(name))
+        picName = '行情-{}_'.format(gengduo)
+        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
         for i in range(8):
             hangqing_gengduo_page.hq_left()
         hangqing_gengduo_page.hq_up()
@@ -137,10 +150,7 @@ def test_step29(driver):
         fenshikxian_page.fanhui_button.click()
 
         hangqing_gengduo_page.fanhui_btn.click()
-        eval('hushen_page.{0}_shousuo_btn.click()'.format(name))
+        eval('public_method.public_tap_element(hushen_page.{0}_shousuo_btn)'.format(name))
 
     for name in hushenname[:: -1]:
         eval('public_method.hx_tap_element(hushen_page.{0}_shousuo_btn)'.format(name))
-
-
-

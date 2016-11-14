@@ -12,7 +12,9 @@ from pages.hangqing.hangqing_page import HangqingPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
+from pages.public.public_method import PublicMethod
 
+caseName = 'test_hangqin_zhishu'
 #进入指数并验证
 def test_step1(driver):
     public_page = PublicPage(driver)
@@ -33,10 +35,13 @@ def test_step3(driver):
     zhishu_page = ZhishuPage(driver)
     kanzhulizijin_page = KanZhulizijinPage(driver)
     hangqing_page = HangqingPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
     hangqing_page.zhishu_btn.click()
     zhishu_page.kanzijin_btn.click()
+    picName = '行情指数-看资金_3'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert kanzhulizijin_page.kanzhulizijin_staticText
 
 #国内指数
@@ -46,10 +51,13 @@ def test_step21(driver):
     zhishu_page = ZhishuPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
 
     hangqing_page.zhishu_btn.click()
+    picName = '行情-指数_21'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     # step22-30
     zhishu_page.gn_operation()
@@ -59,6 +67,8 @@ def test_step21(driver):
 
     # step31-40
     zhishu_page.guoneiZhishu_gengduo_btn.click()
+    picName = '指数-国内指数更多_31'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_left()
@@ -94,6 +104,8 @@ def test_step41(driver):
 
     # step50-57
     zhishu_page.qihuo_gengduo_btn.click()
+    picName = '指数-股指期货_50'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     # 加上会出错
     #title = guzhiqihuo_gengduo_page.cell1_1_title.text
@@ -127,7 +139,7 @@ def test_step41(driver):
     public_method.public_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
     guzhiqihuo_gengduo_page.hushen300_btn.click()
     guzhiqihuo_gengduo_page.fanhui_btn.click()
-"""
+
 #富时A50指数
 def test_step76(driver):
     public_page = PublicPage(driver)
@@ -161,6 +173,7 @@ def test_step93(driver):
     zhishu_page = ZhishuPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.hangqing_button.click()
 
@@ -182,6 +195,8 @@ def test_step93(driver):
     fenshikxian_page.fanhui_button.click()
 
     zhishu_page.qita_gengduo_btn.click()
+    picName = '指数-其它指数_93'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_left()
@@ -194,4 +209,3 @@ def test_step93(driver):
     fenshikxian_page.change_gupiao(8)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
-    """

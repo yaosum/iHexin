@@ -6,9 +6,11 @@ from pages.hangqing.gangmeigu_page import GangmeiguPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.hangqing.gangmeigu_hangyebankuai_cell_page import HangyebankuaiPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
+from pages.public.public_method import PublicMethod
 
 from time import sleep
 
+caseName = 'test_hangqing_gangmeigu'
 def test_step16(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -17,11 +19,14 @@ def test_step16(driver):
     hangyebankuai_page = HangyebankuaiPage(driver)
     hangqinggengduo_page = HangqingGengduoPage(driver)
     ganggutong_page = GanggutongPage(driver)
+    public_method = PublicMethod(driver)
 
     # step2
     public_page.hangqing_button.click()
     #step 3
     hangqing_page.gangmeigu_btn.click()
+    picName = '行情-港媒股_3'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     gangmeigu_page.glide_up()
     gangmeigu_page.glide_down()
@@ -38,6 +43,8 @@ def test_step16(driver):
         for n in range(1, 4):
             eval('gangmeigu_page.{0}_cell1_{1}.click()'.format(market, n))
             if market == 'hk' and n == 3:
+                picName = '港股-港股通_86'
+                public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
                 assert ganggutong_page.ganggutong_title
                 hangqinggengduo_page.ganggutong_clickOperation()
                 ganggutong_page.cell01_click()
@@ -51,11 +58,25 @@ def test_step16(driver):
 
         # step 16-48: 行业板块操作
         eval('gangmeigu_page.{0}_cell2_1.click()'.format(market))
+        if market == u'us':
+            picName_hybk_gongge = '美股-行业板块第1宫格_16'
+            picName_hybk_gengduoshuju = '美股-板块宫格-查看更多数据_18'
+            picName_hybk_gengduo = '美股-行业板块更多_39'
+            picName_zu_gengduo = '美股-组更多_'
+        else:
+            picName_hybk_gongge = '港股-行业板块第1宫格_99'
+            picName_hybk_gengduoshuju = '港股-板块宫格-查看更多数据_101'
+            picName_hybk_gengduo = '港股-行业板块更多_113'
+            picName_zu_gengduo = '港股-组更多_'
+        public_method.public_screenshot_as_file(caseName=caseName, picName=picName_hybk_gongge)
+
+        #领涨股
         hangyebankuai_page.hybk_up()
         hangyebankuai_page.hybk_up()
         hangyebankuai_page.hybk_up()
         sleep(1)
         hangyebankuai_page.gengduoshuju_btn.click()
+        public_method.public_screenshot_as_file(caseName=caseName, picName=picName_hybk_gengduoshuju)
         hangqinggengduo_page.hybk_clickOperation()
         title = hangqinggengduo_page.cell01_title.text
         length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
@@ -65,6 +86,7 @@ def test_step16(driver):
         fenshikxian_page.fanhui_button.click()
         hangqinggengduo_page.fanhui_btn.click()
 
+        #领跌股
         hangyebankuai_page.lingdiegu_btn.click()
         hangyebankuai_page.hybk_up()
         hangyebankuai_page.hybk_up()
@@ -93,6 +115,7 @@ def test_step16(driver):
 
         #进入行业板块更多
         eval('gangmeigu_page.{0}_gengduo_1.click()'.format(market))
+        public_method.public_screenshot_as_file(caseName=caseName, picName=picName_hybk_gengduo)
         sleep(1)
         hangqinggengduo_page.zhangfu_btn.click()
         hangqinggengduo_page.zhangfu_btn.click()
@@ -117,6 +140,7 @@ def test_step16(driver):
             fenshikxian_page.change_gupiao(10)
             fenshikxian_page.fanhui_button.click()
             eval('gangmeigu_page.{}.click()'.format(gengduo))
+            public_method.public_screenshot_as_file(caseName=caseName, picName=picName_zu_gengduo)
             hangqinggengduo_page.zuixin_btn.click()
             hangqinggengduo_page.zuixin_btn.click()
             hangqinggengduo_page.zhangfu_btn.click()
@@ -142,4 +166,6 @@ def test_step16(driver):
         else:
             market = 'us'
         eval("gangmeigu_page.{0}_btn.click()".format(market))
+        picName = '港美股-港股_77'
+        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     public_page.shouye_button.click()
