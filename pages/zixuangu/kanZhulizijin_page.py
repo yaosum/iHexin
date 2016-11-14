@@ -59,27 +59,27 @@ class KanZhulizijinPage(PageObject):
         看主力资金－> 自选/沪深下的排序操作
         :return:
         """
-        listheader = ('zuixin', 'dadanjinliang', 'zhangfu', 'zhuliliuru', 'zhuliliuchu', 'jingliuru',
-                      'zhulijingezhangbi', 'rijingliang5', 'rijingliang10', 'rizhangfu5', 'rizhangfu10', 'liangbi',
+        listheader = ('zuixin', 'dadanjingliang', 'zhangfu', 'zhuliliuru', 'zhuliliuchu', 'jingliuru',
+                      'zhulijingezhanbi', 'rijingliang5', 'rijingliang10', 'rizhangfu5', 'rizhangfu10', 'liangbi',
                       'huanshou', 'shiyingdong', 'shijinglv', 'liutongshizhi', 'zongshizhi')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            num = random.randint(0, length - 1)
+            eval('self.{0}_staText.click()'.format(listheader[num]))
+            eval('self.{0}_staText.click()'.format(listheader[num]))
 
     def hx_ergodic_zhibiao(self):
         """
         看主力资金－> 概念／行业下的排序操作
         :return:
         """
-        listheader = ('dadanjinliang', 'zhangfu', 'huanshou', 'rizhangfu5', 'rizhangfu10', 'rizhangfu20', 'zongshou',
+        listheader = ('dadanjingliang', 'zhangfu', 'huanshou', 'rizhangfu5', 'rizhangfu10', 'rizhangfu20', 'zongshou',
                       'jine')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            num = random.randint(0, length - 1)
+            eval('self.{0}_staText.click()'.format(listheader[num]))
+            eval('self.{0}_staText.click()'.format(listheader[num]))
 
     def hx_upglide(self):
         """

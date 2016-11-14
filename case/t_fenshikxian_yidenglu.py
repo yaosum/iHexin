@@ -106,6 +106,12 @@ def test_step25_33(driver):
     except:
         print "这只股票没有论股堂"
 
+    #港股的刷新按钮
+    try:
+        fenshikxian_page.shuaxin_btn.click()
+    except:
+        print "这只股票没有刷新按钮"
+
 """
 #k线指标切换
 def test_step34_47(driver):

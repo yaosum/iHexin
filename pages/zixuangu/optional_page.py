@@ -92,7 +92,7 @@ class OptionalPage(PageObject):
 
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_staText.click()'.format(listheader[num]))
             eval('self.{0}_staText.click()'.format(listheader[num]))
             self.quxiaopaixu_btn.click()

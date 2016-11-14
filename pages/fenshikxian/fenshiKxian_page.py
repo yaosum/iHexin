@@ -53,6 +53,7 @@ class FenshiKxianPage(PageObject):
     yujing_btn = page_element(accessibility_id='预警')
     xiadan_btn = page_element(accessibility_id='下单')
     lungu_btn = page_element(accessibility_id='论股')
+    shuaxin_btn = page_element(accessibility_id = '刷新')
 
     jiazixuan_staText = page_element(accessibility_id='加自选')
 

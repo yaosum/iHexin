@@ -65,7 +65,7 @@ class HangqingGengduoPage(PageObject):
         listheader = ('zongshou', 'jine', 'zuixin', 'huanshou', 'zhangfu5', 'zhangfu')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
@@ -79,7 +79,7 @@ class HangqingGengduoPage(PageObject):
         listheader = ('chengjiaoe', 'chengjiaoliang', 'zhangdie', 'zhangfu', 'zuixin', 'zhangfu')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
         self.hq_up()
@@ -94,7 +94,7 @@ class HangqingGengduoPage(PageObject):
                       'huanshou', 'zongshou', 'zhangsu', 'zhangdie', 'zhangfu', 'zuixin')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
@@ -106,7 +106,7 @@ class HangqingGengduoPage(PageObject):
         listheader = ('zuojiesuan', 'chicangliang', 'zongshou', 'zhangdie', 'zhangfu', 'zuixin')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
@@ -119,7 +119,7 @@ class HangqingGengduoPage(PageObject):
                       'zhenfu', 'liangbi', 'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
@@ -132,7 +132,7 @@ class HangqingGengduoPage(PageObject):
                       'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
@@ -146,7 +146,7 @@ class HangqingGengduoPage(PageObject):
                       'zhangsu', 'zhangfu')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
@@ -158,7 +158,7 @@ class HangqingGengduoPage(PageObject):
         listheader = ('zuixin', 'zhangfu', 'zhangdie')
         length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length)
+            num = random.randint(0, length - 1)
             eval('self.{0}_btn.click()'.format(listheader[num]))
             eval('self.{0}_btn.click()'.format(listheader[num]))
 
