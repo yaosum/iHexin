@@ -43,7 +43,7 @@ def test_step2(driver):
     gengduo_page.fanhui_btn.click()
     assert bankuai_page.hy_histogram_title
     bankuai_page.glide_left()
-    picName = '板块-柱状图左滑_6'
+    picName = '板块-柱状图左滑概念_6'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert bankuai_page.gn_histogram_title
     bankuai_page.gn_histogram_gengduo.click()

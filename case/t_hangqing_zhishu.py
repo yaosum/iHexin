@@ -4,6 +4,7 @@
 """
 from time import sleep
 
+from pages.public.debug_page import DebugPage
 from pages.public.public_method import PublicMethod
 from pages.public.public_page import PublicPage
 from pages.hangqing.zhishu_page import ZhishuPage
@@ -15,15 +16,23 @@ from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 from pages.public.public_method import PublicMethod
 
 caseName = 'test_hangqin_zhishu'
+
 #进入指数并验证
 def test_step1(driver):
     public_page = PublicPage(driver)
     zhishu_page = ZhishuPage(driver)
     hangqing_page = HangqingPage(driver)
+    public_method = PublicMethod(driver)
+    debug_page = DebugPage(driver)
 
+    # step2
+    #debug_page.switch_server("112.17.10.145", "9528")
     #step2
     public_page.hangqing_button.click()
+    sleep(1)
     hangqing_page.zhishu_btn.click()
+    picName = '行情－指数_2'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     assert zhishu_page.zhishu_btn
     assert zhishu_page.guoneiZhishu_btn
@@ -36,11 +45,15 @@ def test_step3(driver):
     kanzhulizijin_page = KanZhulizijinPage(driver)
     hangqing_page = HangqingPage(driver)
     public_method = PublicMethod(driver)
+    debug_page = DebugPage(driver)
+
+    # step2
+    #debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
     hangqing_page.zhishu_btn.click()
     zhishu_page.kanzijin_btn.click()
-    picName = '行情指数-看资金_3'
+    picName = '行情－指数-看资金_3'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert kanzhulizijin_page.kanzhulizijin_staticText
 
@@ -52,22 +65,25 @@ def test_step21(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
     public_method = PublicMethod(driver)
+    debug_page = DebugPage(driver)
+
+    # step2
+    #debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
 
     hangqing_page.zhishu_btn.click()
+    zhishu_page.down_glide()
+    sleep(1)
     picName = '行情-指数_21'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     # step22-30
     zhishu_page.gn_operation()
-    fenshikxian_page.hx_left()
-    fenshikxian_page.change_gupiao(6)
-    fenshikxian_page.fanhui_button.click()
 
     # step31-40
     zhishu_page.guoneiZhishu_gengduo_btn.click()
-    picName = '指数-国内指数更多_31'
+    picName = '指数-国内指数－更多_31'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     hangqing_gengduo_page.hq_left()
@@ -76,7 +92,10 @@ def test_step21(driver):
     hangqing_gengduo_page.hq_right()
 
     title = hangqing_gengduo_page.cell01_title.text
-    hangqing_gengduo_page.cell01.click()
+    #title = driver.find_element_by_xpath(
+        #"//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]").text
+    print "指数－国内指数－更多－第一行股票名称：", title
+    hangqing_gengduo_page.cell01_click()
     assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
@@ -90,31 +109,33 @@ def test_step41(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     guzhiqihuo_gengduo_page = GuzhiQihuoGengduoPage(driver)
     public_method = PublicMethod(driver)
+    debug_page = DebugPage(driver)
+
+    # step2
+    #debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
-
-    hangqing_page.zhishu_btn.click()
-
+    sleep(1)
     # step41-49
     hangqing_page.zhishu_btn.click()
 
-    zhishu_page.qh_operation()
-    fenshikxian_page.change_gupiao(9)
-    fenshikxian_page.fanhui_button.click()
+    #zhishu_page.qh_operation()
 
     # step50-57
     zhishu_page.qihuo_gengduo_btn.click()
-    picName = '指数-股指期货_50'
+    picName = '指数-股指期货－更多_50'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     # 加上会出错
     #title = guzhiqihuo_gengduo_page.cell1_1_title.text
-    guzhiqihuo_gengduo_page.cell1_1.click()
+    guzhiqihuo_gengduo_page.cell1_1_title.click()
     #assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
-    public_method.hx_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
-    # sleep(1)
+    public_method.public_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
+    picName = '指数-股指期货－更多-隐藏沪深300_51'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    sleep(1)
 
     # step5
     title = guzhiqihuo_gengduo_page.cell1_1_title.text
@@ -123,6 +144,8 @@ def test_step41(driver):
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     public_method.public_tap_element(guzhiqihuo_gengduo_page.shangzheng50_btn)
+    picName = '指数-股指期货－更多-隐藏上证50_52'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     sleep(1)
 
     # step65-70
@@ -132,6 +155,8 @@ def test_step41(driver):
     fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     public_method.public_tap_element(guzhiqihuo_gengduo_page.zhongzheng500_btn)
+    picName = '指数-股指期货－更多-隐藏中证500_53'
+    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     # step71-75
     public_method.public_tap_element(guzhiqihuo_gengduo_page.zhongzheng500_btn)
@@ -146,25 +171,20 @@ def test_step76(driver):
     hangqing_page = HangqingPage(driver)
     zhishu_page = ZhishuPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
+    debug_page = DebugPage(driver)
+
+    # step2
+    #debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
-
+    sleep(1)
     hangqing_page.zhishu_btn.click()
 
     # step84-92，上滑动至其他指数可见
-    el1 = driver.get_window_size()
-    width = el1.get('width')
-    height = el1.get('height')
-    start_x = width * (344 / 375.0)
-    start_y = height * (500 / 667.0)
-    end_x = width * (344 / 375.0)
-    end_y = height * (10 / 667.0)
-    driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+    zhishu_page.up_glide()
 
     # step76-83
     zhishu_page.fs_operation()
-    fenshikxian_page.change_gupiao(3)
-    fenshikxian_page.fanhui_button.click()
 
 #其他指数
 def test_step93(driver):
@@ -174,28 +194,23 @@ def test_step93(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     hangqing_gengduo_page = HangqingGengduoPage(driver)
     public_method = PublicMethod(driver)
+    debug_page = DebugPage(driver)
+
+    # step2
+    #debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
 
     hangqing_page.zhishu_btn.click()
 
     # 上滑动至其他指数可见
-    el1 = driver.get_window_size()
-    width = el1.get('width')
-    height = el1.get('height')
-    start_x = width * (344 / 375.0)
-    start_y = height * (500 / 667.0)
-    end_x = width * (344 / 375.0)
-    end_y = height * (10 / 667.0)
-    driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+    zhishu_page.up_glide()
 
     # step93-102
     zhishu_page.qt_operation()
-    fenshikxian_page.change_gupiao(8)
-    fenshikxian_page.fanhui_button.click()
 
     zhishu_page.qita_gengduo_btn.click()
-    picName = '指数-其它指数_93'
+    picName = '指数-其它指数-更多_93'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
 
     hangqing_gengduo_page.hq_left()
@@ -204,7 +219,7 @@ def test_step93(driver):
     hangqing_gengduo_page.hq_right()
 
     title = hangqing_gengduo_page.cell01_title.text
-    hangqing_gengduo_page.cell01.click()
+    hangqing_gengduo_page.cell01_title.click()
     assert fenshikxian_page.title_staText.text == title
     fenshikxian_page.change_gupiao(8)
     fenshikxian_page.fanhui_button.click()

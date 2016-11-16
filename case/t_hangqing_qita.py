@@ -55,9 +55,7 @@ def test_step1(driver):
 
         #title = qita_qihuo_page.cell01_title.text
 
-        click_x = width * (44 / 375.0)
-        click_y = height * (123 / 667.0)
-        driver.execute_script("mobile: tap", {"tapCount": 1, "touchCount": 1, "duration": 0.5, "x": click_x, "y": click_y})
+        hangqing_gengduo_page.cell01_click()
         #assert fenshikxian_page.title_staText.text == title
         length = int(len(driver.find_elements_by_xpath("//UIATableCell[@name]")))
         fenshikxian_page.change_gupiao(5)
@@ -275,7 +273,7 @@ def test_step74(driver):
     # 个股和债券
     name_list = [('shangzhengA_btn', '其它-上证A股_92'), ('shangzhengB_btn', '其它-上证B股_93'),
                  ('shenzhenA_btn', '其它-深圳A股_94'), ('shenzhenB_btn', '其它-深圳B_95'),
-                 ('zhongxiaoban_btn', '其它-中小版_96'),('chuangyeban_btn', '其它-创业版_97'),
+                 ('zhongxiaoban_btn', '其它-中小版_96'), ('chuangyeban_btn', '其它-创业版_97'),
                  ('sanban_btn', '其它-三板_98'), ('fengxianjingshi_btn', '其它-风险预警_99'),
                  ('hushenzhaiquan_btn', '其它-沪深债券_100'), ('shangzhengzhaiquan_btn', '其它-上证债券_101'),
                  ('shenzhenzhaiquan_btn', '其它-深圳债券_102')]
@@ -289,9 +287,7 @@ def test_step74(driver):
         for n in range(4):
             hangqing_gengduo_page.hq_left()
         # hangqing_gengduo_page.jijin_clickOperation()
-        # hangqing_gengduo_page.cell01.click()
         #title = hangqing_gengduo_page.cell01_title.text
-
         hangqing_gengduo_page.cell01_click()
         #assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(5)

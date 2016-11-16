@@ -13,6 +13,7 @@ class DebugPage(PageObject):
     ip_textview = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATextView[1]/UIATextField[1]')
     port_testview = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATextView[1]/UIATextField[2]')
     lianjie_btn = page_element(accessibility_id = '连接')
+    guanbi_btn = page_element(accessibility_id = "关闭")
 
     def switch_server(self, ip, port):
         """
@@ -34,3 +35,7 @@ class DebugPage(PageObject):
         self.port_testview.click()
         self.port_testview.send_keys(port)
         self.lianjie_btn.click()
+        sleep(1)
+        self.guanbi_btn.click()
+        sleep(1)
+
