@@ -55,13 +55,14 @@ def test_step2(driver):
     assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
     assert bianjizixuan_page.cell003_stock_staText.text == u'同花顺'
     bianjizixuan_page.fanhui_button.click()
-
+'''
 # 自选－>看主力资金
 def test_step3(driver):
     optional_page = OptionalPage(driver)
     kanzhulizijin_page = KanZhulizijinPage(driver)
     public_page = PublicPage(driver)
     fenshikxian_page = FenshiKxianPage(driver)
+    public_method = PublicMethod(driver)
 
     public_page.zixuan_button.click()
     optional_page.zijin_btn.click()
@@ -132,7 +133,7 @@ def test_step3(driver):
     fenshikxian_page.fanhui_button.click()
 
     kanzhulizijin_page.fanhui_btn.click()
-
+"""
 # 自选－> 资产页面
 def test_step19(driver):
     public_page = PublicPage(driver)
@@ -429,7 +430,7 @@ def test_step90(driver):
     zixuangugonggao_page.cell01.click()
     zixun_page.fanhui_btn.click()
     zixuangugonggao_page.fanhui_btn.click()
-'''
+
 #自选页面上下滑动及排序，进入个股分时页面切换股票
 def test_step97(driver):
     public_page = PublicPage(driver)
@@ -454,7 +455,6 @@ def test_step97(driver):
     optional_page.pageGotoFenshikxian()
     sleep(1)
 
-"""
 #长按操作
 def t_step114(driver):
     public_page = PublicPage(driver)
@@ -499,6 +499,7 @@ def test_step136_158(driver):
     bankuainame = ['bankuai1', 'bankuai2', 'bankuai3', 'bankuai4', 'bankuai5', 'bankuai6', 'bankuai7', 'bankuai8']
     for name in bankuainame:
         optional_page.fenzu_btn.click()
+        optional_page.hx_zixuan_ergodic()
         eval('zixuangufenzu_page.{}_btn.click()'.format(name))
         optional_page.pageGotoFenshikxian()
 
@@ -540,5 +541,5 @@ def test_step159(driver):
         zixuangugonggao_page.fanhui_btn.click()
     optional_page.fenzu_btn.click()
     zixuangufenzu_page.zixuangu_btn.click()
-"""
 
+"""

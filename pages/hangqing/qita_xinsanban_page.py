@@ -39,8 +39,8 @@ class QitaXinsanbanPage(PageObject):
     cell1_title = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[3]')
     #成分股－三板成指／三板做市
-    sanbanchengzhi_tab = page_element(accessibility_id = "三板做市")
-    sanbanzuoshi_tab = page_element(accessibility_id = "三板成指")
+    sanbanzuoshi_tab = page_element(accessibility_id = "三板做市")
+    sanbanchengzhi_tab = page_element(accessibility_id = "三板成指")
 
 
     #成分股列表中第一行元素的标题
