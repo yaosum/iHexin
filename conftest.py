@@ -109,7 +109,6 @@ def pytest_runtest_makereport(item, call):
     extra = getattr(report, 'extra', [])
     driver = getattr(item, '_driver', None)
     failure = report.failed
-    print("pytest_runtest_makereport调用")
 
 
     # add log
@@ -186,3 +185,19 @@ def uploadResult(caseName):
     if os.path.isfile(htmlTargetDir) == False:
         os.makedirs(htmlTargetDir)
     copy(htmlSourceDir,htmlTargetDir)
+
+    assetsSourceDir = GetProjectPath.getProjectPath()+"/assets"
+    if os.path.isfile(assetsSourceDir) == False:
+        os.makedirs(assetsSourceDir)
+    filelist = []
+    filelist = os.listdir(assetsSourceDir)
+    for f in filelist:
+        filepath = os.path.join(assetsSourceDir, f)
+        if os.path.isfile(filepath):
+            copy(filepath,htmlTargetDir)
+            os.remove(filepath)
+            print filepath + " removed!"
+        elif os.path.isdir(filepath):
+            copy(filepath, htmlTargetDir)
+            shutil.rmtree(filepath, True)
+            print "dir " + filepath + " removed!"
