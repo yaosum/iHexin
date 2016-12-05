@@ -8,6 +8,10 @@ import pytest
 import sys
 import logging
 import os
+import time
+from get_project_path import GetProjectPath
+import shutil
+from shutil import copy
 
 ROOT_PATH = os.path.split(os.path.realpath(__file__))[0]
 sys.path.append(ROOT_PATH)
@@ -89,8 +93,13 @@ def driver(request, platform_name, platform_version, device_name, device_udid, b
     request.node._driver = driver
     # equals to tearDown
     request.addfinalizer(driver.quit)
-
+    print("driver")
     return driver
+
+@pytest.fixture(scope = 'function')
+def pytest_unconfigure(config):
+    uploadResult('test_hangqing_hushen')
+
 
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item, call):
@@ -100,7 +109,7 @@ def pytest_runtest_makereport(item, call):
     extra = getattr(report, 'extra', [])
     driver = getattr(item, '_driver', None)
     failure = report.failed
-
+    print("pytest_runtest_makereport调用")
 
 
     # add log
@@ -131,6 +140,7 @@ def pytest_runtest_makereport(item, call):
     report.extra = extra
 
 
+
 def _gather_screenshot(item, report, driver, summary, extra):
     try:
         screenshot = driver.get_screenshot_as_base64()
@@ -155,3 +165,24 @@ def _gather_page_source(item, report, driver, summary, extra):
     if pytest_html is not None:
         # add page source to the html report
         extra.append(pytest_html.extras.text(html, 'HTML'))
+
+
+"""
+把最后的结果上传到服务器的documents
+"""
+def uploadResult(caseName):
+    screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+    sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + caseName
+    targetDir = '/Library/Webserver/Documents'+'/result'+''+'/1000001/screenshot/'
+
+    if os.path.isdir(targetDir) == False:
+        os.makedirs(targetDir)
+    for root, dirs, files in os.walk(sourceDir):
+        for i in xrange(0, files.__len__()):
+            sf = os.path.join(root, files[i])
+            copy(sf, targetDir)
+    htmlSourceDir = GetProjectPath.getProjectPath()+"/report.html"
+    htmlTargetDir = '/Library/Webserver/Documents'+'/result'+''+'/1000001/report/'
+    if os.path.isfile(htmlTargetDir) == False:
+        os.makedirs(htmlTargetDir)
+    copy(htmlSourceDir,htmlTargetDir)
