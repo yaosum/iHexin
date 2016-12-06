@@ -93,11 +93,11 @@ def driver(request, platform_name, platform_version, device_name, device_udid, b
     request.node._driver = driver
     # equals to tearDown
     request.addfinalizer(driver.quit)
-    print("driver")
     return driver
 
 @pytest.fixture(scope = 'function')
 def pytest_unconfigure(config):
+    """uploadResult('test_hangqing_hushen')"""
     uploadResult('test_hangqing_hushen')
 
 
@@ -172,7 +172,7 @@ def _gather_page_source(item, report, driver, summary, extra):
 def uploadResult(caseName):
     screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + caseName
-    targetDir = '/Library/Webserver/Documents'+'/result'+''+'/1000001/screenshot/'
+    targetDir = '/Library/Webserver/Documents/result/1000002/screenshot/'
 
     if os.path.isdir(targetDir) == False:
         os.makedirs(targetDir)
@@ -181,23 +181,22 @@ def uploadResult(caseName):
             sf = os.path.join(root, files[i])
             copy(sf, targetDir)
     htmlSourceDir = GetProjectPath.getProjectPath()+"/report.html"
-    htmlTargetDir = '/Library/Webserver/Documents'+'/result'+''+'/1000001/report/'
-    if os.path.isfile(htmlTargetDir) == False:
+    htmlTargetDir = '/Library/Webserver/Documents/result/1000002/report'
+    if not os.path.isfile(htmlTargetDir):
         os.makedirs(htmlTargetDir)
     copy(htmlSourceDir,htmlTargetDir)
 
+    assertTargetDir = htmlTargetDir + "/assets"
+    if not os.path.isfile(assertTargetDir):
+        os.makedirs(assertTargetDir)
     assetsSourceDir = GetProjectPath.getProjectPath()+"/assets"
-    if os.path.isfile(assetsSourceDir) == False:
-        os.makedirs(assetsSourceDir)
     filelist = []
     filelist = os.listdir(assetsSourceDir)
     for f in filelist:
         filepath = os.path.join(assetsSourceDir, f)
         if os.path.isfile(filepath):
-            copy(filepath,htmlTargetDir)
+            copy(filepath,assertTargetDir)
             os.remove(filepath)
-            print filepath + " removed!"
         elif os.path.isdir(filepath):
-            copy(filepath, htmlTargetDir)
+            copy(filepath, assertTargetDir)
             shutil.rmtree(filepath, True)
-            print "dir " + filepath + " removed!"
