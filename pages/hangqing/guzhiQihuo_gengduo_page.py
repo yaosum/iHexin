@@ -18,7 +18,7 @@ class GuzhiQihuoGengduoPage(PageObject):
     zhongzheng500_btn = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[2]/UIATableView[1]/UIATableGroup[3]/UIAButton[1]')
 
-    #当表示图点击隐藏按钮后,这个单元格查找到的元素未可见的第一个单元格
+    # 当表示图点击隐藏按钮后,这个单元格查找到的元素未可见的第一个单元格
     cell1_1 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[2]/UIATableView[1]/UIATableCell[1]')
     cell1_1_title = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')

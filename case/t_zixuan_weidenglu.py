@@ -230,12 +230,12 @@ def test_step14(driver):
     bianjizixuan_page.hx_upglide()
     sleep(1)
 
-    length = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
+    lenth = public_method.public_getlength()
     #置顶三次操作
     for n in range(3):
         eval('driver.find_element_by_xpath'
              '("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAButton[2]").click()'.format(
-            length))
+            lenth))
        #bianjizixuan_page.cell019_zhiding_btn.click()
         sleep(1)
     # 第一条为上证指数
@@ -407,7 +407,7 @@ def test_step80(driver):
     zixuangugonggao_page.fanhui_btn.click()
 
 #自选－>长按操作
-def t_step104(driver):
+def tst_step104(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
 
@@ -420,7 +420,7 @@ def t_step104(driver):
     optional_page.quxiaopaixu_btn.click()
     optional_page.zuixin_staText.click()
     optional_page.hx_upglide()
-    optional_page.hx_longPress(optional_page.cell018)
+    optional_page.hx_longPress(optional_page.cell017)
     optional_page.zhiding_btn.click()
     optional_page.quxiaopaixu_btn.click()
     optional_page.hx_glide()

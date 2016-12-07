@@ -21,7 +21,7 @@ class HushenPage(PageObject):
 
     szzs_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[1]")
     szcz_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[2]")
-    ahbijia_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[3]")
+    cybz_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[3]")
 
     zhangtinfenxi_btn = page_element(accessibility_id = "涨停分析")
 

@@ -90,11 +90,10 @@ class OptionalPage(PageObject):
         listheader = ('zhenfu', 'weibi', 'zuidi', 'zuigao', 'zuoshou', 'kaipan', 'xianshou', 'shijinglv', 'shiyingdong',
                       'liangbi', 'huanshou', 'zongshou', 'zhangsu', 'zhangdie', 'zhangfu', 'zuixin')
 
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_staText.click()'.format(listheader[num]))
-            eval('self.{0}_staText.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_staText.click()'.format(header))
+            eval('self.{0}_staText.click()'.format(header))
             self.quxiaopaixu_btn.click()
 
     def hx_upglide(self):

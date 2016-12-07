@@ -98,7 +98,7 @@ def test_step21(driver):
     print "指数－国内指数－更多－第一行股票名称：", title
     hangqing_gengduo_page.cell01_click()
     assert fenshikxian_page.title_staText.text == title
-    fenshikxian_page.change_Fgupiao(9)
+    fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
 
@@ -220,6 +220,6 @@ def test_step93(driver):
     title = hangqing_gengduo_page.cell01_title.text
     hangqing_gengduo_page.cell01_title.click()
     assert fenshikxian_page.title_staText.text == title
-    fenshikxian_page.change_gupiao(8)
+    fenshikxian_page.change_gupiao(9)
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()

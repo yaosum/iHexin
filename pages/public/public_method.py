@@ -50,10 +50,17 @@ class PublicMethod(PageObject):
         """
         screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         screen_time = time.strftime('%H:%M:%S')
-        path = GetProjectPath.getProjectPath() + '/result/' + screen_date +'/' + caseName
+        path = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + caseName
         if os.path.isdir(path):
             pass
         else:
             os.makedirs(path)
         picName_ = screen_time + '_' + picName
         self.w.get_screenshot_as_file(path + '/{}.png'.format(picName_))
+
+    def public_getlength(self):
+        """
+        当前页面是列表页面，获取当前页面列表长度
+        :return:列表长度(int)
+        """
+        return int(len(self.w.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))

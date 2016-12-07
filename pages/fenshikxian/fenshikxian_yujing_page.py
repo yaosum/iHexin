@@ -14,3 +14,8 @@ class FenshikxianYujingPage(PageObject):
     #没有预警信息时 弹出的提示信息
     queding_btn = page_element(accessibility_id = '确定')
     info_staticText = page_element(accessibility_id = '您未设置股价预警信息')
+
+    #提示框返回
+    tishi_fanhui_btn = page_element(
+        xpath = '//UIAApplication[1]/UIAWindow[4]/UIAAlert[1]/UIACollectionView[1]/UIACollectionCell[1]/UIAButton[1]')
+    tishi_window = page_element(xpath = "//UIAAlert[@name='提示']")

@@ -7,10 +7,11 @@ from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 from pages.public.public_method import PublicMethod
 from pages.zixuangu.kanZhulizijin_page import KanZhulizijinPage
+from time import sleep
 
 caseName = 'test_hangqing_bankuai'
 #进入板块
-def test_step1(driver):
+def tst_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     bankuai_page = BankuaiPage(driver)
@@ -24,7 +25,7 @@ def test_step1(driver):
     assert bankuai_page.hy_histogram_title
 
 #板块柱状图
-def test_step2(driver):
+def tst_step2(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     bankuai_page = BankuaiPage(driver)
@@ -89,9 +90,11 @@ def test_step15(driver):
     end_x = width * (344 / 375.0)
     end_y = height * (10 / 667.0)
     driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+    sleep(1)
 
     for name, gengduo in bankuai_name:
         for n in range(1, 7):
+            print name, n
             eval('bankuai_page.{0}_btn{1}.click()'.format(name, n))
             fenshikxian_page.change_gupiao(6)
             fenshikxian_page.fanhui_button.click()
@@ -105,12 +108,12 @@ def test_step15(driver):
             hangqing_gengduo_page.hq_left()
         hangqing_gengduo_page.bankuai_clickOperation()
 
-        lenth = len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]"))
+        lenth = public_method.public_getlength()
         if lenth > 10:
             lenth = 10
         #列表中属性name不显示为板块名称，这里先不做判断
         #title = bankuai_page.cell01_title
-        bankuai_page.cell01_btn.click()
+        bankuai_page.cell01_title.click()
         #assert fenshikxian_page.title_staText == title
         fenshikxian_page.change_gupiao(5)
         fenshikxian_page.fanhui_button.click()

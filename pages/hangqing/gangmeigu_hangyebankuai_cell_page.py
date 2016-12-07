@@ -14,7 +14,7 @@ class HangyebankuaiPage(PageObject):
     lingzhanggu_btn = page_element(accessibility_id = '领涨股')
     lingdiegu_btn = page_element(accessibility_id= '领跌股')
 
-    #港美股板块页面中的切换板块的小三角按钮
+    # 港美股板块页面中的切换板块的小三角按钮
     xiayigegupiao_button = page_element(accessibility_id='下一个股票')
     shangyigegupiao_button = page_element(accessibility_id='上一个股票')
 

@@ -30,7 +30,7 @@ class HangqingGengduoPage(PageObject):
 
     chengjiaoliang_btn = page_element(accessibility_id = '成交量')
     chengjiaoe_btn = page_element(accessibility_id = '成交额')
-    #排序的升序图标和降序图标
+    # 排序的升序图标和降序图标
     desc_img = page_element(accessibility_id='DescImg')
     asc_img = page_element(accessibility_id='AscImg')
 
@@ -43,31 +43,30 @@ class HangqingGengduoPage(PageObject):
     zuojiesuan_btn = page_element(accessibility_id= '昨结算')
     chicangliang_btn = page_element(accessibility_id= '持仓量')
 
-    #板块更多新增排序
+    # 板块更多新增排序
     zhangfu20_btn = page_element(accessibility_id = '20日涨幅')
     zhangfu10_btn = page_element(accessibility_id = '10日涨幅')
     diejiashu_btn = page_element(accessibility_id = '跌家数')
     zhangjiashu_btn = page_element(accessibility_id = '涨家数')
 
 
-    #更多列表中的第一行元素
+    # 更多列表中的第一行元素
     cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
-    #更多列表中的第一行元素的股票名称
+    # 更多列表中的第一行元素的股票名称
     cell01_title = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 
-    #行情里边每个分组进入页面后的操作不一样，当图标不在页面上，进行assert判断会报错
+    # 行情里边每个分组进入页面后的操作不一样，当图标不在页面上，进行assert判断会报错
     def bk_clickOperation(self):
         """
         板块更多排序
         :return:
         """
         listheader = ('zongshou', 'jine', 'zuixin', 'huanshou', 'zhangfu5', 'zhangfu')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
 
     def hybk_clickOperation(self):
@@ -76,12 +75,11 @@ class HangqingGengduoPage(PageObject):
         :return:
         """
         self.hq_left()
-        listheader = ('chengjiaoe', 'chengjiaoliang', 'zhangdie', 'zhangfu', 'zuixin', 'zhangfu')
-        length = int(len(listheader))
+        listheader = ('chengjiaoe', 'chengjiaoliang', 'zhangdie', 'zhangfu', 'zuixin')
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
         self.hq_up()
         self.hq_down()
 
@@ -92,11 +90,10 @@ class HangqingGengduoPage(PageObject):
         """
         listheader = ('zhenfu', 'weibi', 'zuidi', 'zuigao', 'zuoshou', 'xianshou', 'shijinglv', 'shiying', 'liangbi',
                       'huanshou', 'zongshou', 'zhangsu', 'zhangdie', 'zhangfu', 'zuixin')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
     def shhj_clickOperation(self):
         """
@@ -104,11 +101,10 @@ class HangqingGengduoPage(PageObject):
         :return:
         """
         listheader = ('zuojiesuan', 'chicangliang', 'zongshou', 'zhangdie', 'zhangfu', 'zuixin')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
     def jijin_clickOperation(self):
         """
@@ -117,50 +113,34 @@ class HangqingGengduoPage(PageObject):
         """
         listheader = ('xianshou', 'zongshou', 'jine', 'zongshizhi', 'liutong', 'shijinglv', 'shiying', 'zhangsu',
                       'zhenfu', 'liangbi', 'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
     def hs_clickOperation(self):
         """
         沪深排序操作
         :return:
         """
-        listheader = ('xianshou', 'zongshou', 'zongshizhi', 'liutong', 'shijinglv', 'shiying', 'zhangsu', 'zhangfu', 'liangbi',
-                      'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
-        length = int(len(listheader))
+        listheader = ('xianshou', 'zongshou', 'zongshizhi', 'liutong', 'shijinglv', 'shiying', 'zhangsu', 'zhangfu',
+                      'liangbi', 'huanshou', 'xingji', 'zhangdie', 'zhangfu', 'zuixin')
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
     def bankuai_clickOperation(self):
         """
             板块排序操作
             :return:
         """
-
         listheader = ('zongshou', 'jine', 'huanshou', 'zuixin', 'zhangfu20', 'zhangfu10', 'diejiashu', 'zhangjiashu',
                       'zhangsu', 'zhangfu')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-
-    def ganggutong_clickOperation(self):
-        """
-        港股通排序操作
-        :return:
-        """
-        listheader = ('zuixin', 'zhangfu', 'zhangdie')
-        length = int(len(listheader))
-        for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_btn.click()'.format(listheader[num]))
-            eval('self.{0}_btn.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
     def hq_right(self):
         """
