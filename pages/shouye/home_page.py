@@ -6,7 +6,7 @@ class HomePage(PageObject):
 	"""
 	首页
 	"""
-	dengluming_button = page_element(accessibility_id = "337705299")
+	button_337705299 = page_element(accessibility_id = "337705299")
 	yonghu_btn = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAButton[1]")
 	feivip_button = page_element(accessibility_id = "非vip")
 	qiehuanyejianmoshi_button = page_element(accessibility_id = "切换到夜间模式")

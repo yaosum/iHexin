@@ -21,23 +21,19 @@ from pages.index_page import IndexPage
 from pages.public.denglu_page import DengluPage
 from pages.gerenzhongxin.gerenzhongxin_page import GerenzhongxinPage
 from appium.webdriver.common.touch_action import TouchAction
-'''
-#登录
+
+# 登录
 def test_step1(driver):
     home_page = HomePage(driver)
     denglu_page = DengluPage(driver)
-    gerenzhongxin_page = GerenzhongxinPage(driver)
 
-    if home_page.gerenzhongxin_btn:
-        home_page.gerenzhongxin_btn.click()
-        sleep(2)
-        gerenzhongxin_page.denglu_zhuce_btn.click()
+    if not home_page.button_337705299:
         denglu_page.sign_in('337705299', '123456')
-    assert home_page.dengluming_button
+    assert home_page.button_337705299
     assert home_page.feivip_button
     assert home_page.qiehuanyejianmoshi_button
     assert home_page.sousuo_button
-
+"""
 # 首页－>自选页面
 def test_step2(driver):
     optional_page = OptionalPage(driver)
@@ -55,7 +51,7 @@ def test_step2(driver):
     assert bianjizixuan_page.cell002_stock_staText.text == u'创业板指'
     assert bianjizixuan_page.cell003_stock_staText.text == u'同花顺'
     bianjizixuan_page.fanhui_button.click()
-'''
+
 # 自选－>看主力资金
 def test_step3(driver):
     optional_page = OptionalPage(driver)
@@ -133,7 +129,7 @@ def test_step3(driver):
     fenshikxian_page.fanhui_button.click()
 
     kanzhulizijin_page.fanhui_btn.click()
-"""
+
 # 自选－> 资产页面
 def test_step19(driver):
     public_page = PublicPage(driver)
@@ -255,12 +251,12 @@ def test_step49(driver):
     sleep(1)
 
     # 置顶三次操作
-    length = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
-    if length > 1:
+    lenth = public_method.public_getlength()
+    if lenth > 1:
         for n in range(3):
             eval('driver.find_element_by_xpath'
                  '("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAButton[2]").click()'.format(
-                length))
+                lenth))
             #bianjizixuan_page.cell020_zhiding_btn.click()
             sleep(1)
     # 第一条为上证指数
@@ -375,7 +371,7 @@ def test_step56(driver):
 
     bianjizixuan_page.fanhui_button.click()
 
-#看主力资金
+# 看主力资金
 def test_step067_71(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -389,7 +385,7 @@ def test_step067_71(driver):
     kanzhulizijin_page.pageGotoFenshikxian()
     kanzhulizijin_page.fanhui_btn.click()
 
-#新闻
+# 新闻
 def test_step78_88(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -499,8 +495,8 @@ def test_step136_158(driver):
     bankuainame = ['bankuai1', 'bankuai2', 'bankuai3', 'bankuai4', 'bankuai5', 'bankuai6', 'bankuai7', 'bankuai8']
     for name in bankuainame:
         optional_page.fenzu_btn.click()
-        optional_page.hx_zixuan_ergodic()
         eval('zixuangufenzu_page.{}_btn.click()'.format(name))
+        optional_page.hx_zixuan_ergodic()
         optional_page.pageGotoFenshikxian()
 
     optional_page.fenzu_btn.click()
@@ -511,7 +507,7 @@ def test_step136_158(driver):
     zixuangufenzu_page.hx_tapblank()
 
 #10.00.50 自选股新闻公告按照自选股分组分类显示
-def test_step159(driver):
+def tst_step159(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     zixuangufenzu_page = ZixuangufenzuPage(driver)
@@ -541,5 +537,4 @@ def test_step159(driver):
         zixuangugonggao_page.fanhui_btn.click()
     optional_page.fenzu_btn.click()
     zixuangufenzu_page.zixuangu_btn.click()
-
 """

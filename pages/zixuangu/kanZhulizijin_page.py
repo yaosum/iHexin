@@ -62,11 +62,10 @@ class KanZhulizijinPage(PageObject):
         listheader = ('zuixin', 'dadanjingliang', 'zhangfu', 'zhuliliuru', 'zhuliliuchu', 'jingliuru',
                       'zhulijingezhanbi', 'rijingliang5', 'rijingliang10', 'rizhangfu5', 'rizhangfu10', 'liangbi',
                       'huanshou', 'shiyingdong', 'shijinglv', 'liutongshizhi', 'zongshizhi')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_staText.click()'.format(listheader[num]))
-            eval('self.{0}_staText.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_staText.click()'.format(header))
+            eval('self.{0}_staText.click()'.format(header))
 
     def hx_ergodic_zhibiao(self):
         """
@@ -75,11 +74,10 @@ class KanZhulizijinPage(PageObject):
         """
         listheader = ('dadanjingliang', 'zhangfu', 'huanshou', 'rizhangfu5', 'rizhangfu10', 'rizhangfu20', 'zongshou',
                       'jine')
-        length = int(len(listheader))
         for n in range(3):
-            num = random.randint(0, length - 1)
-            eval('self.{0}_staText.click()'.format(listheader[num]))
-            eval('self.{0}_staText.click()'.format(listheader[num]))
+            header = random.choice(listheader)
+            eval('self.{0}_staText.click()'.format(header))
+            eval('self.{0}_staText.click()'.format(header))
 
     def hx_upglide(self):
         """

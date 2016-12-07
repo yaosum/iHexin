@@ -35,15 +35,15 @@ class QitaXinsanbanPage(PageObject):
     #第一行元素
     cell1 = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[2]')
-    #更多列表中第一行元素的标题
+    # 更多列表中第一行元素的标题
     cell1_title = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[3]')
-    #成分股－三板成指／三板做市
+    # 成分股－三板成指／三板做市
     sanbanzuoshi_tab = page_element(accessibility_id = "三板做市")
     sanbanchengzhi_tab = page_element(accessibility_id = "三板成指")
 
 
-    #成分股列表中第一行元素的标题
+    # 成分股列表中第一行元素的标题
     cell01_title_chengfengu = page_element(
         xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]")
     cell01_chengfengu_btn = page_element(

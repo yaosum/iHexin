@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+__author__ = "tianmaotao@myhexin.com"
+
 from page_object.appium_page_objects import PageObject, page_element
 from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver.common.multi_action import MultiAction
@@ -11,6 +13,9 @@ class FenshikxianHengpingPage(PageObject):
     fanhui_button = page_element(accessibility_id='返回')
     #关闭按钮
     x_btn = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAButton[3]')
+
+    #股票名称
+    title_staText = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAStaticText[1]')
 
     #横屏 分时
     wudang_btn = page_element(accessibility_id = '五档')
@@ -46,7 +51,8 @@ class FenshikxianHengpingPage(PageObject):
     # thirty_btn = page_element(accessibility_id ='30分钟')
     zhibiao_btn = page_element(accessibility_id = '指标')
 
-    zhibiao_cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]')
+    zhibiao_cell01 = page_element(
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 
     # 手势
     def kLine_enlarge(self):

@@ -22,7 +22,7 @@ def test_step1(driver):
     public_method = PublicMethod(driver)
     debug_page = DebugPage(driver)
 
-    debug_page.switch_server("112.17.10.145", "9528")
+    # debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
     assert hangqing_page.hushen_btn
@@ -31,7 +31,7 @@ def test_step1(driver):
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert hushen_page.hushen_title
 
-#第一行单元格
+# 第一行指数单元格
 def test_step4(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -39,66 +39,22 @@ def test_step4(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     debug_page = DebugPage(driver)
 
-    debug_page.switch_server("112.17.10.145", "9528")
+    # debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
 
-    zhishuname = ["szzs", "szcz"]
-    for name in zhishuname:
-        eval('hushen_page.{0}_btn.click()'.format(name))
+    zhishunames = [["szzs", u"上证指数"], ["szcz", u"深证成指"], ["cybz", u"创业板指"], ]
+    for zhishu in zhishunames:
+        eval('hushen_page.{0}_btn.click()'.format(zhishu[0]))
+        assert fenshikxian_page.title_staText.text == zhishu[1]
         assert fenshikxian_page.sousuo_btn
         fenshikxian_page.hx_left()
-        assert fenshikxian_page.shezhi_btn
+        assert fenshikxian_page.klineTabButton
         fenshikxian_page.hx_right()
         fenshikxian_page.fanhui_button.click()
 
-#ah比价股
-def test_step12(driver):
-    public_page = PublicPage(driver)
-    hangqing_page = HangqingPage(driver)
-    hushen_page = HushenPage(driver)
-    fenshikxian_page = FenshiKxianPage(driver)
-    ahbijiagu_page = AHBijiaguPage(driver)
-    public_method = PublicMethod(driver)
-    debug_page = DebugPage(driver)
-
-    debug_page.switch_server("112.17.10.145", "9528")
-
-    public_page.hangqing_button.click()
-    hangqing_page.hushen_btn.click()
-
-    hushen_page.ahbijia_btn.click()
-    picName = '沪深-AH股比价_12'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
-
-    assert ahbijiagu_page.ahbijia_title
-    assert ahbijiagu_page.shuaxin_btn
-    assert ahbijiagu_page.sousuo_btn
-    #assert ahbijiagu_page.wenben_text
-
-    #ahbijiagu_page.xiaochuwenben_btn.click()
-
-    ahbijiagu_page.hq_up()
-    ahbijiagu_page.hq_down()
-
-    ahbijiagu_page.zuixin_btn.click()
-    ahbijiagu_page.zuixin_btn.click()
-    ahbijiagu_page.zhangfu_btn.click()
-    ahbijiagu_page.zhangfu_btn.click()
-    ahbijiagu_page.yijialv_btn.click()
-    ahbijiagu_page.yijialv_btn.click()
-
-    length = int(len(driver.find_elements_by_xpath("//UIATableView[1]/UIATableCell[@name]")))
-    title = ahbijiagu_page.cell01_title.text
-    ahbijiagu_page.cell01_btn.click()
-    assert fenshikxian_page.title_staText.text == title
-    fenshikxian_page.change_gupiao(length - 1)
-    fenshikxian_page.fanhui_button.click()
-    ahbijiagu_page.fanhui_btn.click()
-    assert hushen_page.hushen_title
-
-#涨停分析
+# 涨停分析
 def test_step26(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -107,7 +63,7 @@ def test_step26(driver):
     public_method = PublicMethod(driver)
     debug_page = DebugPage(driver)
 
-    debug_page.switch_server("112.17.10.145", "9528")
+    # debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
@@ -128,7 +84,7 @@ def test_step29(driver):
     public_method = PublicMethod(driver)
     debug_page = DebugPage(driver)
 
-    debug_page.switch_server("112.17.10.145", "9528")
+    # debug_page.switch_server("112.17.10.145", "9528")
 
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
@@ -154,11 +110,11 @@ def test_step29(driver):
         hangqing_gengduo_page.hq_up()
         hangqing_gengduo_page.hq_down()
         hangqing_gengduo_page.hq_down()
-        #hangqing_gengduo_page.hs_clickOperation()
+        # hangqing_gengduo_page.hs_clickOperation()
 
-        #title = hangqing_gengduo_page.cell01_title.text
+        # title = hangqing_gengduo_page.cell01_title.text
         hangqing_gengduo_page.cell01_click()
-        #assert fenshikxian_page.title_staText.text == title
+        # assert fenshikxian_page.title_staText.text == title
         fenshikxian_page.change_gupiao(10)
         fenshikxian_page.fanhui_button.click()
 
