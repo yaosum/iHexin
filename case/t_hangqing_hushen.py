@@ -14,7 +14,7 @@ from pages.shouye.home_page import HomePage
 from pages.public.public_method import PublicMethod
 from time import sleep
 
-caseName = 'test_hangqing_hushen'
+caseName = '20161208'
 def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -68,7 +68,7 @@ def test_step26(driver):
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
 
-    hushen_page.zhangtinfenxi_btn.click()
+    #hushen_page.zhangtinfenxi_btn.click()
     picName = '沪深-涨停分析_26'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert zhangtinfenxi_page.zhangtinfenxi_title

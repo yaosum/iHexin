@@ -15,7 +15,7 @@ from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 from pages.public.public_method import PublicMethod
 
-caseName = 'test_hangqin_zhishu'
+caseName = '20161208'
 
 #进入看主力资金页面，在自选已经运行过这部分脚本，这里只需要看能否正常进入
 def test_step3(driver):

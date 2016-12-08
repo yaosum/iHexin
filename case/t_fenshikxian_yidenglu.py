@@ -16,11 +16,11 @@ from pages.public.public_method import PublicMethod
 from pages.zixuangu.zixun_page import ZixunPage
 import random
 
-case_name = 'test_fenshikxian_yidenglu'
-args = ('BIDU', 'HK0001')
+case_name = '20161208'
+args = ('300033', '000882')
 
 # 分时-行情数据
-def tst_step1_7(driver):
+def test_step1_7(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     public_method = PublicMethod(driver)
     wubaidang_page = QuanjingwubaidangPage(driver)
@@ -106,7 +106,7 @@ def tst_step1_7(driver):
         fenshikxian_page.fanhui_button.click()
 
 # 分时－底部功能按钮
-def tst_step25_33(driver):
+def test_step25_33(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     fenshikxian_yujing_page = FenshikxianYujingPage(driver)
     fenshikxian_lungutang_page = FenshikxianLungutangPage(driver)
@@ -211,7 +211,7 @@ def test_step86(driver):
             fenshikxian_page.maimaiduilie_tab_btn.click()
             pic_name = '搜索-分时-买卖队列_85'
             public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
-        """
+
         # 新闻
         if fenshikxian_page.xinwen_tab_btn:
             fenshikxian_page.xinwen_tab_btn.click()
@@ -283,7 +283,7 @@ def test_step86(driver):
                 zixun_page.fanhui_btn.click()
         else:
             print arg, "这只股票没有公告tab"
-        """
+
         # 简况（F10）
         if fenshikxian_page.jiankuang_tab_btn:
             fenshikxian_page.jiankuang_tab_btn.click()
@@ -411,7 +411,7 @@ def test_step86(driver):
         fenshikxian_page.fanhui_button.click()
 
 # k线指标切换－日／周／月/分钟周期
-def tst_step34_47(driver):
+def test_step34_47(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     fenshikxian_zhibiao_page = FenshikxianZhibiaoPage(driver)
     public_method = PublicMethod(driver)
@@ -476,7 +476,7 @@ def tst_step34_47(driver):
         fenshikxian_page.kxian_action_operation()
 
 # k线设置
-def tst_step48_63(driver):
+def test_step48_63(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     fenshikxian_zhibiao_page = FenshikxianZhibiaoPage(driver)
     public_method = PublicMethod(driver)
@@ -595,7 +595,7 @@ def tst_step48_63(driver):
     fenshikxian_page.fanhui_button.click()
 
 # 分时 横屏
-def tst_step64_69(driver):
+def test_step64_69(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     fenshikxian_hengping_page = FenshikxianHengpingPage(driver)
     wubaidang_page = QuanjingwubaidangPage(driver)
@@ -646,7 +646,7 @@ def tst_step64_69(driver):
             sleep(1)
 
 # k线横屏,日／周／月／分钟周期
-def tst_step69_70(driver):
+def test_step69_70(driver):
     fenshikxian_page = FenshiKxianPage(driver)
     fenshikxian_hengping_page = FenshikxianHengpingPage(driver)
     public_method = PublicMethod(driver)

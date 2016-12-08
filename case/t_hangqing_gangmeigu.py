@@ -12,10 +12,10 @@ from pages.public.public_method import PublicMethod
 
 from time import sleep
 
-caseName = 'test_hangqing_gangmeigu'
+caseName = '20161208'
 
 # 港股通
-def tst_step86(driver):
+def test_step86(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     gangmeigu_page = GangmeiguPage(driver)
@@ -87,7 +87,7 @@ def tst_step86(driver):
     ganggutong_page.fanhui_btn.click()
 
 # 指数
-def tst_step(driver):
+def test_step(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     gangmeigu_page = GangmeiguPage(driver)
@@ -115,7 +115,7 @@ def tst_step(driver):
                 fenshikxian_page.fanhui_button.click()
 
 # 板块
-def tst_step16(driver):
+def test_step16(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     gangmeigu_page = GangmeiguPage(driver)
@@ -270,7 +270,7 @@ def test_step49(driver):
     public_page.shouye_button.click()
 
 # 列表
-def tst_step50(driver):
+def test_step50(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     gangmeigu_page = GangmeiguPage(driver)

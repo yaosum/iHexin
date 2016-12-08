@@ -15,7 +15,7 @@ from pages.hangqing.qita_xinsanban_page import QitaXinsanbanPage
 from pages.hangqing.qita_hushenguozhai_page import QitaHushenguozhai
 from time import sleep
 
-caseName = 'test_hangqing_qita'
+caseName = '20161208'
 
 # step4-56 全球市场---国内期货和外汇
 def test_step1(driver):
@@ -64,7 +64,7 @@ def test_step1(driver):
         qita_qihuo_page.fanhui_button.click()
 
 # 国外期货
-def tst_step24(driver):
+def test_step24(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -101,7 +101,7 @@ def tst_step24(driver):
     public_page.shouye_button.click()
 
 #50ETF
-def tst_step34(driver):
+def test_step34(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -158,7 +158,7 @@ def tst_step34(driver):
     public_page.shouye_button.click()
 
 # 上海黄金
-def tst_step57(driver):
+def test_step57(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -187,7 +187,7 @@ def tst_step57(driver):
     hangqing_gengduo_page.fanhui_btn.click()
 
 #天津贵金属
-def tst_step58(driver):
+def test_step58(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -224,7 +224,7 @@ def tst_step58(driver):
     public_page.shouye_button.click()
 
 # 基金
-def tst_step73(driver):
+def test_step73(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -260,7 +260,7 @@ def tst_step73(driver):
         hangqing_gengduo_page.fanhui_btn.click()
 
 # 个股和债券
-def tst_step74(driver):
+def test_step74(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -411,7 +411,7 @@ def test_step76(driver):
     hangqing_gengduo_page.fanhui_btn.click()
 
 #放贷宝
-def tst_step135(driver):
+def test_step135(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -445,7 +445,7 @@ def tst_step135(driver):
     qita_hushenguozhai_page.fanhui_btn.click()
 
 #退市整理
-def tst_step146(driver):
+def test_step146(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -470,7 +470,7 @@ def tst_step146(driver):
     public_page.shouye_button.click()
 
 #爱基金，不同设备爱基金id不同，先不跑
-def tst_step79(driver):
+def test_step79(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)

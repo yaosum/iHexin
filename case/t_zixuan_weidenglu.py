@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 from appium.webdriver.common.touch_action import TouchAction
-
+from pages.gerenzhongxin.gerenzhongxin_page import GerenzhongxinPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
 from pages.public.denglu_page import DengluPage
 from pages.public.public_method import PublicMethod
@@ -28,6 +28,24 @@ def test_step001(driver):
     tianjiazixuan_page = TianjiazixuanPage(driver)
     public_page = PublicPage(driver)
     public_method = PublicMethod(driver)
+    denglu_page = DengluPage(driver)
+    gerenzhongxin_page = GerenzhongxinPage(driver)
+
+    #先判断当前是否有账号登录,如果有,则先退出
+    if home_page.button_337705299:
+        home_page.button_337705299.click()
+        el1 = driver.get_window_size()
+        width = el1.get('width')
+        height = el1.get('height')
+        start_x = width * (220 / 375.0)
+        start_y = height * (500 / 667.0)
+        end_x = width * (220 / 375.0)
+        end_y = height * (220 / 667.0)
+        driver.swipe(start_x, start_y, end_x, end_y, duration=500)
+        #因为退出按钮不管是通过id,还是path都不能点击,总是点击的是用户反馈,所以滑动后通过预设坐标点击
+        driver.tap([(width * (192 / 375.0),height * (575 / 667.0))])
+        gerenzhongxin_page.quedin_btn.click()
+
     # step1
     assert home_page.gerenzhongxin_btn
     assert home_page.feivip_button
@@ -407,7 +425,7 @@ def test_step80(driver):
     zixuangugonggao_page.fanhui_btn.click()
 
 #自选－>长按操作
-def tst_step104(driver):
+def test_step104(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
 
@@ -451,3 +469,25 @@ def test_step130_144(driver):
     optional_page.fenzu_btn.click()
 
     zixuangufenzu_page.hx_tapblank()
+
+def test_delete(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    public_method = PublicMethod(driver)
+    bianjizixuan_page = BianjizixuanPage(driver)
+
+    public_page.zixuan_button.click()
+    optional_page.bianji_button.click()
+    lenth = public_method.public_getlength()
+    if lenth > 3:
+        for n in range(lenth):
+            cell_text = driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAStaticText[1]'.format(n+1))
+            if cell_text.text == u"同花顺":
+                pass
+            elif cell_text.text == u"上证指数":
+                pass
+            elif cell_text.text == u"创业板指":
+                pass
+            else:
+                cell_text.click()
+        bianjizixuan_page.shanchu_button.click()

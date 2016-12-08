@@ -9,9 +9,9 @@ from pages.public.public_method import PublicMethod
 from pages.zixuangu.kanZhulizijin_page import KanZhulizijinPage
 from time import sleep
 
-caseName = 'test_hangqing_bankuai'
+caseName = '20161208'
 #进入板块
-def tst_step1(driver):
+def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     bankuai_page = BankuaiPage(driver)
@@ -25,7 +25,7 @@ def tst_step1(driver):
     assert bankuai_page.hy_histogram_title
 
 #板块柱状图
-def tst_step2(driver):
+def test_step2(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     bankuai_page = BankuaiPage(driver)

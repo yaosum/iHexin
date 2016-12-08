@@ -33,7 +33,7 @@ def test_step1(driver):
     assert home_page.feivip_button
     assert home_page.qiehuanyejianmoshi_button
     assert home_page.sousuo_button
-"""
+
 # 首页－>自选页面
 def test_step2(driver):
     optional_page = OptionalPage(driver)
@@ -507,7 +507,7 @@ def test_step136_158(driver):
     zixuangufenzu_page.hx_tapblank()
 
 #10.00.50 自选股新闻公告按照自选股分组分类显示
-def tst_step159(driver):
+def test_step159(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
     zixuangufenzu_page = ZixuangufenzuPage(driver)
@@ -537,4 +537,4 @@ def tst_step159(driver):
         zixuangugonggao_page.fanhui_btn.click()
     optional_page.fenzu_btn.click()
     zixuangufenzu_page.zixuangu_btn.click()
-"""
+
