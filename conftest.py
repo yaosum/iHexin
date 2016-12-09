@@ -25,6 +25,9 @@ logging.basicConfig(level = logging.INFO,
                     stream = sys.stdout,
                     format = "%(asctime)s - [%(name)s] %(levelname)s: %(message)s")
 framework_logger = logging.getLogger("pytest")
+passedList = []
+failedList = []
+rerunList = []
 
 @pytest.mark.trylast
 def pytest_runtest_setup(item):
@@ -97,8 +100,8 @@ def driver(request, platform_name, platform_version, device_name, device_udid, b
 
 @pytest.fixture(scope = 'function')
 def pytest_unconfigure(config):
-    """uploadResult('test_hangqing_hushen')"""
-    uploadResult('test_hangqing_hushen')
+    """uploadResult()"""
+    uploadResult()
 
 
 @pytest.mark.hookwrapper
@@ -119,6 +122,7 @@ def pytest_runtest_makereport(item, call):
         # only log result of test case itself. Skip setup and teardown
         framework_logger.info("==Finish running test case %s" % item.name)
         framework_logger.info("**Test result of test case: %s**" % report.outcome)
+        statistics(report,item)
     if report.when == "teardown":
         framework_logger.info("==Finish running teardown of %s" % item.name)
         framework_logger.info("**Test result of teardown: %s" % report.outcome)
@@ -167,27 +171,43 @@ def _gather_page_source(item, report, driver, summary, extra):
 
 
 """
-把最后的结果上传到服务器的documents
+    把最后的结果上传到服务器的documents
 """
-def uploadResult(caseName):
-    screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
-    sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + caseName
-    targetDir = '/Library/Webserver/Documents/result/1000002/screenshot/'
+def uploadResult():
+    #读取运行用例id
+    run_case_id = "9999999"
+    file_path = GetProjectPath.getProjectPath() + '/runConf.txt'
+    if not os.path.isfile(file_path):
+        file = open(file_path, 'w')
+        file.write('9999999')
+        file.close()
+    else:
+        file = open(file_path, 'r')
+        msg = file.read()
+        file.close()
+        run_case_id = msg
 
-    if os.path.isdir(targetDir) == False:
+    resultWriteToTxt(run_case_id)
+
+    #把结果上传服务器地址
+    screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
+    sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + run_case_id
+    targetDir = '/Library/Webserver/Documents/result/{}/screenshot/'.format(run_case_id)
+
+    if not os.path.isdir(targetDir):
         os.makedirs(targetDir)
     for root, dirs, files in os.walk(sourceDir):
         for i in xrange(0, files.__len__()):
             sf = os.path.join(root, files[i])
             copy(sf, targetDir)
     htmlSourceDir = GetProjectPath.getProjectPath()+"/report.html"
-    htmlTargetDir = '/Library/Webserver/Documents/result/1000002/report'
-    if not os.path.isfile(htmlTargetDir):
+    htmlTargetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)
+    if not os.path.isdir(htmlTargetDir):
         os.makedirs(htmlTargetDir)
     copy(htmlSourceDir,htmlTargetDir)
 
     assertTargetDir = htmlTargetDir + "/assets"
-    if not os.path.isfile(assertTargetDir):
+    if not os.path.isdir(assertTargetDir):
         os.makedirs(assertTargetDir)
     assetsSourceDir = GetProjectPath.getProjectPath()+"/assets"
     filelist = []
@@ -200,3 +220,57 @@ def uploadResult(caseName):
         elif os.path.isdir(filepath):
             copy(filepath, assertTargetDir)
             shutil.rmtree(filepath, True)
+
+"""
+    统计成功数,失败数,重跑数
+"""
+def statistics(report,item):
+    if report.outcome == "passed":
+        passedList.append(item.name)
+    if report.outcome == "failed":
+        n = len(failedList)
+        if n >= 1:
+            if failedList[n - 1] != item.name:
+                failedList.append(item.name)
+            else:
+                m = len(rerunList)
+                if m >= 1:
+                    if rerunList[m - 1] != item.name:
+                        rerunList.append(item.name)
+                else:
+                    rerunList.append(item.name)
+        else:
+            failedList.append(item.name)
+
+"""
+    把统计的成功数,失败数,重跑数数据写入txt文件并上传服务器地址
+"""
+def resultWriteToTxt(case_id):
+    file_path = GetProjectPath.getProjectPath() + '/statistics.txt'
+    file = open(file_path, 'w')
+    if os.path.isfile(file_path):
+        file.write("{}\n".format(len(passedList)))
+        file.write("{}\n".format(len(failedList)))
+        file.write("{}\n".format(len(rerunList)))
+        file.close()
+    else:
+        i=0
+        for line in file.readlines():
+            if i==0:
+                str = line
+                s = line.replace(str, "{}".format(len(passedList)))
+                file.writelines(s)
+            if i==1:
+                str = line
+                s = line.replace(str, "{}".format(len(failedList)))
+                file.writelines(s)
+            if i==2:
+                str = line
+                s = line.replace(str, "{}".format(len(rerunList)))
+                file.writelines(s)
+        file.close()
+
+    targetDir = '/Library/Webserver/Documents/result/{}/report'.format(case_id)
+    if not os.path.isdir(targetDir):
+        os.makedirs(targetDir)
+    copy(file_path, targetDir)

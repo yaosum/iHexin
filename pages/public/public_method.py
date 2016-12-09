@@ -11,6 +11,21 @@ class PublicMethod(PageObject):
     """
     该类放一些公共通用的方法,命名规则:public_***
     """
+    run_case_id = "9999999"
+    def __init__(self, webdriver, root_uri=None):
+        #初始化,读取用例id
+        PageObject.__init__(self, webdriver, root_uri=None)
+        file_path = GetProjectPath.getProjectPath() + '/runConf.txt'
+        if not os.path.isfile(file_path):
+            file = open(file_path,'w')
+            file.write('9999999')
+            file.close()
+            self.run_case_id = "9999999"
+        else:
+            file = open(file_path, 'r')
+            msg = file.read()
+            file.close()
+            self.run_case_id = msg
 
     # 处理某些元素点击不了,按其坐标点击
     # element:需要点击的按钮元素
@@ -39,7 +54,7 @@ class PublicMethod(PageObject):
 
         return self.w.tap([(x, y)], duration=time)
 
-    def public_screenshot_as_file(self, caseName, picName):
+    def public_screenshot_as_file(self, picName):
         """
         截屏,并自动放入相应的日期文件夹内
         截图目录层级结构:
@@ -50,7 +65,8 @@ class PublicMethod(PageObject):
         """
         screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         screen_time = time.strftime('%H:%M:%S')
-        path = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + caseName
+        path = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + self.run_case_id
+        print("runcaseid"+self.run_case_id)
         if os.path.isdir(path):
             pass
         else:
