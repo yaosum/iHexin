@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import random
+
 __author__ = "tianmaotao"
 
 from page_object.appium_page_objects import PageObject, page_element
@@ -11,10 +13,12 @@ class QitaTianjinguijinshuPage(PageObject):
     """
     fanhui_button = page_element(accessibility_id='返回')
     kaihu_btn = page_element(accessibility_id= '开户')
-    kehufuwuzhongxin_btn = page_element(accessibility_id= '客户服务中心')
+    kehufuwuzhongxin_btn = page_element(xpath= "/UIAButton[@name='客户服务中心']")
 
-    cell01 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[2]/UIATableView[1]/UIATableCell[1]/UIAElement[1]')
-    cell01_title = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
+    cell01 = page_element(
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[2]/UIATableView[1]/UIATableCell[1]/UIAElement[1]')
+    cell01_title = page_element(
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
 
     sell_btn = page_element(accessibility_id= '卖价')
     buy_btn = page_element(accessibility_id= '买价')
@@ -28,18 +32,11 @@ class QitaTianjinguijinshuPage(PageObject):
         天津贵金属页面的排序操作
         :return:
         """
-        self.zuojiesuan_btn.click()
-        self.zuojiesuan_btn.click()
-        self.shijian_btn.click()
-        self.shijian_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangdie_btn.click()
-        self.zhangfu_btn.click()
-        self.zhangfu_btn.click()
-        self.buy_btn.click()
-        self.buy_btn.click()
-        self.sell_btn.click()
-        self.sell_btn.click()
+        listheader = ('zuojiesuan', 'shijian', 'zhangdie', 'zhangfu', 'buy', 'sell', )
+        for n in range(3):
+            header = random.choice(listheader)
+            eval('self.{0}_btn.click()'.format(header))
+            eval('self.{0}_btn.click()'.format(header))
 
     def tjgjs_right(self):
         """

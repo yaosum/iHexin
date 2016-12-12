@@ -24,29 +24,33 @@ class BianjizixuanPage(PageObject):
     cell002 = page_element(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]")
     cell003 = page_element(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]")
 
+    # 选中复选框
     cell001_btn = page_element(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[1]")
     cell002_btn = page_element(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAButton[1]")
     cell003_btn = page_element(xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAButton[1]")
 
-    #某行元素的股票名称
+    # 某行元素的股票名称
     cell001_stock_staText = page_element(
         xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]")
     cell002_stock_staText = page_element(
         xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAStaticText[1]")
     cell003_stock_staText = page_element(
         xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAStaticText[1]")
-    cell018_stock_staText = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[18]/UIAStaticText[1]")
 
-    #置顶按钮
-    cell018_zhiding_btn = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[18]/UIAButton[2]')
-    cell019_zhiding_btn = page_element(
-        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[19]/UIAButton[2]')
-    cell010_zhiding_btn = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[10]/UIAButton[2]')
-    #拖动按钮
-    cell001_tuodong_btn = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[4]')
-    cell002_tuodong_btn = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAButton[4]')
-    cell003_tuodong_btn = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAButton[4]')
+    # 置顶按钮
+    cell001_zhiding_btn = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[3]')
+    cell002_zhiding_btn = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAButton[3]')
+    cell003_zhiding_btn = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAButton[3]')
+    # 拖动按钮
+    cell001_tuodong_btn = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAButton[4]')
+    cell002_tuodong_btn = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[2]/UIAButton[4]')
+    cell003_tuodong_btn = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[3]/UIAButton[4]')
 
     def hx_upglide(self):
         """

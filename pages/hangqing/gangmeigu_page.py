@@ -9,8 +9,12 @@ class GangmeiguPage(PageObject):
     行情－> 港美股
     港美股页面内的相关元素及操作
     """
-    us_btn = page_element(accessibility_id = '美股');
+    us_btn = page_element(accessibility_id = '美股')
     hk_btn = page_element(accessibility_id = '港股')
+
+    # 港美股页面的提示框
+    tishi_window = page_element(accessibility_id = "温馨提示")
+    tishi_quedin_btn = page_element(xpath = "//UIAButton[@name='确定'")
 
     # 这个属性表示港媒股页面第一个单元格。注意:当组缩紧以后,表示可见组的第一个单元格
     us_cell1 = page_element(
@@ -30,6 +34,8 @@ class GangmeiguPage(PageObject):
     hk_cell1_1 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[1]')
     hk_cell1_2 = page_element(xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIAButton[2]')
     hushengangtong = page_element(accessibility_id = '沪、深港通')
+    # 沪深港股通页面的引导图关闭按钮
+    yindaotu_guanbi_btn = page_element(accessibility_id = "hsgtClose")
 
     # 美股和港股行业版块单元格
     us_cell2_1 = page_element(

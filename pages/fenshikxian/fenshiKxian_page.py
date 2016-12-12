@@ -92,29 +92,25 @@ class FenshiKxianPage(PageObject):
     gainianjiexi_tab_btn = page_element(xpath="//UIAButton[@name='概念解析']")
     # 新闻／研报tab下的第一条资讯(港美股特殊处理)
     zixun_cell01 = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIATableView[1]"
-                "/UIATableCell[1]")
+        xpath = "//UIATableCell[2]/UIATableView[1]/UIATableCell[1]")
     zixun_cell01_title = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIATableView[1]"
-              "/UIATableCell[1]/UIAStaticText[1]")
+        xpath="//UIATableCell[2]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]")
     hkus_zixun_cell01 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]/UIATableView[1]"
-              "/UIATableCell[1]")
+        xpath="//UIATableCell[3]/UIATableView[1]/UIATableCell[1]")
     hkus_zixun_cell01_title = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]/UIATableView[1]"
-              "/UIATableCell[1]/UIAStaticText[1]")
+        xpath="//UIATableCell[3]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]")
     # 公告下的第一条查看公告(港美股特殊处理)
     chakangonggao_cell01 = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIAWebView[1]/UIALink[1]")
+        xpath = "//UIATableCell[2]/UIAWebView[1]/UIALink[1]")
     hkus_gonggao_cell01 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]/UIAWebView[1]/UIALink[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]")
     hkus_gonggao_cell01_title = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIAStaticText[1]")
     # 公告列表下的第一条公告
     gonggao_cell01 = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIAWebView[1]/UIALink[4]")
+        xpath = "//UIATableCell[2]/UIAWebView[1]/UIALink[4]")
     gonggao_cell01_title = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIAWebView[1]UIALink[4]/UIAStaticText[1]")
+        xpath = "//UIAWebView[1]/UIALink[4]/UIAStaticText[1]")
 
     longhubang_btn = page_element(
         xpath = "//UIAWebView[1]/UIAStaticText[8]")
@@ -125,73 +121,67 @@ class FenshiKxianPage(PageObject):
     iwendongmi_btn = page_element(
         xpath = "//UIAWebView[1]/UIAStaticText[11]")
 
-    # 港美股下的广告运营位
-    hkus_yunyingwei = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]")
-
     # 财务/简况下的更多(港美股特殊处理)
     caiwu_cell01 = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-                "/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath = "//UIATableCell[2]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]")
     caiwu_cell02 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]")
     caiwu_cell03 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]")
     caiwu_cell04 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]")
     caiwu_cell05 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[1]")
     caiwu_cell06 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[1]")
     caiwu_cell07 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[8]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[8]/UIALink[1]/UIALink[1]")
     caiwu_cell08 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[9]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[9]/UIALink[1]/UIALink[1]")
     caiwu_cell09 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[10]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[10]/UIALink[1]/UIALink[1]")
     caiwu_cell10 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]"
-              "/UIAWebView[1]/UIALink[16]/UIALink[1]/UIALink[1]")
-    # 港美股下简况列表
-    hkus_jiankuang_cell01 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]")
-    hkus_jiankuang_cell02 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]UIALink[2]/UIALink[1]/UIALink[1]")
-    hkus_jiankuang_cell03 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]UIALink[3]/UIALink[1]/UIALink[1]")
-    hkus_jiankuang_cell04 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]UIALink[4]/UIALink[1]/UIALink[1]")
-    hkus_jiankuang_cell05 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]UIALink[5]/UIALink[1]/UIALink[1]")
-    hkus_jiankuang_cell06 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]UIALink[6]/UIALink[1]/UIALink[1]")
-    hkus_jiankuang_cell07 = page_element(
-        xpath="//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[3]"
-              "/UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[16]/UIALink[1]/UIALink[1]")
+    # 港股下简况列表
+    hk_jiankuang_cell01 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
+    hk_jiankuang_cell02 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[1]")
+    hk_jiankuang_cell03 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[1]")
+    hk_jiankuang_cell04 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIAStaticText[1]")
+    hk_jiankuang_cell05 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[5]")
+    hk_jiankuang_cell06 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[6]/UIALink[1]/UIALink[1]/UIALink[1]")
+    hk_jiankuang_cell07 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[7]/UIALink[1]")
+    # 美股下简况列表
+    us_jiankuang_cell01 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
+    us_jiankuang_cell02 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]")
+    us_jiankuang_cell03 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[2]")
+    us_jiankuang_cell04 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[2]")
+    us_jiankuang_cell05 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[2]")
+    us_jiankuang_cell06 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[6]/UIALink[1]/UIALink[2]")
+    us_jiankuang_cell07 = page_element(
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[2]")
 
     # 港美股下财务列表
     hkus_caiwu_cell01 = page_element(
-        xpath="//UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
     hkus_caiwu_cell02 = page_element(
-        xpath="//UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[1]")
     hkus_caiwu_cell03 = page_element(
-        xpath="//UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[1]")
     hkus_caiwu_cell04 = page_element(
-        xpath="//UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]/UIALink[1]")
 
     # 盘口下的第一个板块按钮
     pankou_bankuai_btn = page_element(
@@ -200,8 +190,7 @@ class FenshiKxianPage(PageObject):
 
     # 涨幅榜/跌幅榜下第一个元素
     gupaio_cell001_btn = page_element(
-        xpath = "//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIATableView[1]"
-                "/UIATableCell[1]")
+        xpath = "//UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[2]/UIATableView[1]/UIATableCell[1]")
     gengduogupiao_btn = page_element(accessibility_id = "点击查看更多股票")
 
 

@@ -28,8 +28,10 @@ def test_step86(driver):
     # step 3
     hangqing_page.gangmeigu_btn.click()
     gangmeigu_page.hk_btn.click()
+    sleep(1)
     gangmeigu_page.hushengangtong.click()
-
+    if gangmeigu_page.yindaotu_guanbi_btn:
+        gangmeigu_page.yindaotu_guanbi_btn.click()
     picName = '首页-行情-港美股-港股-沪深港通-港股通_86'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     assert ganggutong_page.hushenangtong_title

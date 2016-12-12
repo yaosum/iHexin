@@ -12,7 +12,10 @@ class HomePage(PageObject):
 	qiehuanyejianmoshi_button = page_element(accessibility_id = "切换到夜间模式")
 	sousuo_button = page_element(accessibility_id = "搜索")
 	gerenzhongxin_btn = page_element(accessibility_id = '个人中心')
-	xiaoxizhongxin_button = page_element(accessibility_id = "message center")
+	# 非审核状态下
+	xiaoxizhongxin_btn_feishen = page_element(accessibility_id = "message center")
+	# 审核状态下
+	xiaoxizhongxin_btn_shen = page_element(accessibility_id = "message_center_entrance.png")
 
 
 

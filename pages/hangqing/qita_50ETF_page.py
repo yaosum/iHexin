@@ -12,6 +12,7 @@ class Qita50ETFPage(PageObject):
 
     fanhui_button = page_element(accessibility_id='返回')
     cell_etf_btn = page_element(accessibility_id = 'JianBaoJiaBg')
+    title_staticText = page_element(xpath = "//UIAApplication[1]/UIAWindow[1]/UIANavigationBar[1]/UIAStaticText[1]")
     group1 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[1]')
     group2 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[2]/UIAButton[1]')
     group3 = page_element(xpath = '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableGroup[3]/UIAButton[1]')
