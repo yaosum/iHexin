@@ -3,6 +3,7 @@
 from appium.webdriver.common.touch_action import TouchAction
 from pages.gerenzhongxin.gerenzhongxin_page import GerenzhongxinPage
 from pages.fenshikxian.fenshiKxian_page import FenshiKxianPage
+from pages.gerenzhongxin.gerenzhongxin_page import GerenzhongxinPage
 from pages.public.denglu_page import DengluPage
 from pages.public.public_method import PublicMethod
 from pages.public.public_page import PublicPage
@@ -20,7 +21,72 @@ from pages.zixuangu.zixuanguxinwen_page import ZixuanguxinwenPage
 from pages.zixuangu.zixun_page import ZixunPage
 from time import sleep
 
-#首页－>自选
+# 先判断当前是否有账号登录,如果有,则先退出
+def test_step0(driver):
+    home_page = HomePage(driver)
+    gerenzhongxin_page = GerenzhongxinPage(driver)
+
+    if not home_page.gerenzhongxin_btn:
+        home_page.yonghu_btn.click()
+        sleep(2)
+        gerenzhongxin_page.tuichudenglu_btn.click()
+        sleep(1)
+        if gerenzhongxin_page.tishi_allert:
+            gerenzhongxin_page.quedin_btn.click()
+            sleep(2)
+
+# 默认状态
+def test_delete(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    public_method = PublicMethod(driver)
+    bianjizixuan_page = BianjizixuanPage(driver)
+
+    public_page.zixuan_button.click()
+    optional_page.bianji_button.click()
+    lenth = public_method.public_getlength()
+    for n in range(lenth):
+        cell_text = driver.find_element_by_xpath(
+                '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
+        if cell_text.text == u"同花顺":
+            pass
+        elif cell_text.text == u"上证指数":
+            pass
+        elif cell_text.text == u"创业板指":
+            pass
+        else:
+            cell_text.click()
+            sleep(1)
+            bianjizixuan_page.shanchu_button.click()
+
+    if bianjizixuan_page.cell003_stock_staText.text == u"上证指数":
+        print "情况1"
+        bianjizixuan_page.cell003_zhiding_btn.click()
+        if bianjizixuan_page.cell002_stock_staText.text == u"同花顺":
+            action1 = TouchAction(driver)
+            action1.press(bianjizixuan_page.cell002_tuodong_btn).wait(100).move_to(
+                bianjizixuan_page.cell003_tuodong_btn).wait(100).release()
+            action1.perform()
+            sleep(1)
+    elif bianjizixuan_page.cell003_stock_staText.text == u"同花顺":
+        print "情况2"
+        if bianjizixuan_page.cell001_stock_staText.text == u"创业板指":
+            action1 = TouchAction(driver)
+            action1.press(bianjizixuan_page.cell001_tuodong_btn).wait(100).move_to(
+                bianjizixuan_page.cell002_tuodong_btn).wait(100).release()
+            action1.perform()
+            sleep(1)
+    elif bianjizixuan_page.cell003_stock_staText.text == u"创业板指":
+        print "情况3"
+        action1 = TouchAction(driver)
+        action1.press(bianjizixuan_page.cell003_tuodong_btn).wait(100).move_to(
+            bianjizixuan_page.cell002_tuodong_btn).wait(100).release()
+        action1.perform()
+        sleep(1)
+        if bianjizixuan_page.cell001_stock_staText.text == u"同花顺":
+            bianjizixuan_page.cell003_zhiding_btn.click()
+
+# 首页－>自选
 def test_step001(driver):
     home_page = HomePage(driver)
     optional_page = OptionalPage(driver)
@@ -232,7 +298,7 @@ def test_step005(driver):
 
     bianjizixuan_page.fanhui_button.click()
 
-#自选－>编辑自选->置顶
+# 自选－>编辑自选->置顶
 def test_step14(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -249,12 +315,11 @@ def test_step14(driver):
     sleep(1)
 
     lenth = public_method.public_getlength()
-    #置顶三次操作
+    # 置顶三次操作
     for n in range(3):
-        eval('driver.find_element_by_xpath'
-             '("//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAButton[2]").click()'.format(
-            lenth))
-       #bianjizixuan_page.cell019_zhiding_btn.click()
+        eval(
+            'driver.find_element_by_xpath('
+            '"//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAButton[2]").click()'.format(lenth))
         sleep(1)
     # 第一条为上证指数
     bianjizixuan_page.fanhui_button.click()
@@ -268,7 +333,7 @@ def test_step14(driver):
     bianjizixuan_page.fanhui_button.click()
 
 
-#自选－> 编辑自选－> 拖动股票
+# 自选－> 编辑自选－> 拖动股票
 def test_step18(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -406,7 +471,7 @@ def test_step69(driver):
     zixun_page.fanhui_btn.click()
     zixuanguxinwen_page.fanhui_btn.click()
 
-#自选－>自选股公告
+# 自选－>自选股公告
 def test_step80(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -424,8 +489,8 @@ def test_step80(driver):
     zixun_page.fanhui_btn.click()
     zixuangugonggao_page.fanhui_btn.click()
 
-#自选－>长按操作
-def test_step104(driver):
+# 自选－>长按操作
+def tst_step104(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
 
@@ -447,7 +512,7 @@ def test_step104(driver):
     optional_page.hx_longPress(optional_page.cell001)
     optional_page.shanchu_btn.click()
 
-#自选－>自选股分组
+# 自选－>自选股分组
 def test_step130_144(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
@@ -469,25 +534,3 @@ def test_step130_144(driver):
     optional_page.fenzu_btn.click()
 
     zixuangufenzu_page.hx_tapblank()
-
-def test_delete(driver):
-    public_page = PublicPage(driver)
-    optional_page = OptionalPage(driver)
-    public_method = PublicMethod(driver)
-    bianjizixuan_page = BianjizixuanPage(driver)
-
-    public_page.zixuan_button.click()
-    optional_page.bianji_button.click()
-    lenth = public_method.public_getlength()
-    if lenth > 3:
-        for n in range(lenth):
-            cell_text = driver.find_element_by_xpath('//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAStaticText[1]'.format(n+1))
-            if cell_text.text == u"同花顺":
-                pass
-            elif cell_text.text == u"上证指数":
-                pass
-            elif cell_text.text == u"创业板指":
-                pass
-            else:
-                cell_text.click()
-        bianjizixuan_page.shanchu_button.click()

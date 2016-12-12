@@ -34,6 +34,57 @@ def test_step1(driver):
     assert home_page.qiehuanyejianmoshi_button
     assert home_page.sousuo_button
 
+# 恢复默认状态
+def test_delete(driver):
+    public_page = PublicPage(driver)
+    optional_page = OptionalPage(driver)
+    public_method = PublicMethod(driver)
+    bianjizixuan_page = BianjizixuanPage(driver)
+
+    public_page.zixuan_button.click()
+    optional_page.bianji_button.click()
+    lenth = public_method.public_getlength()
+    for n in range(1, lenth+1):
+        cell_text = driver.find_element_by_xpath(
+            '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAStaticText[1]'.format(n))
+        if cell_text.text == u"同花顺":
+            pass
+        elif cell_text.text == u"上证指数":
+            pass
+        elif cell_text.text == u"创业板指":
+            pass
+        else:
+            cell_text.click()
+            sleep(1)
+            bianjizixuan_page.shanchu_button.click()
+
+    if bianjizixuan_page.cell003_stock_staText.text == u"上证指数":
+        print "情况1"
+        bianjizixuan_page.cell003_zhiding_btn.click()
+        if bianjizixuan_page.cell002_stock_staText.text == u"同花顺":
+            action1 = TouchAction(driver)
+            action1.press(bianjizixuan_page.cell002_tuodong_btn).wait(100).move_to(
+                bianjizixuan_page.cell003_tuodong_btn).wait(100).release()
+            action1.perform()
+            sleep(1)
+    elif bianjizixuan_page.cell003_stock_staText.text == u"同花顺":
+        print "情况2"
+        if bianjizixuan_page.cell001_stock_staText.text == u"创业板指":
+            action1 = TouchAction(driver)
+            action1.press(bianjizixuan_page.cell001_tuodong_btn).wait(100).move_to(
+                bianjizixuan_page.cell002_tuodong_btn).wait(100).release()
+            action1.perform()
+            sleep(1)
+    elif bianjizixuan_page.cell003_stock_staText.text == u"创业板指":
+        print "情况3"
+        action1 = TouchAction(driver)
+        action1.press(bianjizixuan_page.cell003_tuodong_btn).wait(100).move_to(
+            bianjizixuan_page.cell002_tuodong_btn).wait(100).release()
+        action1.perform()
+        sleep(1)
+        if bianjizixuan_page.cell001_stock_staText.text == u"同花顺":
+            bianjizixuan_page.cell003_zhiding_btn.click()
+
 # 首页－>自选页面
 def test_step2(driver):
     optional_page = OptionalPage(driver)

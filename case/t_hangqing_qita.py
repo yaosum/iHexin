@@ -15,8 +15,9 @@ from pages.hangqing.qita_xinsanban_page import QitaXinsanbanPage
 from pages.hangqing.qita_hushenguozhai_page import QitaHushenguozhai
 from time import sleep
 
-caseName = '20161208'
+from pages.shouye.home_page import HomePage
 
+caseName = 'test_hangqing_qita'
 # step4-56 全球市场---国内期货和外汇
 def test_step1(driver):
     public_page = PublicPage(driver)
@@ -88,7 +89,7 @@ def test_step24(driver):
 
     hangqing_gengduo_page.hq_up()
     hangqing_gengduo_page.hq_down()
-    #title = qita_qihuo_page.cell01_title.text
+    # title = qita_qihuo_page.cell01_title.text
     lenth = public_method.public_getlength()
 
     click_x = width * (40 / 375.0)
@@ -100,7 +101,7 @@ def test_step24(driver):
     qita_qihuo_page.fanhui_button.click()
     public_page.shouye_button.click()
 
-#50ETF
+# 50ETF
 def test_step34(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -117,13 +118,15 @@ def test_step34(driver):
     hangqing_page.qita_btn.click()
 
     qita_page.gp_qiquan_btn.click()
-    picName = '其它-股票期权_28'
+    picName = '行情-其它-股票期权_28'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     hangqing_gengduo_page.qita_gpqq_clickOperation()
     # step34-37
     sleep(1)
     hangqing_gengduo_page.cell01_click()
-    picName = '股票期权-50ETF_33'
+    qita_50ETF_page.title_staticText.click()
+    qita_50ETF_page.title_staticText.click()
+    picName = '行情-其他-股票期权-50ETF_33'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     qita_50ETF_page.cell_etf_btn.click()
     fenshikxian_page.hx_right()
@@ -186,9 +189,10 @@ def test_step57(driver):
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
 
-#天津贵金属
+# 天津贵金属
 def test_step58(driver):
     public_page = PublicPage(driver)
+    home_page = HomePage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
     fenshikxian_page = FenshiKxianPage(driver)
@@ -198,19 +202,25 @@ def test_step58(driver):
     public_method = PublicMethod(driver)
 
     # step2
+    isShenhe = True    # 默认是审核状态
+    if home_page.xiaoxizhongxin_btn_shen:     # 如果首页的消息中心是非审核状态下的，目前状态就是非审核状态
+        isShenhe = False
     public_page.hangqing_button.click()
     # step3
     hangqing_page.qita_btn.click()
 
     qita_page.tj_guijinshu_btn.click()
-    picName = '其它-天津贵金属_57'
+    picName = '行情-其它-天津贵金属_57'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     qita_tianjinguijinshu_page.kaihu_btn.click()
-    picName = '其它-天津贵金属-开户_58'
+    picName = '行情-其它-天津贵金属-开户_58'
     public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
     denglu_page.guanbi_btn.click()
-    qita_tianjinguijinshu_page.kehufuwuzhongxin_btn.click()
-    kefuzhongxin_page.fanhui_btn.click()
+    if not isShenhe:
+        qita_tianjinguijinshu_page.kehufuwuzhongxin_btn.click()
+        picName = '行情-其它-天津贵金属-客服服务中心_59'
+        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        kefuzhongxin_page.fanhui_btn.click()
     for n in range(2):
         qita_tianjinguijinshu_page.tjgjs_left()
     qita_tianjinguijinshu_page.tjgjs_clickOperation()
@@ -297,7 +307,7 @@ def test_step74(driver):
         fenshikxian_page.fanhui_button.click()
         hangqing_gengduo_page.fanhui_btn.click()
 
-#新三板-指 数，成分股
+# 新三板-指 数，成分股
 def test_step75(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -358,7 +368,7 @@ def test_step75(driver):
     qita_xinsanban_page.sanbanzuoshi_tab.click()
     hangqing_gengduo_page.fanhui_btn.click()
 
-#个股---新三板
+# 个股---新三板
 def test_step76(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -380,11 +390,12 @@ def test_step76(driver):
         eval('qita_xinsanban_page.{}.click()'.format(name_head))
         sub_list = [('group1', 'gengduo1'), ('group2', 'gengduo2'), ('group3', 'gengduo3')]
         for group, gengduo in sub_list:
-            title = qita_xinsanban_page.cell1_title.text
+            # title = qita_xinsanban_page.cell1_title.text
             qita_xinsanban_page.cell1.click()
-            #assert fenshikxian_page.title_staText.text == title
+            # assert fenshikxian_page.title_staText.text == title
             fenshikxian_page.change_gupiao(1)
             fenshikxian_page.fanhui_button.click()
+            print "新三板，", name_head, group, gengduo
 
             eval('qita_xinsanban_page.{}.click()'.format(gengduo))
 
@@ -410,7 +421,7 @@ def test_step76(driver):
 
     hangqing_gengduo_page.fanhui_btn.click()
 
-#放贷宝
+# 放贷宝
 def test_step135(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -444,7 +455,7 @@ def test_step135(driver):
     qita_hushenguozhai_page.hushi_btn.click()
     qita_hushenguozhai_page.fanhui_btn.click()
 
-#退市整理
+# 退市整理
 def test_step146(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -469,8 +480,8 @@ def test_step146(driver):
     hangqing_gengduo_page.fanhui_btn.click()
     public_page.shouye_button.click()
 
-#爱基金，不同设备爱基金id不同，先不跑
-def test_step79(driver):
+# 爱基金，不同设备爱基金id不同，先不跑
+def tst_step79(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
     qita_page = Qita(driver)
@@ -480,12 +491,11 @@ def test_step79(driver):
     public_page.hangqing_button.click()
     # step3
     hangqing_page.qita_btn.click()
-
-    """
+"""
     qita_page.tonghuashunaijijin_btn.click()
     aijijin_page.shouyipaihang_text.click()
     assert aijijin_page.shouyipaihang_text
     aijijin_page.fanhui_btn.click()
     assert aijijin_page.aijijin_text
     aijijin_page.fanhui_btn.click()
-    """
+"""
