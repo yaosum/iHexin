@@ -15,7 +15,6 @@ from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 from pages.public.public_method import PublicMethod
 
-caseName = '20161208'
 
 #进入看主力资金页面，在自选已经运行过这部分脚本，这里只需要看能否正常进入
 def test_step3(driver):
@@ -35,7 +34,7 @@ def test_step3(driver):
     zhishu_page.kanzijin_btn.click()
     assert kanzhulizijin_page.kanzhulizijin_staticText
     picName = '行情－指数-看资金_2'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
 #进入指数并验证
 def test_step1(driver):
@@ -57,7 +56,7 @@ def test_step1(driver):
     assert zhishu_page.qihuo_btn
 
     picName = '行情－指数_3'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
 #国内指数
 def test_step21(driver):
@@ -77,7 +76,7 @@ def test_step21(driver):
     zhishu_page.down_glide()
     sleep(1)
     picName = '行情-指数_21'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
     # step22-30
     zhishu_page.gn_operation()
@@ -85,7 +84,7 @@ def test_step21(driver):
     # step31-40
     zhishu_page.guoneiZhishu_gengduo_btn.click()
     picName = '指数-国内指数－更多_31'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_left()
@@ -124,7 +123,7 @@ def test_step41(driver):
     # step50-57
     zhishu_page.qihuo_gengduo_btn.click()
     picName = '指数-股指期货－更多_50'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
     # 加上会出错
     #title = guzhiqihuo_gengduo_page.cell1_1_title.text
@@ -134,7 +133,7 @@ def test_step41(driver):
     fenshikxian_page.fanhui_button.click()
     public_method.public_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
     picName = '指数-股指期货－更多-隐藏沪深300_51'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     sleep(1)
 
     # step5
@@ -145,7 +144,7 @@ def test_step41(driver):
     fenshikxian_page.fanhui_button.click()
     public_method.public_tap_element(guzhiqihuo_gengduo_page.shangzheng50_btn)
     picName = '指数-股指期货－更多-隐藏上证50_52'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     sleep(1)
 
     # step65-70
@@ -156,7 +155,7 @@ def test_step41(driver):
     fenshikxian_page.fanhui_button.click()
     public_method.public_tap_element(guzhiqihuo_gengduo_page.zhongzheng500_btn)
     picName = '指数-股指期货－更多-隐藏中证500_53'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
     # step71-75
     public_method.public_tap_element(guzhiqihuo_gengduo_page.zhongzheng500_btn)
@@ -210,7 +209,7 @@ def test_step93(driver):
 
     zhishu_page.qita_gengduo_btn.click()
     picName = '指数-其它指数-更多_93'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
     hangqing_gengduo_page.hq_left()
     hangqing_gengduo_page.hq_left()

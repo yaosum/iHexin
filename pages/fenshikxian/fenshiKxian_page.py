@@ -326,7 +326,7 @@ class FenshiKxianPage(PageObject):
             for i in range(3):
                 self.w.tap([(tap_x, tap_y)])
                 pic_name = '搜索-分时-明细/成交/五档_8/9/10'
-                public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+                public_method.public_screenshot_as_file(picName=pic_name)
 
     def zhibiaoqiehuan_up_click(self):
         """
@@ -388,7 +388,7 @@ class FenshiKxianPage(PageObject):
             celln_title.click()
             sleep(1)
             pic_name = '搜索-分时-新闻/研报-资讯详情{}_9'.format(num)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.shezhi_btn
@@ -416,7 +416,7 @@ class FenshiKxianPage(PageObject):
             celllast.click()
             sleep(1)
             pic_name = '搜索-分时-新闻/研报-资讯详情{}_9'.format(length)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.shezhi_btn
@@ -445,7 +445,7 @@ class FenshiKxianPage(PageObject):
             celln.click()
             sleep(1)
             pic_name = '搜索-分时-新闻/研报-资讯详情{}_9'.format(num)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.shezhi_btn
@@ -473,7 +473,7 @@ class FenshiKxianPage(PageObject):
             celllast.click()
             sleep(1)
             pic_name = '搜索-分时-新闻/研报-资讯详情{}_9'.format(length)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.shezhi_btn
@@ -506,7 +506,7 @@ class FenshiKxianPage(PageObject):
             celln.click()
             sleep(1)
             pic_name = '搜索-分时-公告-资讯详情{}_17'.format(length)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.xiangqing_title.text == celln_title
@@ -537,7 +537,7 @@ class FenshiKxianPage(PageObject):
             celllast.click()
             sleep(1)
             pic_name = '搜索-分时-公告-资讯详情{}_19'.format(length)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.xiangqing_title.text == celllast_title
@@ -570,7 +570,7 @@ class FenshiKxianPage(PageObject):
             celln.click()
             sleep(1)
             pic_name = '搜索-分时-公告-资讯详情{}_17'.format(length)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.xiangqing_title.text == celln_title
@@ -601,7 +601,7 @@ class FenshiKxianPage(PageObject):
             celllast.click()
             sleep(1)
             pic_name = '搜索-分时-公告-资讯详情{}_17'.format(lenth)
-            public_method.public_screenshot_as_file(caseName="test_fenshikxian_yidenglu", picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             assert zixun_page.shoucang_btn
             assert zixun_page.fenxiang_btn
             assert zixun_page.xiangqing_title.text == celln_title

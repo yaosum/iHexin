@@ -12,8 +12,6 @@ from pages.public.public_method import PublicMethod
 
 from time import sleep
 
-caseName = '20161208'
-
 # 港股通
 def test_step86(driver):
     public_page = PublicPage(driver)
@@ -33,24 +31,24 @@ def test_step86(driver):
     if gangmeigu_page.yindaotu_guanbi_btn:
         gangmeigu_page.yindaotu_guanbi_btn.click()
     picName = '首页-行情-港美股-港股-沪深港通-港股通_86'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert ganggutong_page.hushenangtong_title
     assert ganggutong_page.shuaxin_btn
 
     ganggutong_page.ruhecanyu_btn.click()
     sleep(1)
     picName = '首页-行情-港美股-港股-沪深港通-港股通-如何参与_86'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     ganggutong_page.fanhui_btn.click()
     ganggutong_page.hushi_gengduo_click()
     sleep(2)
     picName = '首页-行情-港美股-港股-沪深港通-港股通-沪市更多_86'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     ganggutong_page.fanhui_btn.click()
     ganggutong_page.shenshi_gengduo_click()
     sleep(2)
     picName = '首页-行情-港美股-港股-沪深港通-港股通-深市更多_86'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     ganggutong_page.fanhui_btn.click()
     ganggutong_page.up_glide()
     ganggutong_page.down_glide()
@@ -67,17 +65,17 @@ def test_step86(driver):
         ganggutong_page.zijinliuru_btn.click()
         sleep(1)
         picName = '首页-行情-港美股-港股-沪深港通-{}-资金流入_86'.format(ggtname)
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
         ganggutong_page.fanhui_btn.click()
         ganggutong_page.shengyuedu_btn.click()
         sleep(1)
         picName = '首页-行情-港美股-港股-沪深港通-{}-剩余额度_87'.format(ggtname)
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
         ganggutong_page.fanhui_btn.click()
         ganggutong_page.zongedu_btn.click()
         sleep(1)
         picName = '首页-行情-港美股-港股-沪深港通-{}-今日总额度_88'.format(ggtname)
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
         ganggutong_page.fanhui_btn.click()
         ganggutong_page.up_glide()
         ganggutong_page.down_glide()
@@ -106,7 +104,7 @@ def test_step(driver):
         # step 4-15：三个指数
         eval('gangmeigu_page.{}_btn.click()'.format(market))
         picName = '首页-行情-港美股-{}_3'.format(market)
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
         for n in range(1, 4):
             if market == 'hk' and n == 3:
                 pass
@@ -132,7 +130,7 @@ def test_step16(driver):
     hangqing_page.gangmeigu_btn.click()
 
     picName = '行情-港美股_3'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
 
     gangmeigu_page.glide_up()
     gangmeigu_page.glide_down()
@@ -154,14 +152,14 @@ def test_step16(driver):
             picName_hybk_gongge = '首页-行情-港美股-港股-行业板块第1宫格_99'
             picName_hybk_gengduoshuju = '首页-行情-港美股-港股-板块宫格-查看更多数据_101'
             picName_hybk_gengduo = '首页-行情-港美股-港股-行业板块更多_113'
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName_hybk_gongge)
+        public_method.public_screenshot_as_file(picName=picName_hybk_gongge)
 
         # 领涨股
         for n in range(3):
             hangyebankuai_page.hybk_up()
         sleep(1)
         hangyebankuai_page.gengduoshuju_btn.click()
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName_hybk_gengduoshuju)
+        public_method.public_screenshot_as_file(picName=picName_hybk_gengduoshuju)
 
         hangqinggengduo_page.hybk_clickOperation()
         hangqinggengduo_page.hq_down()
@@ -202,7 +200,7 @@ def test_step16(driver):
 
         # 进入行业板块更多
         eval('gangmeigu_page.{0}_gengduo_1.click()'.format(market))
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName_hybk_gengduo)
+        public_method.public_screenshot_as_file(picName=picName_hybk_gengduo)
         sleep(1)
         hangqinggengduo_page.zhangfu_btn.click()
         hangqinggengduo_page.zhangfu_btn.click()
@@ -222,7 +220,7 @@ def test_step16(driver):
             market = 'us'
         eval("gangmeigu_page.{0}_btn.click()".format(market))
         picName = '首页-行情-港美股-港美股-港股_77'
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
 
 # ah比价股
 def test_step49(driver):
@@ -315,7 +313,7 @@ def test_step50(driver):
                 fenshikxian_page.fanhui_button.click()
                 eval('gangmeigu_page.{}.click()'.format(gengduo))
                 sleep(1)
-                public_method.public_screenshot_as_file(caseName=caseName, picName=picName_zu_gengduo)
+                public_method.public_screenshot_as_file(picName=picName_zu_gengduo)
                 hangqinggengduo_page.zuixin_btn.click()
                 hangqinggengduo_page.zuixin_btn.click()
                 hangqinggengduo_page.zhangfu_btn.click()

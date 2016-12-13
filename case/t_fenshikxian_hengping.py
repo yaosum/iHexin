@@ -29,41 +29,41 @@ def test_step64_69(driver):
     for arg in args:
         fenshikxian_page.searchtofenshi(arg)
         pic_name = '搜索-{}-分时_2'.format(arg)
-        public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+        public_method.public_screenshot_as_file(picName=pic_name)
 
         # 分时
         fenshikxian_page.fenshi_qiehengping_btn.click()
         pic_name = '搜索-分时-横屏_64'
-        public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+        public_method.public_screenshot_as_file(picName=pic_name)
 
         fenshikxian_hengping_page.hangqingshuju_btn.click()
         pic_name = '搜索-分时-横屏－报价头_65'
-        public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+        public_method.public_screenshot_as_file(picName=pic_name)
         fenshikxian_hengping_page.guanbi_btn.click()
 
         if fenshikxian_hengping_page.mingxi_btn:
             fenshikxian_hengping_page.mingxi_btn.click()
             pic_name = '搜索-分时-横屏-明细tab_67'
-            public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
 
         if fenshikxian_hengping_page.chengjiao_btn:
             fenshikxian_hengping_page.chengjiao_btn.click()
             pic_name = '搜索-分时-横屏－成交tab_68'
-            public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
 
         if fenshikxian_hengping_page.wudang_btn:
             fenshikxian_hengping_page.wudang_btn.click()
             pic_name = '搜索-分时-横屏－5档tab_69'
-            public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
         else:
             fenshikxian_hengping_page.shidang_btn.click()
             pic_name = '搜索-分时-横屏-10档tab_69'
-            public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+            public_method.public_screenshot_as_file(picName=pic_name)
             if fenshikxian_hengping_page.wubaidang_btn:
                 fenshikxian_hengping_page.wubaidang_btn.click()
                 sleep(1)
                 pic_name = '搜索-分时-横屏－500档_69'
-                public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+                public_method.public_screenshot_as_file(picName=pic_name)
                 assert wubaidang_page.wubaidang_title
                 wubaidang_page.fanhui_btn.click()
         if fenshikxian_hengping_page.x_btn:
@@ -82,7 +82,7 @@ def test_step69_70(driver):
 
     fenshikxian_page.shezhi_btn.click()
     pic_name = '搜索-分时-k线-设置_35'
-    public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+    public_method.public_screenshot_as_file(picName=pic_name)
 
     fenshikxian_zhibiao_page.tianjiazhibiao_btn.click()
     if fenshikxian_zhibiao_page.title.text == u'添加指标':
@@ -98,7 +98,7 @@ def test_step69_70(driver):
     fenshikxian_page.kLine_qiehengping_btn.click()
     sleep(1)
     pic_name = '搜索-分时-k线－横屏_70'
-    public_method.public_screenshot_as_file(caseName=case_name, picName=pic_name)
+    public_method.public_screenshot_as_file(picName=pic_name)
 
     # k线
     fenshikxian_hengping_page.hangqingshuju_btn.click()

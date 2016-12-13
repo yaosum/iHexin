@@ -9,7 +9,6 @@ from pages.public.public_method import PublicMethod
 from pages.zixuangu.kanZhulizijin_page import KanZhulizijinPage
 from time import sleep
 
-caseName = '20161208'
 #进入板块
 def test_step1(driver):
     public_page = PublicPage(driver)
@@ -21,7 +20,7 @@ def test_step1(driver):
     public_page.hangqing_button.click()
     hangqing_page.bankuai_btn.click()
     picName = ' 行情-板块_3'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert bankuai_page.hy_histogram_title
 
 #板块柱状图
@@ -39,17 +38,17 @@ def test_step2(driver):
 
     bankuai_page.hy_histogram_gengduo.click()
     picName = '板块-行业主力净流入更多_4'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert kanzhulizijin_page.hangye_btn
     gengduo_page.fanhui_btn.click()
     assert bankuai_page.hy_histogram_title
     bankuai_page.glide_left()
     picName = '板块-柱状图左滑概念_6'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert bankuai_page.gn_histogram_title
     bankuai_page.gn_histogram_gengduo.click()
     picName = '板块-概念主力净流入更多_7'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert kanzhulizijin_page.gainian_btn
     gengduo_page.fanhui_btn.click()
     bankuai_page.glide_left()
@@ -100,7 +99,7 @@ def test_step15(driver):
             fenshikxian_page.fanhui_button.click()
         eval('bankuai_page.{0}_gengduo_btn.click()'.format(name))
         picName = '板块-{}_'.format(gengduo)
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
         hangqing_gengduo_page.hq_up()
         hangqing_gengduo_page.hq_down()
         hangqing_gengduo_page.hq_down()

@@ -14,7 +14,6 @@ from pages.shouye.home_page import HomePage
 from pages.public.public_method import PublicMethod
 from time import sleep
 
-caseName = '20161208'
 def test_step1(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -28,7 +27,7 @@ def test_step1(driver):
     assert hangqing_page.hushen_btn
     hangqing_page.hushen_btn.click()
     picName = '行情-沪深_3'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert hushen_page.hushen_title
 
 # 第一行指数单元格
@@ -70,7 +69,7 @@ def test_step26(driver):
 
     #hushen_page.zhangtinfenxi_btn.click()
     picName = '沪深-涨停分析_26'
-    public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+    public_method.public_screenshot_as_file(picName=picName)
     assert zhangtinfenxi_page.zhangtinfenxi_title
     assert zhangtinfenxi_page.sousuo_btn
     zhangtinfenxi_page.fanhui_btn.click()
@@ -103,7 +102,7 @@ def test_step29(driver):
 
         eval('hushen_page.{0}_gengduo_btn.click()'.format(name))
         picName = '行情-{}_'.format(gengduo)
-        public_method.public_screenshot_as_file(caseName=caseName, picName=picName)
+        public_method.public_screenshot_as_file(picName=picName)
 
         hangqing_gengduo_page.hq_left()
         hangqing_gengduo_page.hq_right()
