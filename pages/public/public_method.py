@@ -17,13 +17,18 @@ class PublicMethod(PageObject):
         PageObject.__init__(self, webdriver, root_uri=None)
         file_path = GetProjectPath.getProjectPath() + '/runConf.txt'
         if not os.path.isfile(file_path):
-            file = open(file_path,'w')
-            file.write('9999999')
+            file = open(file_path, 'w')
+            file.write('9999999\n0')
             file.close()
-            self.run_case_id = "9999999"
         else:
             file = open(file_path, 'r')
-            msg = file.read()
+            i = 0
+            for line in file.readlines():
+                if i == 0:
+                    line = line.strip('\n')  # 去掉换行符
+                    msg = line
+                    break
+                i = i + 1
             file.close()
             self.run_case_id = msg
 
@@ -66,7 +71,6 @@ class PublicMethod(PageObject):
         screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
         screen_time = time.strftime('%H:%M:%S')
         path = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + self.run_case_id
-        print("runcaseid"+self.run_case_id)
         if os.path.isdir(path):
             pass
         else:

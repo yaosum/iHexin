@@ -12,6 +12,7 @@ import time
 from get_project_path import GetProjectPath
 import shutil
 from shutil import copy
+from function.hexin_email import HexinEmail
 
 ROOT_PATH = os.path.split(os.path.realpath(__file__))[0]
 sys.path.append(ROOT_PATH)
@@ -143,7 +144,7 @@ def pytest_runtest_makereport(item, call):
     report.extra = extra
 
 
-
+################################  以下是自定义方法  #######################################
 def _gather_screenshot(item, report, driver, summary, extra):
     try:
         screenshot = driver.get_screenshot_as_base64()
@@ -175,37 +176,55 @@ def _gather_page_source(item, report, driver, summary, extra):
 """
 def uploadResult():
     #读取运行用例id
+    sign = "0"
     run_case_id = "9999999"
     file_path = GetProjectPath.getProjectPath() + '/runConf.txt'
     if not os.path.isfile(file_path):
         file = open(file_path, 'w')
-        file.write('9999999')
+        file.write('9999999\n0')
         file.close()
     else:
         file = open(file_path, 'r')
-        msg = file.read()
+        i = 0
+        for line in file.readlines():
+            if i == 0:
+                line = line.strip('\n') #去掉换行符
+                msg = line
+            elif i == 1:
+                line = line.strip('\n') #去掉换行符
+                sign = line
+                break
+            i = i + 1
         file.close()
         run_case_id = msg
-
     resultWriteToTxt(run_case_id)
 
+    #如果不需要把结果上传服务器地址,和发邮件通知,return
+    if sign != "1":
+        return
+
     #把结果上传服务器地址
+    #-----截图
     screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + run_case_id
     targetDir = '/Library/Webserver/Documents/result/{}/screenshot/'.format(run_case_id)
-
+    print(sourceDir)
+    print(targetDir)
     if not os.path.isdir(targetDir):
         os.makedirs(targetDir)
     for root, dirs, files in os.walk(sourceDir):
         for i in xrange(0, files.__len__()):
             sf = os.path.join(root, files[i])
             copy(sf, targetDir)
+
+    # ------report报告
     htmlSourceDir = GetProjectPath.getProjectPath()+"/report.html"
     htmlTargetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)
     if not os.path.isdir(htmlTargetDir):
         os.makedirs(htmlTargetDir)
     copy(htmlSourceDir,htmlTargetDir)
 
+    #------pytest生成的,与report相关的文件(如:网页的格式,错误截图)
     assertTargetDir = htmlTargetDir + "/assets"
     if not os.path.isdir(assertTargetDir):
         os.makedirs(assertTargetDir)
@@ -220,6 +239,18 @@ def uploadResult():
         elif os.path.isdir(filepath):
             copy(filepath, assertTargetDir)
             shutil.rmtree(filepath, True)
+
+
+    #发邮件通知
+    hexin_email = HexinEmail()
+    #用例统计数据
+    rate_list = []
+    rate_list.append(len(passedList))
+    rate_list.append(len(failedList))
+    rate_list.append(len(rerunList))
+    to_list = ['tianmaotao@myhexin.com']
+    cc_list = ['tianmaotao@myhexin.com']
+    hexin_email.sendEmail(to_list=to_list, cc_list=cc_list, rate_list=rate_list, run_case_id=run_case_id)
 
 """
     统计成功数,失败数,重跑数
@@ -268,9 +299,11 @@ def resultWriteToTxt(case_id):
                 str = line
                 s = line.replace(str, "{}".format(len(rerunList)))
                 file.writelines(s)
+            i = i + 1
         file.close()
 
     targetDir = '/Library/Webserver/Documents/result/{}/report'.format(case_id)
     if not os.path.isdir(targetDir):
         os.makedirs(targetDir)
     copy(file_path, targetDir)
+    os.remove(file_path)
