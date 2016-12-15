@@ -1,5 +1,52 @@
-# iHexin
+##配置和说明
+### 运行脚本前的准备工作
+- 1 配置工程根目录下的runConf.txt文件,其中,第一行是运行的id(目前id是需要自己手工设置,尽量在上一次的基础上加1,后面会想办法自动配置),
+  第二行是表示,是否把跑完后的结果上传服务器地址,如果需要设为1,不需要设为0(平时自己测试的脚本的时候,设置成0,不要把自己的测试脚本的结果传上去)。
+  2 邮箱:
+    现在收件人和抄送人需要手动配置,具体位置在./function/hexin_email.py.
+    注:收件人和抄送人不要写错,如果不存在会导致全部发送失败。
 
+### 文件目录结构
+- 主工程目录试iHexin,里边主要有assets,case,page_object,pages,result这五个目录:
+assets保存的是错误截图,以及一些打印的日子txt,
+case保存的是具体的某个测试用例,如分时k线的测试用例
+page_object里边放的是一些封装的底层类,如:PageObject.py
+pages保存的是具体的某个页面的类
+result保存自动化测试结果
+function存放一些实现功能的类,如:发邮件
+
+run.h(启动文件)和conftest.py是pytest测试框架需要的配置文件。
+
+
+### github管理
+- 主开发分支是Dev-master,以后所有的任务开发都从此分支拉取,经过确认无误后推到次分支,如果一个任务是多人开发,可以先从次分支拉一个开发分支,再各自拉取自己的
+  开发分支,最后合到从Dev-master拉取的分支,没有错误后再合到Dev-master。
+
+### 截图功能
+- 截图功能方法放在PublicMethod类中,方法名为:public_screenshot_as_file,截图会自动把结果存放在相应的结果文件中,只需要调用就可以了。
+  ```
+  图片名字命名规则:
+    时间 + 页面的变化或表现出来的状态 + case的中的具体编号
+    如:
+    1 自选跳转分时k线的操作,对应的截图名字:时间_自选-分时_15.png
+    2 分时页面弹出行情数据窗口,对应的截图名字: 时间_分时-行情数据_5.png
+  截图目录层级结构:
+    根目录-->result-->case运行的日期-->运行caseid-->截图
+   ```
+   
+### 结果上传服务器功能
+- 自动化跑完后,脚本会自动把结果上传服务器地址(/资源库/WebServer/Documents/result),
+  包括截图(/Library/WebServer/Documents/result/具体的运行caseid/screenshot),
+  report报告(/Library/WebServer/Documents/result/1000003/report),
+  统计成功数,失败数,重跑数的statistics.txt文件(/Library/WebServer/Documents/result/1000003/report)
+  
+  具体代码实现:conftest.py-->def uploadResult()方法
+
+### 命名规则
+1. 页面:对于有一个新page生成需创建一个新page,优先使用标题栏命名,若标题会改变则根据页面功能进行命名
+2. 元素:数字开头的元素统一将数字放在末尾
+
+##一些常用的知识点、
 unittest
 ```
 self.driver.swipe(start_x=279, start_y=205, end_x=88, end_y=205, duration=500)
@@ -9,7 +56,6 @@ pytest_POM
 ```
 driver.swipe(start_x=300, start_y=239, end_x=39, end_y=239, duration=500)
 ```
-### 手势源码参考
 
 放大
 ```
@@ -113,9 +159,6 @@ print len(self.driver.find_elements_by_xpath("//UIATableCell[@name]"))
 			print '该股票已添加过'
 		tianjiazixuan_page.qingchuwenben_button.click()
 ```
-### 命名规则
-1. 页面:对于有一个新page生成需创建一个新page,优先使用标题栏命名,若标题会改变则根据页面功能进行命名
-2. 元素:数字开头的元素统一将数字放在末尾
 
 ### [三种等待时间的设置方法](https://testerhome.com/topics/2576#reply17)
 - 第一种 sleep()： 设置固定休眠时间。 python 的 time 包提供了休眠方法 sleep() ， 导入 time包后就可以使用 sleep()进行脚本的执行过程进行休眠。
@@ -151,29 +194,4 @@ until_not(method, message=’’)
 lambda
 lambda 提供了一个运行时动态创建函数的方法。
 ```
-### 文件目录结构
-- 主工程目录试iHexin,里边主要有assets,case,page_object,pages,result这五个目录:
-assets保存的是错误截图,以及一些打印的日子txt,
-case保存的是具体的某个测试用例,如分时k线的测试用例
-page_object里边放的是一些封装的底层类,如:PageObject.py
-pages保存的是具体的某个页面的类
-result保存自动化测试结果
-
-run.h和conftest.py是pytest测试框架需要的配置文件。
-
-
-### github管理
-- 主开发分支是Dev-master,以后所有的任务开发都从此分支拉取,经过确认无误后推到次分支,如果一个任务是多人开发,可以先从次分支拉一个开发分支,再各自拉取自己的
-  开发分支,最后合到从Dev-master拉取的分支,没有错误后再合到Dev-master。
-
-### 截图功能
-- 截图功能方法放在PublicMethod类中,方法名为:public_screenshot_as_file,截图会自动把结果存放在相应的结果文件中,只需要调用就可以了。
-  ```
-  图片名字命名规则:
-    时间 + 页面的变化或表现出来的状态 + case的中的具体编号
-    如:
-    1 自选跳转分时k线的操作,对应的截图名字:时间_自选-分时_15.png
-    2 分时页面弹出行情数据窗口,对应的截图名字: 时间_分时-行情数据_5.png
-  截图目录层级结构:
-    根目录-->result-->case运行的日期-->具体case的名字-->截图
-   ```
+  
