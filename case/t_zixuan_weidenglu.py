@@ -461,14 +461,22 @@ def test_step69(driver):
     zixuanguxinwen_page.hx_upglide()
     zixuanguxinwen_page.hx_downglide()
     zixuanguxinwen_page.hx_downglide()
-    zixuanguxinwen_page.cell01.click()
-    zixun_page.fanhui_btn.click()
+    num = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
+    if num > 0:
+        zixuanguxinwen_page.cell01.click()
+        zixun_page.fanhui_btn.click()
+    else:
+        print("自选-->新闻/研报-->新闻列表为空!")
     zixuanguxinwen_page.yanbao_btn.click()
     zixuanguxinwen_page.hx_upglide()
     zixuanguxinwen_page.hx_downglide()
     zixuanguxinwen_page.hx_downglide()
-    zixuanguxinwen_page.cell01.click()
-    zixun_page.fanhui_btn.click()
+    num = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
+    if num > 0:
+        zixuanguxinwen_page.cell01.click()
+        zixun_page.fanhui_btn.click()
+    else:
+        print("自选-->新闻/研报-->研报列表为空!")
     zixuanguxinwen_page.fanhui_btn.click()
 
 # 自选－>自选股公告

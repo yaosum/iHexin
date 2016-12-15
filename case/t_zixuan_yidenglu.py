@@ -44,9 +44,9 @@ def test_delete(driver):
     public_page.zixuan_button.click()
     optional_page.bianji_button.click()
     lenth = public_method.public_getlength()
-    for n in range(1, lenth+1):
+    for n in range(lenth):
         cell_text = driver.find_element_by_xpath(
-            '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{0}]/UIAStaticText[1]'.format(n))
+            '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
         if cell_text.text == u"同花顺":
             pass
         elif cell_text.text == u"上证指数":
@@ -450,14 +450,22 @@ def test_step78_88(driver):
     zixuanguxinwen_page.hx_upglide()
     zixuanguxinwen_page.hx_downglide()
     zixuanguxinwen_page.hx_downglide()
-    zixuanguxinwen_page.cell01.click()
-    zixun_page.fanhui_btn.click()
+    num = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
+    if num > 0:
+        zixuanguxinwen_page.cell01.click()
+        zixun_page.fanhui_btn.click()
+    else:
+        print("自选-->新闻/研报-->新闻列表为空!")
     zixuanguxinwen_page.yanbao_btn.click()
     zixuanguxinwen_page.hx_upglide()
     zixuanguxinwen_page.hx_downglide()
     zixuanguxinwen_page.hx_downglide()
-    zixuanguxinwen_page.cell01.click()
-    zixun_page.fanhui_btn.click()
+    num = len(driver.find_elements_by_xpath("//UIATableCell[@name]"))
+    if num > 0:
+        zixuanguxinwen_page.cell01.click()
+        zixun_page.fanhui_btn.click()
+    else:
+        print("自选-->新闻/研报-->研报列表为空!")
     zixuanguxinwen_page.fanhui_btn.click()
 
 #自选股公告

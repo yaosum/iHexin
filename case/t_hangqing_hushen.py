@@ -67,7 +67,7 @@ def test_step26(driver):
     public_page.hangqing_button.click()
     hangqing_page.hushen_btn.click()
 
-    #hushen_page.zhangtinfenxi_btn.click()
+    hushen_page.zhangtinfenxi_btn.click()
     picName = '沪深-涨停分析_26'
     public_method.public_screenshot_as_file(picName=picName)
     assert zhangtinfenxi_page.zhangtinfenxi_title

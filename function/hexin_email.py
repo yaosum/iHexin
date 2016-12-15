@@ -17,32 +17,30 @@ class HexinEmail(object):
         sm.sendmail(from_addr, add_cc, msg.as_string())
     """
     def sendEmail(self, to_list, cc_list, rate_list, run_case_id):
-        content = "你好:<br />"
-        content = content + "&nbsp;&nbsp;&nbsp;" + "运行用例ID:" + run_case_id + '<br />'
+        content = "&nbsp;&nbsp;&nbsp;" + "run_case_ID:&nbsp;" + run_case_id + '<br />'
         #用例统计内容拼接
         num = 0
         for n in rate_list:
             num = num + n
-        content = content+ "&nbsp;&nbsp;&nbsp;" +'总用例数:{}'.format(num) + '<br />'
-        tem_list = ['通过用例数:', '失败用例数:', '重跑用例数:']
+        content = content+ "&nbsp;&nbsp;&nbsp;" +'total:&nbsp;{}'.format(num) + '<br />'
+        tem_list = ['passed:&nbsp;', 'failed:&nbsp;', 'rerun:&nbsp;']
         if len(rate_list) > 0:
             i = 0
             for rate in rate_list:
-                content = content + "&nbsp;&nbsp;&nbsp;" + tem_list[i] + "{}".format(rate) + "<br />"
+                content = content + "&nbsp;&nbsp;&nbsp;" + tem_list[i] + "{}".format(rate) + "&nbsp;&nbsp;&nbsp;"
                 i = i + 1
 
         #获取本地的ip地址
         localIP = socket.gethostbyname(socket.gethostname())
-        content = content + '<br />' + "详情请访问:" + "http://" + localIP + "/"
+        content = content + '<br /><br />' + "URL:&nbsp&nbsp" + "http://" + localIP + "/"
 
         #签名
-        autograph = '<br />-------------------------------------<br />' \
-                    '该邮件由自动化脚本跑完后自动发送!<br />' \
-                    '请勿回复!<br />' \
-                    '有问题请找：田茂涛<br />' \
-                    '部门：移动互联网事业部iOS组<br />' \
-                    '电话：13685759479<br />' \
-                    '邮箱：tianmaotao@myhexin.com<br />'
+        autograph = '<br />-------------------------------------<br />/*<br />' \
+                    '*If you have any problems, please ask for tianmaotao. <br />' \
+                    '*tel: 13685759479<br />' \
+                    '*email: tianmaotao@myhexin.com<br />' \
+                    '*This email is automatically sent by the script.<br />' \
+                    '*Do not reply!<br />*/' \
 
         # 定义一个要提交的数据数组(字典)
         data = {}

@@ -224,7 +224,7 @@ def test_step86(driver):
             fenshikxian_page.xinwen_tab_btn.click()
             pic_name = '搜索-分时-新闻_4'
             public_method.public_screenshot_as_file(picName=pic_name)
-            if fenshikxian_page.zixun_cell01:
+            if fenshikxian_page.zixun_cell01 != None:
                 title = fenshikxian_page.zixun_cell01_title.text
                 fenshikxian_page.zixun_cell01.click()
                 sleep(1)
@@ -254,6 +254,8 @@ def test_step86(driver):
 
                 fenshikxian_page.hkus_zixun_celllast_click()
                 zixun_page.fanhui_btn.click()
+            else:
+                print("{}:分时-->新闻-->新闻列表为空".format(arg))
         else:
             print arg, "这只股票没有新闻tab"
 
@@ -262,7 +264,7 @@ def test_step86(driver):
             fenshikxian_page.gonggao_tab_btn.click()
             pic_name = '搜索-{}-分时-公告_91'.format(arg)
             public_method.public_screenshot_as_file(picName=pic_name)
-            if fenshikxian_page.chakangonggao_cell01:
+            if fenshikxian_page.chakangonggao_cell01 != None:
                 fenshikxian_page.chakangonggao_cell01.click()
                 sleep(2)
                 pic_name = '搜索-{}-分时-公告-查看公告资讯详情1_15'.format(arg)
@@ -272,6 +274,8 @@ def test_step86(driver):
                 assert zixun_page.shoucang_btn
                 assert zixun_page.fenxiang_btn
                 zixun_page.fanhui_btn.click()
+            else:
+                print("{}:分时-->公告-->公告列表为空".format(arg))
 
             if fenshikxian_page.gonggao_cell01:
                 title = fenshikxian_page.gonggao_cell01_title.text
@@ -376,7 +380,7 @@ def test_step86(driver):
             fenshikxian_page.yanbao_tab_btn.click()
             pic_name = '搜索-{}-分时-研报_55'.format(arg)
             public_method.public_screenshot_as_file(picName=pic_name)
-            if fenshikxian_page.zixun_cell01:
+            if fenshikxian_page.zixun_cell01 != None:
                 title = fenshikxian_page.zixun_cell01_title
                 fenshikxian_page.zixun_cell01.click()
                 sleep(1)
@@ -393,6 +397,8 @@ def test_step86(driver):
 
                 fenshikxian_page.zixun_celllast_click()
                 zixun_page.fanhui_btn.click()
+            else:
+                print("{}:分时-->研报-->研报列表为空".format(arg))
         else:
             print arg, "这只股票没有研报tab"
 

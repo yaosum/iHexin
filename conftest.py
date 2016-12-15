@@ -51,7 +51,6 @@ def pytest_addoption(parser):
     parser.addoption("--bundle_id", help = "bundleId of application")
     parser.addoption("--app_path", help="path of app file")
 
-
 @pytest.fixture(scope = 'session')
 def platform_name(request):
     return request.config.getoption('platform_name')
@@ -197,13 +196,14 @@ def uploadResult():
             i = i + 1
         file.close()
         run_case_id = msg
-    resultWriteToTxt(run_case_id)
 
     #如果不需要把结果上传服务器地址,和发邮件通知,return
     if sign != "1":
         return
 
     #把结果上传服务器地址
+    #-----成功,失败等数据
+    resultWriteToTxt(run_case_id)
     #-----截图
     screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + run_case_id
@@ -248,8 +248,9 @@ def uploadResult():
     rate_list.append(len(passedList))
     rate_list.append(len(failedList))
     rate_list.append(len(rerunList))
-    to_list = ['tianmaotao@myhexin.com']
-    cc_list = ['tianmaotao@myhexin.com']
+    #注意:如果收件人和抄送人邮件拼错,会导致发送全部失败
+    to_list = ["yaosumei@myhexin.com"]
+    cc_list = ["huguozhu@myhexin.com","xiaoshaoqing@myhexin.com","liuhaoyu@myhexin.com","yecuiqing@myhexin.com","zhaojunchuan@myhexin.com","tianmaotao@myhexin.com"]
     hexin_email.sendEmail(to_list=to_list, cc_list=cc_list, rate_list=rate_list, run_case_id=run_case_id)
 
 """
@@ -282,7 +283,7 @@ def resultWriteToTxt(case_id):
     if os.path.isfile(file_path):
         file.write("{}\n".format(len(passedList)))
         file.write("{}\n".format(len(failedList)))
-        file.write("{}\n".format(len(rerunList)))
+        file.write("{}\n".format(len(rerunList) - len(failedList)))
         file.close()
     else:
         i=0
