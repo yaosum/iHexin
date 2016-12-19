@@ -4,7 +4,7 @@
 from page_object.appium_page_objects import PageObject
 from get_project_path import GetProjectPath
 from datetime import datetime
-from function.get_configure_data import GetConfigureData
+from function.get_excel_data import GetExcelData
 import time
 import os
 
@@ -16,8 +16,8 @@ class PublicMethod(PageObject):
     def __init__(self, webdriver, root_uri=None):
         #初始化,读取用例id
         PageObject.__init__(self, webdriver, root_uri=None)
-        getConfigureData = GetConfigureData()
-        self.run_case_id = getConfigureData.getRunCaseId()
+        getExcelData = GetExcelData()
+        self.run_case_id = getExcelData.getRunCaseId()
 
     # 处理某些元素点击不了,按其坐标点击
     # element:需要点击的按钮元素

@@ -7,13 +7,14 @@
     注:收件人和抄送人不要写错,如果不存在会导致全部发送失败。
 
 ### 文件目录结构
-- 主工程目录试iHexin,里边主要有assets,case,page_object,pages,result这五个目录:
-assets保存的是错误截图,以及一些打印的日子txt,
-case保存的是具体的某个测试用例,如分时k线的测试用例
-page_object里边放的是一些封装的底层类,如:PageObject.py
-pages保存的是具体的某个页面的类
-result保存自动化测试结果
-function存放一些实现功能的类,如:发邮件
+- 主工程目录试iHexin,里边主要有assets,case,page_object,pages,result,function,temFile这七个目录:
+1 assets保存的是错误截图,以及一些打印的日子txt,
+2 case保存的是具体的某个测试用例,如分时k线的测试用例
+3 page_object里边放的是一些封装的底层类,如:PageObject.py
+4 pages保存的是具体的某个页面的类
+5 result保存自动化测试结果
+6 function存放一些实现功能的类,如:发邮件
+7 temFile存放一些运行过程中产生的中间数据文件。如:statistics.txt:统计成功数,失败数,重跑数;pytestConfigure.txt:保存从excel文件中读出来的关于pytest的配置信息,并自动组合成pytest运行的命令字符串。
 
 run.h(启动文件)和conftest.py是pytest测试框架需要的配置文件。
 

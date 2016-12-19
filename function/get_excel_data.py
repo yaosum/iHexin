@@ -4,7 +4,7 @@
 import xlrd
 import types
 
-class GetConfigureData(object):
+class GetExcelData(object):
     """
     功能:读取xls文件的内容
     参数:
@@ -24,12 +24,15 @@ class GetConfigureData(object):
         nrows = sh.nrows
         # 获取列数
         ncols = sh.ncols
-        if row <= nrows and col <= ncols:
-            # 获取指定行列数据
-            cell_A1 = sh.cell(row, col).value
-            return cell_A1
-        else:
-            return ""
+        try:
+            if row <= nrows and col <= ncols:
+                # 获取指定行列数据
+                cell_A1 = sh.cell(row, col).value
+                return cell_A1
+            else:
+                return ''
+        except:
+            return ''
 
     """
     功能:获取运行用例的ID
@@ -96,3 +99,40 @@ class GetConfigureData(object):
             str = "{}".format(tep)
             result.append(str)
         return result
+
+    """
+    功能:获取pytest相关的配置信息。如:bundleid,手机型号,手机系统。。。。
+    """
+    def pytestConfigure(self):
+        # 取出来的是float转换字符串
+        f = self.readXls(row=6, col=1)
+        if type(f) is types.FloatType:
+            s = '{}'.format(f)
+        else:
+            s = f
+        if s != "":
+            platform_version = ' --platform_version=\'' + s + '\''
+        if self.readXls(row=7, col=1) != "":
+            device_name = ' --device_name=\'' + self.readXls(row=7, col=1) + '\''
+        else:
+            device_name = ''
+        if self.readXls(row=8, col=1) != "":
+            device_udid = ' --device_udid=\'' + self.readXls(row=8, col=1) + '\''
+        else:
+            device_udid = ''
+        if self.readXls(row=9, col=1) != "":
+            bundle_id = ' --bundle_id=\'' + self.readXls(row=9, col=1) + '\''
+        else:
+            bundle_id = ''
+        if self.readXls(row=10, col=1) != "":
+            repeat = ' --count=' + "{}".format(int(self.readXls(row=10, col=1)))
+        else:
+            repeat = ''
+        if self.readXls(row=11, col=1) != '':
+            rerun =' --rerun=' + "{}".format(int(self.readXls(row=11, col=1)))
+        else:
+            rerun = ''
+        #pytest启动的命令字符串
+        run_str = 'py.test --platform_name=\'iOS\' --junitxml=report.xml'+ platform_version + device_udid + device_name + bundle_id + rerun + repeat
+        print(run_str)
+        return run_str

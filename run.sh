@@ -1,17 +1,8 @@
 #!/usr/bin/env bash
-py.test \
-    --platform_name='iOS' \
-    --platform_version='9.3' \
-    --device_name='iPhone 6' \
-    --device_udid='6d8f1f61fe31d1f74c18c63449fbeedd0e70b59f' \
-    --bundle_id='cn.com.10jqka.iHexinFee' \
-    --html=report.html \
-    --rerun 1 \
-    --junitxml=report.xml \
+#把pytest的配置信息从excel中读到pytestConfigure.txt中。
+python -c 'from function.get_pytest_configure import get_pytest_configure; get_pytest_configure()'
 
-
-# 57e95712fdd52a1fce030ed46808f1a98e9b2f5e
-
-# 23f7c26d8cd5097555991644f657ba515401ebac
-
+#从pytestConfigure.txt把pytest的命令内容读出来
+read number </Users/Hexin/Desktop/iHexin/temFile/pytestConfigure.txt
+eval $number
 #ios_webkit_debug_proxy -c 6d8f1f61fe31d1f74c18c63449fbeedd0e70b59f:27753 -d

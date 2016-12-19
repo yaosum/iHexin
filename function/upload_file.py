@@ -7,7 +7,7 @@ import shutil
 from shutil import copy
 from hexin_email import HexinEmail
 from ..get_project_path import GetProjectPath
-from get_configure_data import GetConfigureData
+from get_excel_data import GetExcelData
 
 class UploadFile(object):
     """
@@ -15,10 +15,10 @@ class UploadFile(object):
     """
     def uploadResult(self, passedList, failedList, rerunList):
         # 读取运行用例id
-        getConfigureData = GetConfigureData()
-        run_case_id = getConfigureData.getRunCaseId()
-        uploadFileFlag = getConfigureData.getUploadFileFlag()
-        sendEmailFlag = getConfigureData.getSendEmailFlag()
+        getExcelData = GetExcelData()
+        run_case_id = getExcelData.getRunCaseId()
+        uploadFileFlag = getExcelData.getUploadFileFlag()
+        sendEmailFlag = getExcelData.getSendEmailFlag()
 
         # 如果不需要把结果上传服务器地址,和发邮件通知,return
         if uploadFileFlag == "1":
@@ -68,8 +68,8 @@ class UploadFile(object):
             rate_list.append(len(failedList))
             rate_list.append(len(rerunList))
             # 注意:如果收件人和抄送人邮件拼错,会导致发送全部失败
-            to_list = getConfigureData.getToList()
-            cc_list = getConfigureData.getCcList()
+            to_list = getExcelData.getToList()
+            cc_list = getExcelData.getCcList()
             # cc_list = ["huguozhu@myhexin.com","xiaoshaoqing@myhexin.com","liuhaoyu@myhexin.com","yecuiqing@myhexin.com","zhaojunchuan@myhexin.com","tianmaotao@myhexin.com"]
             hexin_email.sendEmail(to_list=to_list, cc_list=cc_list, rate_list=rate_list, run_case_id=run_case_id)
 
@@ -77,7 +77,7 @@ class UploadFile(object):
         把统计的成功数,失败数,重跑数数据写入txt文件并上传服务器地址
     """
     def resultWriteToTxt(self, run_case_id, passedList, failedList, rerunList):
-        file_path = GetProjectPath.getProjectPath() + '/statistics.txt'
+        file_path = GetProjectPath.getProjectPath() + '/temFile/statistics.txt'
         file = open(file_path, 'w')
         if os.path.isfile(file_path):
             file.write("{}\n".format(len(passedList)))
@@ -106,4 +106,3 @@ class UploadFile(object):
         if not os.path.isdir(targetDir):
             os.makedirs(targetDir)
         copy(file_path, targetDir)
-        os.remove(file_path)
