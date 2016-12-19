@@ -26,6 +26,8 @@ class UploadFile(object):
             # -----成功,失败等数据
             self.resultWriteToTxt(run_case_id=run_case_id, passedList=passedList, failedList=failedList,
                                   rerunList=rerunList)
+            # -----运行用例的备注信息,也就是运行的模块
+            self.readModularCaseTxt(run_case_id=run_case_id)
             # -----截图
             screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
             sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + run_case_id
@@ -100,6 +102,24 @@ class UploadFile(object):
                     s = line.replace(str, "{}".format(len(rerunList)))
                     file.writelines(s)
                 i = i + 1
+            file.close()
+
+        targetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)
+        if not os.path.isdir(targetDir):
+            os.makedirs(targetDir)
+        copy(file_path, targetDir)
+
+    def readModularCaseTxt(self, run_case_id):
+        getExcelData = GetExcelData()
+        str = getExcelData.readModularCase()
+        file_path = GetProjectPath.getProjectPath() + '/temFile/modularCase.txt'
+        file = open(file_path, 'w')
+        if os.path.isfile(file_path):
+            file.write("{}\n".format(str))
+            file.close()
+        else:
+            file.truncate()
+            file.write("{}\n".format(str))
             file.close()
 
         targetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)

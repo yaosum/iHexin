@@ -136,3 +136,13 @@ class GetExcelData(object):
         run_str = 'py.test --platform_name=\'iOS\' --junitxml=report.xml'+ platform_version + device_udid + device_name + bundle_id + rerun + repeat
         print(run_str)
         return run_str
+
+    """
+    功能:获取运行的用例包括那些模块的备注信息
+    """
+    def readModularCase(self):
+        str = self.readXls(row=12, col=1)
+        if str != "":
+            return str
+        else:
+            return "没有填写"
