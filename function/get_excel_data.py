@@ -112,6 +112,8 @@ class GetExcelData(object):
             s = f
         if s != "":
             platform_version = ' --platform_version=\'' + s + '\''
+        else:
+            platform_version = ''
         if self.readXls(row=7, col=1) != "":
             device_name = ' --device_name=\'' + self.readXls(row=7, col=1) + '\''
         else:
@@ -133,12 +135,12 @@ class GetExcelData(object):
         else:
             rerun = ''
         #pytest启动的命令字符串
-        run_str = 'py.test --platform_name=\'iOS\' --junitxml=report.xml'+ platform_version + device_udid + device_name + bundle_id + rerun + repeat
+        run_str = 'py.test --platform_name=\'iOS\' --html=report.html --junitxml=report.xml'+ platform_version + device_udid + device_name + bundle_id + rerun + repeat
         print(run_str)
         return run_str
 
     """
-    功能:获取运行的用例包括那些模块的备注信息
+
     """
     def readModularCase(self):
         str = self.readXls(row=12, col=1)
