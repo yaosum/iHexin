@@ -188,7 +188,10 @@ class ZhishuPage(PageObject):
         self.qt_cell3_btn1.click()
         fenshikxian_page.fanhui_button.click()
         self.qt_cell3_btn2.click()
-        fenshikxian_page.change_gupiao(8)
+        fenshikxian_page.fanhui_button.click()
+        self.qt_cell3_btn3.click()
+        sleep(1)
+        fenshikxian_page.change_gupiao(9)
         fenshikxian_page.fanhui_button.click()
 
     def up_glide(self):

@@ -16,9 +16,8 @@ from pages.public.public_method import PublicMethod
 from pages.zixuangu.zixun_page import ZixunPage
 import random
 
-
 case_name = 'test_fenshikxian_shuping'
-args = ('BIDU', 'HK0001' )
+args = ('600000', )
 
 # 分时-行情数据
 def test_step1_7(driver):
@@ -201,6 +200,7 @@ def test_step86(driver):
         fenshikxian_page.searchtofenshi(arg)
         pic_name = '搜索-{}-分时_2'.format(arg)
         public_method.public_screenshot_as_file(picName=pic_name)
+
         gupiao_name = fenshikxian_page.title_staText.text
         print gupiao_name
         fenshikxian_page.hx_up()
@@ -264,18 +264,52 @@ def test_step86(driver):
             fenshikxian_page.gonggao_tab_btn.click()
             pic_name = '搜索-{}-分时-公告_91'.format(arg)
             public_method.public_screenshot_as_file(picName=pic_name)
-            if fenshikxian_page.chakangonggao_cell01 != None:
-                fenshikxian_page.chakangonggao_cell01.click()
-                sleep(2)
-                pic_name = '搜索-{}-分时-公告-查看公告资讯详情1_15'.format(arg)
-                public_method.public_screenshot_as_file(picName=pic_name)
 
-                # 港美股没有收藏和分享
-                assert zixun_page.shoucang_btn
-                assert zixun_page.fenxiang_btn
-                zixun_page.fanhui_btn.click()
+            if (arg[0] == u"H" and arg[1] == u"K") or (arg[0] == u"h" and arg[1] == u"k"):
+                if fenshikxian_page.gonggao_cell01:
+                    fenshikxian_page.gonggao_cell01.click()
+                    sleep(2)
+                    pic_name = '搜索-{}-分时-公告-资讯详情1_15'.format(arg)
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    zixun_page.fanhui_btn.click()
+                elif fenshikxian_page.hkus_gonggao_cell01:
+                    fenshikxian_page.hkus_gonggao_cell01.click()
+                    sleep(1)
+                    pic_name = '搜索-分时-公告-资讯详情1_15'
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    zixun_page.fanhui_btn.click()
+                else:
+                    print "{}:分时-->公告-->公告列表为空".format(arg)
             else:
-                print("{}:分时-->公告-->公告列表为空".format(arg))
+                if fenshikxian_page.chakangonggao_cell01 != None:
+                    fenshikxian_page.chakangonggao_cell01.click()
+                    sleep(2)
+                    pic_name = '搜索-{}-分时-公告-查看公告资讯详情1_15'.format(arg)
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    # 美股没有收藏和分享
+                    # assert zixun_page.shoucang_btn
+                    # assert zixun_page.fenxiang_btn
+                    zixun_page.fanhui_btn.click()
+                else:
+                    print "{}:分时-->公告-->没有查看公告按钮".format(arg)
+                if fenshikxian_page.gonggao_cell01:
+                    title = fenshikxian_page.gonggao_cell01_title.text
+                    fenshikxian_page.gonggao_cell01.click()
+                    sleep(2)
+                    pic_name = '搜索-{}-分时-公告-资讯详情1_15'.format(arg)
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    assert zixun_page.shoucang_btn
+                    # assert zixun_page.fenxiang_btn
+                    # assert zixun_page.xiangqing_title.text == title
+                    zixun_page.fanhui_btn.click()
+                elif fenshikxian_page.hkus_gonggao_cell01:
+                    fenshikxian_page.hkus_gonggao_cell01.click()
+                    sleep(1)
+                    pic_name = '搜索-分时-公告-资讯详情1_15'
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    zixun_page.fanhui_btn.click()
+                else:
+                    print "{}:分时-->公告-->公告列表为空".format(arg)
 
             if fenshikxian_page.gonggao_cell01:
                 title = fenshikxian_page.gonggao_cell01_title.text
@@ -283,9 +317,10 @@ def test_step86(driver):
                 sleep(2)
                 pic_name = '搜索-{}-分时-公告-资讯详情1_15'.format(arg)
                 public_method.public_screenshot_as_file(picName=pic_name)
-                assert zixun_page.shoucang_btn
-                assert zixun_page.fenxiang_btn
-                assert zixun_page.xiangqing_title.text == title
+                #
+                # assert zixun_page.shoucang_btn
+                # assert zixun_page.fenxiang_btn
+                # assert zixun_page.xiangqing_title.text == title
                 zixun_page.fanhui_btn.click()
             elif fenshikxian_page.hkus_gonggao_cell01:
                 fenshikxian_page.hkus_gonggao_cell01.click()
@@ -293,82 +328,98 @@ def test_step86(driver):
                 pic_name = '搜索-分时-公告-资讯详情1_15'
                 public_method.public_screenshot_as_file(picName=pic_name)
                 zixun_page.fanhui_btn.click()
+            else:
+                print "{}:分时-->公告-->公告列表为空".format(arg)
         else:
             print arg, "这只股票没有公告tab"
-
 
         # 简况（F10）
         if fenshikxian_page.jiankuang_tab_btn:
             fenshikxian_page.jiankuang_tab_btn.click()
-            sleep(1)
+            sleep(2)
             pic_name = '搜索-{}-分时-简况_94'.format(arg)
             public_method.public_screenshot_as_file(picName=pic_name)
-
-            if fenshikxian_page.hk_jiankuang_cell01:    # 港美股
-
-                if (arg[0] == u"H" and arg[1] == u"K") or (arg[0] == u"h" and arg[1] == u"k"):
-                    hk_jiankuang_list = ("hk_jiankuang_cell01", "hk_jiankuang_cell02", "hk_jiankuang_cell03",
-                                         "hk_jiankuang_cell04")
-                    for hk_jk_name in hk_jiankuang_list:
-                        print "港股简况***********", hk_jk_name
-                        eval("fenshikxian_page.{}.click()".format(hk_jk_name))
-                        sleep(2)
-                        pic_name = '搜索-{}-分时-简况-{}-更多_94'.format(arg, hk_jk_name)
-                        public_method.public_screenshot_as_file(picName=pic_name)
-                        zixun_page.jkxq_fanhui_btn.click()
-                else:
-                    us_jiankuang_list = ("us_jiankuang_cell01", "us_jiankuang_cell02", )
-                    for us_jk_name in us_jiankuang_list:
-                        print "美股简况***********", us_jk_name
-                        eval("fenshikxian_page.{}.click()".format(us_jk_name))
-                        sleep(2)
-                        pic_name = '搜索-{}-分时-简况-{}-更多_94'.format(arg, us_jk_name)
-                        public_method.public_screenshot_as_file(picName=pic_name)
-                        zixun_page.jkxq_fanhui_btn.click()
+            if (arg[0] == u"H" and arg[1] == u"K") or (arg[0] == u"h" and arg[1] == u"k"):  # 港股
+                hk_jiankuang_list = [("hk_jiankuang_cell01", "公司简介"), ("hk_jiankuang_cell02", "主营构成"),
+                                     ("hk_jiankuang_cell03", "主要指标")]
+                for hk_jk_name, name in hk_jiankuang_list:
+                    print "港股简况***********", hk_jk_name, name
+                    eval("fenshikxian_page.{}.click()".format(hk_jk_name))
+                    sleep(2)
+                    pic_name = '搜索-{}-分时-简况-{}-更多_94'.format(arg, hk_jk_name)
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    zixun_page.jkxq_fanhui_btn.click()
+            elif fenshikxian_page.daoqiongsi_staticText:  # 美股
+                us_jiankuang_list = [("us_zhuyaozhibiao_link", "主要指标"), ("us_pingjizonglan_link", "评级总览"),
+                                     ("us_dongshihui_link", "董事会成员"), ("us_gaoguanchengyuan_link", "高管成员"),
+                                     ("us_gudongyanjiu_link", "股东研究"), ("us_zhuyingyewu_link", "主营业务"),
+                                     ("us_fenhongrongzi_link", "分红融资")]
+                n = 0
+                for us_jk_name, name in us_jiankuang_list:
+                    print "美股简况***********", us_jk_name, name
+                    n += 1
+                    if n > 3:
+                        for _ in range(int(n / 3)):
+                            fenshikxian_page.hx_up()
+                    eval("fenshikxian_page.{}.click()".format(us_jk_name))
+                    sleep(2)
+                    pic_name = '搜索-{}-分时-简况-{}-更多_94'.format(arg, us_jk_name)
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    zixun_page.jkxq_fanhui_btn.click()
             else:
-                jiankuang_list = [("caiwu_cell01", "主要指标详细"), ("caiwu_cell02", "公司概念详细/评级总览"),
-                                  ("caiwu_cell03", "最新动态详情/董事会成员"), ("caiwu_cell04", "公司资料详细/高管成员")]
+                """
+                jiankuang_list = [("zyzb_link", "主要指标"), ("gntc_link", "概念题材"), ("dstx_link", "大事提醒"),
+                                  ("gszl_link", "公司资料"), ("gsgg_link", "公司高管"), ("gbgd_link", "股本股东"),
+                                  ("zlcc_link", "主力持仓"), ("fhrz_link", "分红融资"), ("hydb_link", "行业对比")]
+                """
+                jiankuang_list = [("zyzb_link", "主要指标"), ("gntc_link", "概念题材"), ("dstx_link", "大事提醒"),
+                                  ("gszl_link", "公司资料"), ("gsgg_link", "公司高管")]
+                n = 0
                 for jk_name, name in jiankuang_list:
-                    if "fenshikxian_page.{}".format(jk_name):
-                        print "沪深AB股、港美股（审核）简况***********", jk_name, name
-                        eval("fenshikxian_page.{}.click()".format(jk_name))
-                        sleep(2)
-                        pic_name = '搜索-{}-分时-简况-{}-更多_27'.format(arg, name)
-                        public_method.public_screenshot_as_file(picName=pic_name)
-                        zixun_page.jkxq_fanhui_btn.click()
+                    n += 1
+                    if n > 3:
+                        for _ in range(int(n / 3)):
+                            fenshikxian_page.hx_up()
+                    print "沪深AB股简况***********", jk_name, name
+                    eval("fenshikxian_page.{}.click()".format(jk_name))
+                    sleep(2)
+                    pic_name = '搜索-{}-分时-简况-{}-更多_27'.format(arg, name)
+                    public_method.public_screenshot_as_file(picName=pic_name)
+                    zixun_page.jkxq_fanhui_btn.click()
         else:
             print arg, "这只股票没有简况（F10）tab"
         if not fenshikxian_page.xiadan_btn:
             zixun_page.jkxq_fanhui_btn.click()
+
         # 诊股
         if fenshikxian_page.zhengu_tab_btn:
             fenshikxian_page.zhengu_tab_btn.click()
             pic_name = '搜索-{}-分时-诊股_96'.format(arg)
             public_method.public_screenshot_as_file(picName=pic_name)
-
         else:
             print arg, "这只股票没有诊股tab"
+
         # 财务
         if fenshikxian_page.caiwu_tab_btn:
             fenshikxian_page.caiwu_tab_btn.click()
+            sleep(2)
             pic_name = '搜索-{}-分时-财务_97'.format(arg)
             public_method.public_screenshot_as_file(picName=pic_name)
-
-            if fenshikxian_page.hkus_caiwu_cell01:
-                hkus_caiwu_list = ["hkus_caiwu_cell01", "hkus_caiwu_cell02", "hkus_caiwu_cell03"]
-                for hkus_cw_name in hkus_caiwu_list:
-                    if "fenshikxian_page.{}".format(hkus_cw_name):
-                        print "港美股财务***********", hkus_cw_name
-                        eval("fenshikxian_page.{}.click()".format(hkus_cw_name))
+            if (arg[0] == u"H" and arg[1] == u"K") or (arg[0] == u"h" and arg[1] == u"k"):  # 港股
+                hk_caiwu_list = ["hk_caiwu_cell01", "hk_caiwu_cell02", "hk_caiwu_cell03"]
+                for hk_cw_name in hk_caiwu_list:
+                    if "fenshikxian_page.{}".format(hk_cw_name):
+                        print "港美股财务***********", hk_cw_name
+                        eval("fenshikxian_page.{}.click()".format(hk_cw_name))
                         pic_name = '搜索-{}-分时-财务_47'.format(arg)
                         public_method.public_screenshot_as_file(picName=pic_name)
                         zixun_page.fanhui_btn.click()
             else:
-                caiwu_list = [("caiwu_cell01", "主要指标"), ("caiwu_cell02", "利润表"), ("caiwu_cell03", "资产负债表"),
-                              ("caiwu_cell04", "现金流量表")]
+                caiwu_list = [("zhuyaozhibiao_link", "主要指标"), ("lirunbiao_link", "利润表"), ("zichanfuzhai_link", "资产负债表"),
+                              ("xianjinliuliang_ling", "现金流量表")]
                 for caiwu_name, name in caiwu_list:
                     if "fenshikxian_page.{}".format(caiwu_name):
-                        print "沪深AB股、港美股（审核）财务***********", caiwu_name
+                        print "沪深AB股、美股财务***********", caiwu_name
                         eval("fenshikxian_page.{}.click()".format(caiwu_name))
                         pic_name = '搜索-{}-分时-财务-{}详情_47'.format(arg, name)
                         public_method.public_screenshot_as_file(picName=pic_name)
@@ -434,7 +485,6 @@ def test_step86(driver):
                 hangqing_gengduo_page.fanhui_btn.click()
         else:
             print arg, "这只股票不是板块"
-        fenshikxian_page.fanhui_button.click()
 
 # k线指标切换－日／周／月/分钟周期
 def test_step34_47(driver):
@@ -587,6 +637,17 @@ def test_step48_63(driver):
             fenshikxian_zhibiao_page.fanhui_button.click()
             num = start_num
             start_num = num + 1
+        elif zhibiao_name.text == u"棋盘突破":
+            driver.find_element_by_xpath(
+                "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{}]/UIAButton[2]".format(
+                    start_num)).click()
+            sleep(1)
+            assert fenshikxian_zhibiao_page.title.text == u"短线宝_棋盘突破"
+            fenshikxian_zhibiao_page.fanhui_button.click()
+            driver.find_element_by_xpath(
+                "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{}]/UIAButton[1]".format(
+                    start_num)).click()
+            fenshikxian_zhibiao_page.shanchu_btn.click()
         else:
             driver.find_element_by_xpath(
                 "//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{}]/UIAButton[2]".format(start_num)).click()

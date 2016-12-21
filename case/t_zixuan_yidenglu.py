@@ -28,8 +28,8 @@ def test_step1(driver):
     denglu_page = DengluPage(driver)
 
     if not home_page.button_337705299:
-        denglu_page.sign_in('337705299', '123456')
-    assert home_page.button_337705299
+        denglu_page.sign_in('ysmtest1', '123456')
+    # assert home_page.button_337705299
     assert home_page.feivip_button
     assert home_page.qiehuanyejianmoshi_button
     assert home_page.sousuo_button
@@ -44,15 +44,16 @@ def test_delete(driver):
     public_page.zixuan_button.click()
     optional_page.bianji_button.click()
     lenth = public_method.public_getlength()
+    num = 1    # 从第一行开始删除
     for n in range(lenth):
         cell_text = driver.find_element_by_xpath(
-            '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
+            '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{}]/UIAStaticText[1]'.format(num))
         if cell_text.text == u"同花顺":
-            pass
+            num += 1
         elif cell_text.text == u"上证指数":
-            pass
+            num += 1
         elif cell_text.text == u"创业板指":
-            pass
+            num += 1
         else:
             cell_text.click()
             sleep(1)

@@ -35,6 +35,11 @@ def test_step0(driver):
             gerenzhongxin_page.quedin_btn.click()
             sleep(2)
 
+    # step1
+    assert home_page.gerenzhongxin_btn
+    assert home_page.feivip_button
+    assert home_page.qiehuanyejianmoshi_button
+    """
 # 默认状态
 def test_delete(driver):
     public_page = PublicPage(driver)
@@ -45,15 +50,16 @@ def test_delete(driver):
     public_page.zixuan_button.click()
     optional_page.bianji_button.click()
     lenth = public_method.public_getlength()
+    num = 1
     for n in range(lenth):
         cell_text = driver.find_element_by_xpath(
-                '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]')
+            '//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[{}]/UIAStaticText[1]'.format(num))
         if cell_text.text == u"同花顺":
-            pass
+            num += 1
         elif cell_text.text == u"上证指数":
-            pass
+            num += 1
         elif cell_text.text == u"创业板指":
-            pass
+            num += 1
         else:
             cell_text.click()
             sleep(1)
@@ -97,25 +103,6 @@ def test_step001(driver):
     denglu_page = DengluPage(driver)
     gerenzhongxin_page = GerenzhongxinPage(driver)
 
-    #先判断当前是否有账号登录,如果有,则先退出
-    if home_page.button_337705299:
-        home_page.button_337705299.click()
-        el1 = driver.get_window_size()
-        width = el1.get('width')
-        height = el1.get('height')
-        start_x = width * (220 / 375.0)
-        start_y = height * (500 / 667.0)
-        end_x = width * (220 / 375.0)
-        end_y = height * (220 / 667.0)
-        driver.swipe(start_x, start_y, end_x, end_y, duration=500)
-        #因为退出按钮不管是通过id,还是path都不能点击,总是点击的是用户反馈,所以滑动后通过预设坐标点击
-        driver.tap([(width * (192 / 375.0),height * (575 / 667.0))])
-        gerenzhongxin_page.quedin_btn.click()
-
-    # step1
-    assert home_page.gerenzhongxin_btn
-    assert home_page.feivip_button
-    assert home_page.qiehuanyejianmoshi_button
     # step2
     public_page.zixuan_button.click()
     assert optional_page.zixuan_staticText
@@ -498,7 +485,7 @@ def test_step80(driver):
     zixuangugonggao_page.fanhui_btn.click()
 
 # 自选－>长按操作
-def tst_step104(driver):
+def t_step104(driver):
     public_page = PublicPage(driver)
     optional_page = OptionalPage(driver)
 
@@ -542,3 +529,4 @@ def test_step130_144(driver):
     optional_page.fenzu_btn.click()
 
     zixuangufenzu_page.hx_tapblank()
+    """

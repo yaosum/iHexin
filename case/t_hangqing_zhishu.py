@@ -15,8 +15,7 @@ from pages.hangqing.guzhiQihuo_gengduo_page import GuzhiQihuoGengduoPage
 from pages.hangqing.hangqing_gengduo_page import HangqingGengduoPage
 from pages.public.public_method import PublicMethod
 
-
-#进入看主力资金页面，在自选已经运行过这部分脚本，这里只需要看能否正常进入
+# 进入看主力资金页面，在自选已经运行过这部分脚本，这里只需要看能否正常进入
 def test_step3(driver):
     public_page = PublicPage(driver)
     zhishu_page = ZhishuPage(driver)
@@ -27,7 +26,6 @@ def test_step3(driver):
 
     # step2
     #debug_page.switch_server("112.17.10.145", "9528")
-    #step2
     public_page.hangqing_button.click()
     sleep(1)
     hangqing_page.zhishu_btn.click()
@@ -36,7 +34,7 @@ def test_step3(driver):
     picName = '行情－指数-看资金_2'
     public_method.public_screenshot_as_file(picName=picName)
 
-#进入指数并验证
+# 进入指数并验证
 def test_step1(driver):
     public_page = PublicPage(driver)
     zhishu_page = ZhishuPage(driver)
@@ -44,10 +42,9 @@ def test_step1(driver):
     public_method = PublicMethod(driver)
     debug_page = DebugPage(driver)
 
-    # step2
-    #debug_page.switch_server("112.17.10.145", "9528")
+    # debug_page.switch_server("112.17.10.145", "9528")
 
-    #step2
+    # step2
     public_page.hangqing_button.click()
     hangqing_page.zhishu_btn.click()
 
@@ -58,7 +55,7 @@ def test_step1(driver):
     picName = '行情－指数_3'
     public_method.public_screenshot_as_file(picName=picName)
 
-#国内指数
+# 国内指数
 def test_step21(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -73,13 +70,13 @@ def test_step21(driver):
 
     public_page.hangqing_button.click()
     hangqing_page.zhishu_btn.click()
-    zhishu_page.down_glide()
     sleep(1)
     picName = '行情-指数_21'
     public_method.public_screenshot_as_file(picName=picName)
 
     # step22-30
     zhishu_page.gn_operation()
+    sleep(1)
 
     # step31-40
     zhishu_page.guoneiZhishu_gengduo_btn.click()
@@ -92,8 +89,6 @@ def test_step21(driver):
     hangqing_gengduo_page.hq_right()
 
     title = hangqing_gengduo_page.cell01_title.text
-    #title = driver.find_element_by_xpath(
-        #"//UIAApplication[1]/UIAWindow[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[1]").text
     print "指数－国内指数－更多－第一行股票名称：", title
     hangqing_gengduo_page.cell01_click()
     assert fenshikxian_page.title_staText.text == title
@@ -101,7 +96,7 @@ def test_step21(driver):
     fenshikxian_page.fanhui_button.click()
     hangqing_gengduo_page.fanhui_btn.click()
 
-#股指期货
+# 股指期货
 def test_step41(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -118,7 +113,8 @@ def test_step41(driver):
     # step41-49
     hangqing_page.zhishu_btn.click()
 
-    #zhishu_page.qh_operation()
+    zhishu_page.qh_operation()
+    sleep(1)
 
     # step50-57
     zhishu_page.qihuo_gengduo_btn.click()
@@ -161,10 +157,9 @@ def test_step41(driver):
     public_method.public_tap_element(guzhiqihuo_gengduo_page.zhongzheng500_btn)
     public_method.public_tap_element(guzhiqihuo_gengduo_page.shangzheng50_btn)
     public_method.public_tap_element(guzhiqihuo_gengduo_page.hushen300_btn)
-    guzhiqihuo_gengduo_page.hushen300_btn.click()
     guzhiqihuo_gengduo_page.fanhui_btn.click()
 
-#富时A50指数
+# 富时A50指数
 def test_step76(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -185,7 +180,7 @@ def test_step76(driver):
     # step76-83
     zhishu_page.fs_operation()
 
-#其他指数
+# 其他指数
 def test_step93(driver):
     public_page = PublicPage(driver)
     hangqing_page = HangqingPage(driver)
@@ -206,6 +201,7 @@ def test_step93(driver):
 
     # step93-102
     zhishu_page.qt_operation()
+    sleep(1)
 
     zhishu_page.qita_gengduo_btn.click()
     picName = '指数-其它指数-更多_93'

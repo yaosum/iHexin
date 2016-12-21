@@ -21,9 +21,12 @@ class QitaXinsanbanPage(PageObject):
     xieyi_btn = page_element(accessibility_id = '协议')
     youxiangu_btn = page_element(accessibility_id = '优先股')
 
-    group1 = page_element(accessibility_id = '涨幅榜')
-    group2 = page_element(accessibility_id = '跌幅榜')
-    group3 = page_element(accessibility_id = '成交额榜')
+    group1 = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[1]')
+    group2 = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableGroup[2]/UIAButton[1]')
+    group3 = page_element(
+        xpath='//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableGroup[3]/UIAButton[1]')
 
     gengduo1 = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableGroup[1]/UIAButton[2]')
@@ -34,14 +37,13 @@ class QitaXinsanbanPage(PageObject):
 
     #第一行元素
     cell1 = page_element(
-        xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[2]')
+        xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[3]')
     # 更多列表中第一行元素的标题
     cell1_title = page_element(
         xpath = '//UIAApplication[1]/UIAWindow[1]/UIAScrollView[1]/UIATableView[1]/UIATableCell[1]/UIAStaticText[3]')
     # 成分股－三板成指／三板做市
     sanbanzuoshi_tab = page_element(accessibility_id = "三板做市")
     sanbanchengzhi_tab = page_element(accessibility_id = "三板成指")
-
 
     # 成分股列表中第一行元素的标题
     cell01_title_chengfengu = page_element(

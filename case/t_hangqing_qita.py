@@ -202,7 +202,7 @@ def test_step58(driver):
 
     # step2
     isShenhe = True    # 默认是审核状态
-    if home_page.xiaoxizhongxin_btn_shen:     # 如果首页的消息中心是非审核状态下的，目前状态就是非审核状态
+    if home_page.xiaoxizhongxin_btn_feishen:     # 如果首页的消息中心是非审核状态下的，目前状态就是非审核状态
         isShenhe = False
     public_page.hangqing_button.click()
     # step3
@@ -389,13 +389,12 @@ def test_step76(driver):
         eval('qita_xinsanban_page.{}.click()'.format(name_head))
         sub_list = [('group1', 'gengduo1'), ('group2', 'gengduo2'), ('group3', 'gengduo3')]
         for group, gengduo in sub_list:
-            # title = qita_xinsanban_page.cell1_title.text
+            sleep(1)
+            print "行情-其他-新三板-", name_head, group, gengduo
             qita_xinsanban_page.cell1.click()
-            # assert fenshikxian_page.title_staText.text == title
             fenshikxian_page.change_gupiao(1)
             fenshikxian_page.fanhui_button.click()
-            print "新三板，", name_head, group, gengduo
-
+            sleep(1)
             eval('qita_xinsanban_page.{}.click()'.format(gengduo))
 
             for n in range(5):
@@ -406,17 +405,13 @@ def test_step76(driver):
                 hangqing_gengduo_page.hq_left()
 
             hangqing_gengduo_page.jijin_clickOperation()
-            #title = hangqing_gengduo_page.cell01_title.text
             hangqing_gengduo_page.cell01_click()
-            #assert fenshikxian_page.title_staText.text == title
-            fenshikxian_page.change_gupiao(1)
+            fenshikxian_page.change_gupiao(10)
             fenshikxian_page.fanhui_button.click()
-            hangqing_gengduo_page.fanhui_btn.click()
-            eval('qita_xinsanban_page.{}.click()'.format(group))
 
-        qita_xinsanban_page.group3.click()
-        qita_xinsanban_page.group2.click()
-        qita_xinsanban_page.group1.click()
+            hangqing_gengduo_page.fanhui_btn.click()
+            sleep(1)
+            eval('public_method.public_tap_element(qita_xinsanban_page.{})'.format(group))
 
     hangqing_gengduo_page.fanhui_btn.click()
 

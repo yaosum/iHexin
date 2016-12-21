@@ -112,9 +112,11 @@ class UploadFile(object):
     def readModularCaseTxt(self, run_case_id):
         getExcelData = GetExcelData()
         str = getExcelData.readModularCase()
+        str.encode('utf-8')
+        print(str)
         file_path = GetProjectPath.getProjectPath() + '/temFile/modularCase.txt'
         file = open(file_path, 'w')
-        if os.path.isfile(file_path):
+        if not os.path.isfile(file_path):
             file.write("{}\n".format(str))
             file.close()
         else:

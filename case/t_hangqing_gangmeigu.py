@@ -54,6 +54,7 @@ def test_step86(driver):
     ganggutong_page.down_glide()
     ganggutong_page.down_glide()
     ganggutong_page.ganggutong_operation_click()
+
     ganggutong_page.ganggutong_cell01_click()
     fenshikxian_page.change_gupiao(5)
     fenshikxian_page.fanhui_button.click()
@@ -305,12 +306,15 @@ def test_step50(driver):
 
         # step49
         for group, gengduo in group_list:
-            if group == u'hk_group_2':
-                gangmeigu_page.hk_group_2.click()
+            if group == u'hk_group_2':    # AH比价股列表单独运行，这里跳过
+                gangmeigu_page.glide_down()
+                if gangmeigu_page.hk_group_2:
+                    gangmeigu_page.hk_group_2.click()
             else:
-                eval('gangmeigu_page.{0}_cell1_title.click()'.format(market))
+                eval('gangmeigu_page.{}_cell1_title.click()'.format(market))
                 fenshikxian_page.change_gupiao(5)
                 fenshikxian_page.fanhui_button.click()
+                sleep(1)
                 eval('gangmeigu_page.{}.click()'.format(gengduo))
                 sleep(1)
                 public_method.public_screenshot_as_file(picName=picName_zu_gengduo)
@@ -331,8 +335,6 @@ def test_step50(driver):
                 assert fenshikxian_page.title_staText.text == title
                 fenshikxian_page.change_gupiao(5)
                 fenshikxian_page.fanhui_button.click()
+
                 hangqinggengduo_page.fanhui_btn.click()
                 eval('gangmeigu_page.{}.click()'.format(group))
-
-        # for group in group_list[:: -1]:
-            # eval('gangmeigu_page.{}.click()'.format(group))

@@ -121,67 +121,57 @@ class FenshiKxianPage(PageObject):
     iwendongmi_btn = page_element(
         xpath = "//UIAWebView[1]/UIAStaticText[11]")
 
-    # 财务/简况下的更多(港美股特殊处理)
-    caiwu_cell01 = page_element(
-        xpath = "//UIATableCell[2]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]")
-    caiwu_cell02 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]")
-    caiwu_cell03 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]")
-    caiwu_cell04 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]")
-    caiwu_cell05 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[1]")
-    caiwu_cell06 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[1]")
-    caiwu_cell07 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[8]/UIALink[1]/UIALink[1]")
-    caiwu_cell08 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[9]/UIALink[1]/UIALink[1]")
-    caiwu_cell09 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[10]/UIALink[1]/UIALink[1]")
-    caiwu_cell10 = page_element(
-        xpath="//UIATableCell[2]/UIAWebView[1]/UIALink[16]/UIALink[1]/UIALink[1]")
+    # 美股
+    daoqiongsi_staticText = page_element(accessibility_id = "道琼斯")
+
+    # 简况下的更多(美股)
+    us_zhuyaozhibiao_link = page_element(xpath = "//UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[@name='更多']")
+    us_pingjizonglan_link = page_element(xpath="//UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[@name='更多']")
+    us_dongshihui_link = page_element(xpath="//UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[@name='更多']")
+    us_gaoguanchengyuan_link = page_element(xpath="//UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[@name='更多']")
+    us_gudongyanjiu_link = page_element(xpath="//UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[@name='更多']")
+    us_zhuyingyewu_link = page_element(xpath="//UIAWebView[1]/UIALink[6]/UIALink[1]/UIALink[@name='更多']")
+    us_fenhongrongzi_link = page_element(xpath="//UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[@name='更多']")
+    # 沪深AB股
+    zyzb_link = page_element(xpath = "//UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[@name='更多']")
+    gntc_link = page_element(xpath="//UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[@name='更多']")
+    dstx_link = page_element(xpath="//UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[@name='更多']")
+    gszl_link = page_element(xpath="//UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[@name='更多']")
+    gsgg_link = page_element(xpath="//UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[@name='更多']")
+    gbgd_link = page_element(xpath="//UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[@name='更多']")
+    zlcc_link = page_element(xpath="//UIAWebView[1]/UIALink[8]/UIALink[1]/UIALink[@name='更多']")
+    fhrz_link = page_element(xpath="//UIAWebView[1]/UIALink[9]/UIALink[1]/UIALink[@name='更多']")
+    hydb_link = page_element(xpath="//UIAWebView[1]/UIALink[10]/UIALink[1]/UIALink[@name='更多']")
+
     # 港股下简况列表
     hk_jiankuang_cell01 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[@name='市盈率']")
     hk_jiankuang_cell02 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[@name='公司名称']")
     hk_jiankuang_cell03 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[@name='按业务：']")
     hk_jiankuang_cell04 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIAStaticText[1]")
+        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]")
     hk_jiankuang_cell05 = page_element(
         xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[5]")
     hk_jiankuang_cell06 = page_element(
         xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[6]/UIALink[1]/UIALink[1]/UIALink[1]")
     hk_jiankuang_cell07 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[7]/UIALink[1]")
-    # 美股下简况列表
-    us_jiankuang_cell01 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
-    us_jiankuang_cell02 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]")
-    us_jiankuang_cell03 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[2]")
-    us_jiankuang_cell04 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[2]")
-    us_jiankuang_cell05 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[5]/UIALink[1]/UIALink[2]")
-    us_jiankuang_cell06 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[6]/UIALink[1]/UIALink[2]")
-    us_jiankuang_cell07 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[7]/UIALink[1]/UIALink[2]")
-
-    # 港美股下财务列表
-    hkus_caiwu_cell01 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[1]")
-    hkus_caiwu_cell02 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[1]")
-    hkus_caiwu_cell03 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[1]")
-    hkus_caiwu_cell04 = page_element(
-        xpath="//UIATableCell[3]/UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]/UIALink[1]")
+        xpath="//UIAWebView[1]/UIALink[7]/UIALink[@name='卖出']")
+    # 港美股的运营位
+    yunyingwei_cell = page_element(xpath="//UIATableCell[3]/UIAWebView[1]")
+    # 美股和沪深AB股的财务
+    zhuyaozhibiao_link = page_element(xpath = "//UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[@name='基本每股收益']")
+    lirunbiao_link = page_element(xpath = "//UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[@name='营业总收入']")
+    zichanfuzhai_link = page_element(xpath="//UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[@name='资产合计']")
+    xianjinliuliang_ling = page_element(xpath="//UIAWebView[1]/UIALink[4]/UIALink[1]/UIALink[1]/UIALink[@name='经营活动现金流']")
+    # 港股下财务列表
+    hk_caiwu_cell01 = page_element(
+        xpath="//UIAWebView[1]/UIALink[1]/UIALink[1]/UIALink[1]/UIALink[@name='营业额']")
+    hk_caiwu_cell02 = page_element(
+        xpath="//UIAWebView[1]/UIALink[2]/UIALink[1]/UIALink[1]/UIALink[@name='流动资产']")
+    hk_caiwu_cell03 = page_element(
+        xpath="//UIAWebView[1]/UIALink[3]/UIALink[1]/UIALink[1]/UIALink[@name='经营流动现金流量净额']")
 
     # 盘口下的第一个板块按钮
     pankou_bankuai_btn = page_element(
