@@ -101,7 +101,16 @@ class GetExcelData(object):
         return result
 
     """
+    功能:获取重跑数
+    """
+    def getRerun(self):
+        if self.readXls(row=11, col=1) != '':
+            rerun =self.readXls(row=11, col=1)
+            return rerun
+
+    """
     功能:获取pytest相关的配置信息。如:bundleid,手机型号,手机系统。。。。
+    return:pytest启动的命令字符串
     """
     def pytestConfigure(self):
         # 取出来的是float转换字符串
@@ -140,7 +149,7 @@ class GetExcelData(object):
         return run_str
 
     """
-
+    功能:获取运行用例模块备注信息
     """
     def readModularCase(self):
         str = self.readXls(row=12, col=1)
@@ -148,3 +157,46 @@ class GetExcelData(object):
             return str
         else:
             return "没有填写"
+    """
+    功能:获取手机和包相关的信息
+    return:一个list
+    """
+    def getCaseInfo(self):
+        result_list = []
+
+        # 手机的型号
+        if self.readXls(row=7, col=1) != "":
+            iPhone_name = "手机型号:"+self.readXls(row=7, col=1)
+            result_list.append(iPhone_name)
+
+        # 系统版本
+        f = self.readXls(row=6, col=1)
+        if type(f) is types.FloatType:
+            s = '{}'.format(f)
+        else:
+            s = f
+        if s != "":
+            iPhone_version = "系统版本:"+s
+            result_list.append(iPhone_version)
+
+        #rerun
+        if self.readXls(row=11, col=1) != '':
+            rerun = "重跑次数:" + "{}".format(self.readXls(row=11, col=1))
+            result_list.append(rerun)
+
+        #repeat
+        if self.readXls(row=10, col=1) != "":
+            repeat = "运行次数:" + "{}".format(self.readXls(row=10, col=1))
+            result_list.append(repeat)
+
+        # bundle id
+        if self.readXls(row=9, col=1) != "":
+            bundle_id = "bundleid: " + self.readXls(row=9, col=1)
+            result_list.append(bundle_id)
+
+        # device_udid
+        if self.readXls(row=8, col=1) != "":
+            device_udid = "udid: " + self.readXls(row=8, col=1)
+            result_list.append(device_udid)
+
+        return result_list

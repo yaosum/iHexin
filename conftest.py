@@ -9,6 +9,7 @@ import sys
 import logging
 import os
 from function.upload_file import UploadFile
+from function.get_excel_data import GetExcelData
 
 ROOT_PATH = os.path.split(os.path.realpath(__file__))[0]
 sys.path.append(ROOT_PATH)
@@ -25,6 +26,8 @@ framework_logger = logging.getLogger("pytest")
 passedList = []
 failedList = []
 rerunList = []
+temList = []
+rerunNum = 0
 
 @pytest.mark.trylast
 def pytest_runtest_setup(item):
@@ -46,6 +49,9 @@ def pytest_addoption(parser):
     parser.addoption("--device_udid", help = "udid of device")
     parser.addoption("--bundle_id", help = "bundleId of application")
     parser.addoption("--app_path", help="path of app file")
+    getExcelData = GetExcelData()
+    global rerunNum
+    rerunNum = getExcelData.getRerun()
 
 @pytest.fixture(scope = 'session')
 def platform_name(request):
@@ -98,7 +104,6 @@ def driver(request, platform_name, platform_version, device_name, device_udid, b
 def pytest_unconfigure(config):
     uploadFile = UploadFile()
     uploadFile.uploadResult(passedList=passedList, failedList=failedList, rerunList=rerunList)
-
 
 @pytest.mark.hookwrapper
 def pytest_runtest_makereport(item, call):
@@ -167,21 +172,35 @@ def _gather_page_source(item, report, driver, summary, extra):
 
 """
     统计成功数,失败数,重跑数
+    实现思路:
+        temList是一个中间list,用于存储本次test以前的失败的test。每次运行完一个test的时候,先判断这个list是否已经存有test的,如果有说明上一次运行的test失败,
+        如果这一次是成功的,且和上一次运行的test是用一个,则这个test就是重跑通过,反之就是上一次的test是失败的。
 """
 def statistics(report,item):
-    if report.outcome == "passed":
-        passedList.append(item.name)
-    if report.outcome == "failed":
-        n = len(failedList)
-        if n >= 1:
-            if failedList[n - 1] != item.name:
-                failedList.append(item.name)
-            else:
-                m = len(rerunList)
-                if m >= 1:
-                    if rerunList[m - 1] != item.name:
-                        rerunList.append(item.name)
-                else:
-                    rerunList.append(item.name)
+    m = len(temList)
+    global rerunNum
+    if m > 0:
+        if rerunNum == m:
+            if report.outcome == "passed":
+                rerunList.extend(temList)
+                passedList.append(item.name)
+                for n in range(m):
+                    temList.pop()
+            if report.outcome == "failed":
+                failedList.extend(temList)
+                for n in range(m):
+                    temList.pop()
+
         else:
-            failedList.append(item.name)
+            if report.outcome == "passed":
+                rerunList.extend(temList)
+                passedList.append(item.name)
+                for n in range(m):
+                    temList.pop()
+            if report.outcome == "failed":
+                temList.append(item.name)
+    else:
+        if report.outcome == "passed":
+            passedList.append(item.name)
+        if report.outcome == "failed":
+            temList.append(item.name)

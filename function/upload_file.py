@@ -19,7 +19,6 @@ class UploadFile(object):
         run_case_id = getExcelData.getRunCaseId()
         uploadFileFlag = getExcelData.getUploadFileFlag()
         sendEmailFlag = getExcelData.getSendEmailFlag()
-
         # 如果不需要把结果上传服务器地址,和发邮件通知,return
         if uploadFileFlag == "1":
             # 把结果上传服务器地址
@@ -28,6 +27,8 @@ class UploadFile(object):
                                   rerunList=rerunList)
             # -----运行用例的备注信息,也就是运行的模块
             self.readModularCaseTxt(run_case_id=run_case_id)
+            # -----手机,程序的相关信息
+            self.uploadCaseInfo(run_case_id=run_case_id)
             # -----截图
             screen_date = time.strftime('%Y-%m-%d', time.localtime(time.time()))
             sourceDir = GetProjectPath.getProjectPath() + '/result/' + screen_date + '/' + run_case_id
@@ -66,9 +67,13 @@ class UploadFile(object):
             hexin_email = HexinEmail()
             # 用例统计数据
             rate_list = []
+            rerun = getExcelData.getRerun()
             rate_list.append(len(passedList))
             rate_list.append(len(failedList))
-            rate_list.append(len(rerunList))
+            if rerun > 0:
+                rate_list.append(len(rerunList) - len(failedList)*rerun)
+            else:
+                rate_list.append(0)
             # 注意:如果收件人和抄送人邮件拼错,会导致发送全部失败
             to_list = getExcelData.getToList()
             cc_list = getExcelData.getCcList()
@@ -80,28 +85,25 @@ class UploadFile(object):
     """
     def resultWriteToTxt(self, run_case_id, passedList, failedList, rerunList):
         file_path = GetProjectPath.getProjectPath() + '/temFile/statistics.txt'
+        getExcelData = GetExcelData()
+        rerun  = getExcelData.getRerun()
         file = open(file_path, 'w')
-        if os.path.isfile(file_path):
+        if not os.path.isfile(file_path):
             file.write("{}\n".format(len(passedList)))
             file.write("{}\n".format(len(failedList)))
-            file.write("{}\n".format(len(rerunList) - len(failedList)))
+            if rerun > 0:
+                file.write("{}\n".format(len(rerunList)))
+            else:
+                file.write("{}\n".format(0))
             file.close()
         else:
-            i = 0
-            for line in file.readlines():
-                if i == 0:
-                    str = line
-                    s = line.replace(str, "{}".format(len(passedList)))
-                    file.writelines(s)
-                if i == 1:
-                    str = line
-                    s = line.replace(str, "{}".format(len(failedList)))
-                    file.writelines(s)
-                if i == 2:
-                    str = line
-                    s = line.replace(str, "{}".format(len(rerunList)))
-                    file.writelines(s)
-                i = i + 1
+            file.truncate()
+            file.write("{}\n".format(len(passedList)))
+            file.write("{}\n".format(len(failedList)))
+            if rerun > 0:
+                file.write("{}\n".format(len(rerunList)))
+            else:
+                file.write("{}\n".format(0))
             file.close()
 
         targetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)
@@ -109,11 +111,13 @@ class UploadFile(object):
             os.makedirs(targetDir)
         copy(file_path, targetDir)
 
+    """
+    功能:把运行用例模块备注信息上传
+    """
     def readModularCaseTxt(self, run_case_id):
         getExcelData = GetExcelData()
         str = getExcelData.readModularCase()
         str.encode('utf-8')
-        print(str)
         file_path = GetProjectPath.getProjectPath() + '/temFile/modularCase.txt'
         file = open(file_path, 'w')
         if not os.path.isfile(file_path):
@@ -128,3 +132,26 @@ class UploadFile(object):
         if not os.path.isdir(targetDir):
             os.makedirs(targetDir)
         copy(file_path, targetDir)
+
+    """
+    功能:把手机和程序相关的信息上传服务器地址
+    """
+    def uploadCaseInfo(self, run_case_id):
+        getExcelData = GetExcelData()
+        info_list = getExcelData.getCaseInfo()
+        if len(info_list) > 0:
+            file_path = GetProjectPath.getProjectPath() + '/temFile/caseInfo.txt'
+            file = open(file_path, 'w')
+            if not os.path.isfile(file_path):
+                for n in info_list:
+                    file.write("{}\n".format(n))
+                file.close()
+            else:
+                file.truncate()
+                for n in info_list:
+                    file.write("{}\n".format(n))
+                file.close()
+            targetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)
+            if not os.path.isdir(targetDir):
+                os.makedirs(targetDir)
+            copy(file_path, targetDir)

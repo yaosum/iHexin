@@ -19,9 +19,7 @@ class HexinEmail(object):
     def sendEmail(self, to_list, cc_list, rate_list, run_case_id):
         content = "&nbsp;&nbsp;&nbsp;" + "run_case_ID:&nbsp;" + run_case_id + '<br />'
         #用例统计内容拼接
-        num = 0
-        for n in rate_list:
-            num = num + n
+        num = rate_list[0] + rate_list[1]
         content = content+ "&nbsp;&nbsp;&nbsp;" +'total:&nbsp;{}'.format(num) + '<br />'
         tem_list = ['passed:&nbsp;', 'failed:&nbsp;', 'rerun:&nbsp;']
         if len(rate_list) > 0:
