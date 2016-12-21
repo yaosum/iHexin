@@ -166,7 +166,7 @@ class GetExcelData(object):
 
         # 手机的型号
         if self.readXls(row=7, col=1) != "":
-            iPhone_name = "手机型号:"+self.readXls(row=7, col=1)
+            iPhone_name = "手机型号:"+str(self.readXls(row=7, col=1))
             result_list.append(iPhone_name)
 
         # 系统版本

@@ -86,7 +86,7 @@ class UploadFile(object):
     def resultWriteToTxt(self, run_case_id, passedList, failedList, rerunList):
         file_path = GetProjectPath.getProjectPath() + '/temFile/statistics.txt'
         getExcelData = GetExcelData()
-        rerun  = getExcelData.getRerun()
+        rerun = getExcelData.getRerun()
         file = open(file_path, 'w')
         if not os.path.isfile(file_path):
             file.write("{}\n".format(len(passedList)))
@@ -116,16 +116,16 @@ class UploadFile(object):
     """
     def readModularCaseTxt(self, run_case_id):
         getExcelData = GetExcelData()
-        str = getExcelData.readModularCase()
-        str.encode('utf-8')
+        casename = getExcelData.readModularCase()
+        casename = str(casename.encode('utf-8'))
         file_path = GetProjectPath.getProjectPath() + '/temFile/modularCase.txt'
         file = open(file_path, 'w')
         if not os.path.isfile(file_path):
-            file.write("{}\n".format(str))
+            file.write("{}\n".format(casename))
             file.close()
         else:
             file.truncate()
-            file.write("{}\n".format(str))
+            file.write("{}\n".format(casename))
             file.close()
 
         targetDir = '/Library/Webserver/Documents/result/{}/report'.format(run_case_id)
