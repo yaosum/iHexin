@@ -26,7 +26,7 @@ framework_logger = logging.getLogger("pytest")
 passedList = []
 failedList = []
 rerunList = []
-temList = []
+num = 0
 rerunNum = 0
 
 @pytest.mark.trylast
@@ -177,30 +177,28 @@ def _gather_page_source(item, report, driver, summary, extra):
         如果这一次是成功的,且和上一次运行的test是用一个,则这个test就是重跑通过,反之就是上一次的test是失败的。
 """
 def statistics(report,item):
-    m = len(temList)
     global rerunNum
-    if m > 0:
-        if rerunNum == m:
+    global num  # 一个用例跑的重跑的次数
+    if num > 0:
+        if rerunNum == num:
             if report.outcome == "passed":
-                rerunList.extend(temList)
+                rerunList.append(item.name)
                 passedList.append(item.name)
-                for n in range(m):
-                    temList.pop()
+
             if report.outcome == "failed":
-                failedList.extend(temList)
-                for n in range(m):
-                    temList.pop()
+                failedList.append(item.name)
+            num = 0
 
         else:
             if report.outcome == "passed":
-                rerunList.extend(temList)
-                passedList.append(item.name)
-                for n in range(m):
-                    temList.pop()
-            if report.outcome == "failed":
-                temList.append(item.name)
+               rerunList.append(item.name)
+               passedList.append(item.name)
+               num = 0
+            else:
+                num = num + 1
     else:
         if report.outcome == "passed":
             passedList.append(item.name)
-        if report.outcome == "failed":
-            temList.append(item.name)
+            num = 0
+        else:
+            num = num + 1

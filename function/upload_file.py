@@ -67,13 +67,9 @@ class UploadFile(object):
             hexin_email = HexinEmail()
             # 用例统计数据
             rate_list = []
-            rerun = getExcelData.getRerun()
             rate_list.append(len(passedList))
             rate_list.append(len(failedList))
-            if rerun > 0:
-                rate_list.append(len(rerunList) - len(failedList)*rerun)
-            else:
-                rate_list.append(0)
+            rate_list.append(len(rerunList))
             # 注意:如果收件人和抄送人邮件拼错,会导致发送全部失败
             to_list = getExcelData.getToList()
             cc_list = getExcelData.getCcList()
